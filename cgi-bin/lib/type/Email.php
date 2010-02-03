@@ -1,0 +1,133 @@
+<?php // INDENTING (emacs/vi): -*- mode:php; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
+/** PHP Application Programming Environment (PHP-APE)
+ *
+ * <P><B>COPYRIGHT:</B></P>
+ * <PRE>
+ * PHP Application Programming Environment (PHP-APE)
+ * Copyright (C) 2005-2006 Cedric Dufour
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ * </PRE>
+ *
+ * @package PHP_APE_Type
+ * @subpackage Classes
+ */
+
+/** Email type
+ *
+ * <P><B>NOTE:</B> PHP does NOT handle different types of <I>string</I> data, but other dataspaces DO.</P>
+ *
+ * @package PHP_APE_Type
+ * @subpackage Classes
+ */
+class PHP_APE_Type_Email
+extends PHP_APE_Type_String
+{
+
+  /*
+   * METHODS: static
+   ********************************************************************************/
+
+  /** Explode the given data <I>string</I> into basic components
+   *
+   * <P><B>RETURNS:</B> an <I>array</I> containing:</P>
+   * <UL>
+   * <LI><SAMP>0</SAMP>: user (<I>string</I>)</LI>
+   * <LI><SAMP>1</SAMP>: domain (<I>string</I>)</LI>
+   * </UL>
+   * <P><B>THROWS:</B> <SAMP>PHP_APE_Type_Exception</SAMP>.</P>
+   *
+   * @param string $sString Input string
+   * @return array|mixed
+   */
+  public static function explodeString( $sString )
+  {
+    if( !preg_match( '/(^|\s)((\w+[-_.])*\w+)@((\w+[-_.])*\w+\.\w+)(\s|$)/', $sString, $aMatch ) )
+      throw new PHP_APE_Type_Exception( __METHOD__, 'Invalid/unparsable input; String: '.$sString );
+    $amComponents = array();
+    $amComponents[0] = $aMatch[2]; // user
+    $amComponents[1] = $aMatch[4]; // domain
+    return $amComponents;
+  }
+
+  /** Parses the given data <I>string</I> into its corresponding value
+   *
+   * <P><B>THROWS:</B> <SAMP>PHP_APE_Type_Exception</SAMP>.</P>
+   *
+   * @param string $sString Input string
+   * @return string
+   */
+  public static function parseString( $sString )
+  {
+    if( is_null( $sString ) ) return null;
+    if( strlen( trim( $sString ) ) == 0 ) return (string)'';
+    return self::parseComponents( self::explodeString( $sString ) );
+  }
+
+
+  /** Parses the given data components <I>array</I> into their corresponding value
+   *
+   * <P><B>THROWS:</B> <SAMP>PHP_APE_Type_Exception</SAMP>.</P>
+   *
+   * @param array|mixed $amComponents Input components <I>array</I>
+   * @return string
+   * @see explodeString()
+   */
+  public static function parseComponents( $amComponents )
+  {
+    // Check input
+    if( !is_array( $amComponents ) or count( $amComponents ) < 2 )
+      throw new PHP_APE_Type_Exception( __METHOD__, 'Invalid/unparsable components' );
+
+    // Return string
+    return (string)$amComponents[0].'@'.$amComponents[1];
+  }
+
+  /** Parses the given <I>mixed</I> data into their corresponding value
+   *
+   * <P><B>THROWS:</B> <SAMP>PHP_APE_Type_Exception</SAMP>.</P>
+   *
+   * @param mixed $mValue Input value
+   * @param boolean $bStrict Strict data parsing (<SAMP>null</SAMP> remains <SAMP>null</SAMP>)
+   * @return string
+   */
+  public static function parseValue( $mValue, $bStrict = true )
+  {
+    $mValue = parent::parseValue( $mValue, $bStrict );
+    if( is_null( $mValue ) ) return null;
+    return self::parseString( $mValue );
+  }
+
+
+  /*
+   * METHODS: value - OVERRIDE
+   ********************************************************************************/
+
+  public function setValue( $mValue )
+  {
+    $this->mValue = self::parseValue( $mValue, true );
+  }
+
+
+  /*
+   * METHODS: parse/format - OVERRIDE
+   ********************************************************************************/
+
+  public function setValueParsed( $mValue, $bStrict = true, $iFormat = null )
+  {
+    $this->mValue = self::parseValue( $mValue, $bStrict );
+  }
+
+}

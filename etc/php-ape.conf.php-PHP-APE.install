@@ -1,0 +1,18 @@
+<?php
+## PHP-APE parameters
+if( !defined( 'PHP_APE_HTDOCS_URL' ) ) define( 'PHP_APE_HTDOCS_URL', 'http://localhost.localdomain' );
+
+# Cryptography
+$_CONFIG['php_ape.util.crypto.key.server'] = '6cb31292dd482b445985632920ae33649caa2906';
+$_CONFIG['php_ape.util.crypto.key.client'] = '8c2a1a60f1ab6bf1d51f371cac82f52c3e7f02d7';
+
+# Authentication
+$_CONFIG['php_ape.auth.htdocs.url'] = PHP_APE_HTDOCS_URL.'/php-ape/lib/auth';
+
+# HTML/HTTPD settings
+$_CONFIG['php_ape.html.htdocs.url'] = PHP_APE_HTDOCS_URL.'/php-ape/lib/html';
+$_CONFIG['php_ape.html.javascript.url'] = PHP_APE_HTDOCS_URL.'/js';
+$_CONFIG['php_ape.html.css.url'] = PHP_APE_HTDOCS_URL.'/css';
+
+# RSS settings
+$_CONFIG['php_ape.rss.xsl.url'] = PHP_APE_HTDOCS_URL.'/php-ape/lib/rss/default.xsl';

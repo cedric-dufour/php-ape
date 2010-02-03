@@ -1,0 +1,18 @@
+# (French version)
+# GUI Data
+Label.Filter = "Recherche"
+Tooltip.Filter = "Rechercher (filtrer) des données correspondant aux critère(s) spécifié(s)"
+Label.Apply = "Appliquer"
+Tooltip.Apply = "Appliquer le filtre"
+Label.Clear = "Effacer"
+Tooltip.Clear = "Effacer le filtre"
+Label.Help = "Aide"
+Tooltip.Help = "Obtenez de l'aide sur la manière d'utiliser le filtre et de spécifier des critères de recherche"
+Label.Simple = "Simple"
+Tooltip.Simple = "Utilisez un filtre simplifié (critère unique et global)"
+Label.Advanced = "Avancée"
+Tooltip.Advanced = "Utilisez un filtre avancé (critères multiples)"
+Label.Or = "OU"
+Tooltip.Or = "Assemblez les critères multiples en utilisant une relation logique OU"
+Label.And = "ET"
+Tooltip.And = "Assemblez les critères multiples en utilisant une relation logique ET"

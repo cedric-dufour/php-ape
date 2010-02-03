@@ -1,0 +1,258 @@
+<?php // INDENTING (emacs/vi): -*- mode:php; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
+# PHP Application Programming Environment (PHP-APE)
+# Copyright (C) 2005-2006 Cédric Dufour
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+
+# PHP-APE Configuration File
+# ================================================================================
+#
+# This file is the main PHP-APE configuration file, where all static parameters
+# and default preferences may be set to match your requirements.
+#
+# Feel free to add as many comments as you want, for this file is included (and cached)
+# only when modified.
+
+
+# PHP-APE Resources
+# --------------------------------------------------------------------------------
+
+# Resources paths (for additional definitions and properties files)
+# USAGE: $_CONFIG['php_ape.resource.path'] = array( '<prefix>' => '<path>';
+
+
+# PHP-APE Core Environment
+# --------------------------------------------------------------------------------
+
+# Cookie lifetime [days]
+# DEFAULT: $_CONFIG['php_ape.cookie.expiration.days'] = 90;
+
+# Uploaded data path
+# DEFAULT: $_CONFIG['php_ape.path.uploaded'] = '/var/lib/ape/uploaded';
+
+# Hash (one-way encryption) algorithm
+# DEFAULT: $_CONFIG['php_ape.util.crypto.hash.algorithm'] = MHASH_SHA256;
+
+# (Reversible) encryption algorithm
+# DEFAULT: $_CONFIG['php_ape.util.crypto.algorithm.encryption'] = MCRYPT_RIJNDAEL_256;
+
+# Global encryption key
+# DEFAULT: $_CONFIG['php_ape.util.crypto.key'] = null;
+
+# Client-side encryption key
+# DEFAULT: $_CONFIG['php_ape.util.crypto.key.client'] = $_CONFIG['php_ape.util.crypto.key'];
+
+# Server-side encryption key
+# DEFAULT: $_CONFIG['php_ape.util.crypto.key.server'] = $_CONFIG['php_ape.util.crypto.key'];
+
+# File-system character set (encoding)
+# DEFAULT: $_CONFIG['php_ape.util.filesystem.charset'] = 'UTF-8';
+
+
+# Additional required dependencies (array)
+# DEFAULT: $_CONFIG['php_ape.require'] = array();
+
+# Administrator name
+# DEFAULT: $_CONFIG['php_ape.admin.name'] = 'Administrator';
+
+# Administrator e-mail address
+# DEFAULT: $_CONFIG['php_ape.admin.email'] = 'webmaster';
+
+# Administrator phone number
+# DEFAULT: $_CONFIG['php_ape.admin.phone'] = null;
+
+# Application identifier (ID)
+# DEFAULT: $_CONFIG['php_ape.application.id'] = 'PHP_APE';
+
+# Application name
+# DEFAULT: $_CONFIG['php_ape.application.name'] = 'PHP Application Programming Environment (PHP-APE)';
+
+# Data character set (encoding) 
+# DEFAULT: $_CONFIG['php_ape.data.charset'] = 'ISO-8859-1';
+
+# Advanced data filter usage true
+# DEFAULT: $_CONFIG['php_ape.data.filter.advanced'] = true;
+
+# Data filter OR logical mixing
+# DEFAULT: $_CONFIG['php_ape.data.filter.or'] = false;
+
+# Boolean format
+# DEFAULT: $_CONFIG['php_ape.data.format.boolean'] = PHP_APE_Type_Boolean::Format_TrueFalse;
+
+# Date format
+# DEFAULT: $_CONFIG['php_ape.data.format.date'] = PHP_APE_Type_Date::Format_ISO;
+
+# Time format
+# DEFAULT: $_CONFIG['php_ape.data.format.time'] = PHP_APE_Type_Time::Format_ISO;
+
+# Angle format
+# DEFAULT: $_CONFIG['php_ape.data.format.angle'] = PHP_APE_Type_Angle::Format_Literal;
+
+# Data query cache size (rows count)
+# DEFAULT: $_CONFIG['php_ape.data.query.cachesize'] = 1000;
+
+# Data query minimum size (rows count)
+# DEFAULT: $_CONFIG['php_ape.data.query.minsize'] = 10;
+
+# Data query maximum size (rows count)
+# DEFAULT: $_CONFIG['php_ape.data.query.maxsize'] = 100;
+
+# Data query preferred size (rows count)
+# DEFAULT: $_CONFIG['php_ape.data.query.size'] = 25;
+
+# Data query visible pages
+# DEFAULT: $_CONFIG['php_ape.data.query.page'] = 10;
+
+# Input dataspace
+# DEFAULT: $_CONFIG['php_ape.dataspace.input'] = 'Text';
+
+# Output dataspace
+# DEFAULT: $_CONFIG['php_ape.dataspace.output'] = 'HTML';
+
+# Available languages (array)
+# DEFAULT: $_CONFIG['php_ape.locale.language.list'] = array( 'en', 'fr' );
+
+# Language
+# DEFAULT: $_CONFIG['php_ape.locale.language'] = 'en';
+
+# Available countries (array)
+# DEFAULT: $_CONFIG['php_ape.locale.country.list'] = array( 'CH' );
+
+# Country
+# DEFAULT: $_CONFIG['php_ape.locale.country'] = 'CH';
+
+# Available currencies (array)
+# DEFAULT: $_CONFIG['php_ape.locale.currency.list'] = array( 'EUR' );
+
+# Currency
+# DEFAULT: $_CONFIG['php_ape.locale.currency'] = 'EUR';
+
+# Localize resources using country preference
+# WARNING: setting this setting to 1 will imply many more files lookup and caching
+# DEFAULT: $_CONFIG['php_ape.localize.country'] = false;
+
+
+# PHP-APE Authentication/Authorization Environment
+# --------------------------------------------------------------------------------
+
+# Authentication handler
+# DEFAULT: $_CONFIG['php_ape.auth.handler'] = 'PHP_APE_Auth_AuthenticationHandler_Configuration';
+
+# Authentication (inactivity) time-out [seconds]
+# DEFAULT: $_CONFIG['php_ape.auth.timeout'] = 3600;
+
+# Root HTML documents URL
+# DEFAULT: $_CONFIG['php_ape.auth.htdocs.url'] = 'http://localhost/php-ape/lib/auth';
+
+# Allow session-less authentication (useful for batch processes)
+# DEFAULT: $_CONFIG['php_ape.auth.allow.session_less'] = false;
+
+# Perl regular expression matching IP addresses allowed to authenticate
+# DEFAULT: $_CONFIG['php_ape.auth.allow.ip_regexp'] = null;
+
+
+# PHP-APE Database Environment
+# --------------------------------------------------------------------------------
+
+# Databases DSNs (multiple lines/database are allowed)
+# USAGE: $_CONFIG['php_ape.database.dsn'] = array( '<id>' => '<mdb2_dsn>' );
+# SAMPLE: $_CONFIG['php_ape.database.dsn'] = array( 'northwind' => 'mysql://demo:demo@127.0.0.1/Northwind?option=value&debug=2' );
+
+# File-based cache prefix
+# DEFAULT: $_CONFIG['php_ape.database.cache.file.prefix'] = PHP_APE_CACHE;
+
+# File-based cache size 
+# DEFAULT: $_CONFIG['php_ape.database.cache.file.size'] = 1000;
+
+# File-based cache lifetime [seconds]
+# DEFAULT: $_CONFIG['php_ape.database.cache.file.lifetime'] = 3600;
+
+# File-based cache access weight factor
+# DEFAULT: $_CONFIG['php_ape.database.cache.file.accessweight'] = 0;
+
+# Memory-based cache size
+# DEFAULT: $_CONFIG['php_ape.database.cache.memory.size'] = 1000;
+
+# Memory-based cache lifetime [seconds]
+# DEFAULT: $_CONFIG['php_ape.database.cache.memory.lifetime'] = 3600;
+
+# Memory-based cache access weight factor
+# DEFAULT: $_CONFIG['php_ape.database.cache.memory.accessweight'] = 0;
+
+
+# PHP-APE HTML Environment
+# --------------------------------------------------------------------------------
+
+# Root HTML documents (server) path
+# DEFAULT: $_CONFIG['php_ape.html.htdocs.path'] = dirname( $_SERVER['SCRIPT_FILENAME'] );
+
+# Root HTML documents URL 
+# DEFAULT: $_CONFIG['php_ape.html.htdocs.url'] = dirname( $_SERVER['PHP_SELF'] )];
+
+# Root CSS resources URL
+# DEFAULT: $_CONFIG['php_ape.html.css.url'] = dirname( $_CONFIG['php_ape.html.htdocs.url'] ).'/css'];
+
+# Available CSS resources names (comman separated, excluding extension)
+# DEFAULT: $_CONFIG['php_ape.html.css.list'] = array( 'Tango', 'Tango-print', 'Crystal', 'Crystal-print' );
+
+# CSS resource name (excluding extension)
+# DEFAULT: $_CONFIG['php_ape.html.css'] = 'Tango';
+
+# Root JavaScript resources URL
+# DEFAULT: $_CONFIG['php_ape.html.javascript.url'] = dirname( $_CONFIG['php_ape.html.htdocs.url'] ).'/js'];
+
+# Use popup
+# DEFAULT: $_CONFIG['php_ape.html.popup.use'] = 1;
+
+# Popup width [pixels]
+# DEFAULT: $_CONFIG['php_ape.html.popup.width'] = 640;
+
+# Popup height [pixels]
+# DEFAULT: $_CONFIG['php_ape.html.popup.height'] = 480;
+
+# Data page controller
+# DEFAULT: $_CONFIG['php_ape.html.data.controller'] = 'PHP_APE_HTML_Data_Controller';
+
+# Hide empty data
+# DEFAULT: $_CONFIG['php_ape.html.data.hide.empty'] = false;
+
+# Hide optional (not required) data
+# DEFAULT: $_CONFIG['php_ape.html.data.hide.optional'] = false;
+
+# Data truncation length in list view
+# DEFAULT: $_CONFIG['php_ape.html.data.list.truncate'] = 100;
+
+# (List) data display preferences' box status
+# DEFAULT: $_CONFIG['php_ape.html.data.list.control.preferences.display'] = PHP_APE_HTML_SmartTags::Display_Closed;
+
+# (List) data order preferences' box status
+# DEFAULT: $_CONFIG['php_ape.html.data.list.control.preferences.order'] = PHP_APE_HTML_SmartTags::Display_Closed;
+
+# (Detail) data display preferences' box status
+# DEFAULT: $_CONFIG['php_ape.html.data.detail.control.preferences.display'] = PHP_APE_HTML_SmartTags::Display_Closed;
+
+# Maximum uploadable file size [bytes]
+# WARNING: it is up to the client browser to use the related "MAX_FILE_SIZE" hidden field
+# DEFAULT: $_CONFIG['php_ape.html.data.form.upload.maxsize'] = 1048576;
+
+# Icons/labels display preference
+# DEFAULT: $_CONFIG['php_ape.html.display.icon'] = PHP_APE_HTML_SmartTags::Icon_Show;
+
+# Data elements display preferences window
+# DEFAULT: $_CONFIG['php_ape.html.data.list.control.preferences.display'] = null;
+
+# Data elements order preferences window
+# DEFAULT: $_CONFIG['php_ape.html.data.list.control.preferences.order'] = null;

@@ -1,0 +1,81 @@
+// INDENTING (emacs/vi): -*- decoding:utf-8; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
+
+1.1.20100203
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - GIT versioning
+  - Fixed empty string bug in PHP_APE_Type_Email
+  - Added external customization possibility for PHP_APE_ROOT constant
+
+1.1.20091203
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Improved HTML authentication components to allow cross HTTP/HTTPS/hostnames authentication
+    NOTE: make sure to set the 'session.cookie_domain' PHP parameter to the proper domain to
+          allow cross hostnames authentication
+
+1.1.20091124
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Fixed 'Date/Time' types parsing bug (introduced by 'Numeric' parsing in previous version)
+
+1.1.20091123
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Added (successful) authentication logging
+  - Added 'Numeric' format preference ('php_ape.data.format.numeric') and parsing resiliency
+
+1.1.20090826
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Fixed authentication and preferences URL bug
+  - Removed user-customizable HTML factory/controller from generic workspace
+
+1.1.20090825
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Fixed authentication heartbeat (which was not rightfully saved in session)
+  - Added 'print' icon in CSS stylesheets
+  - Modified authentication template for leaner aspect
+  - Improved HTML data views for better flexibility
+  - Improved HTML data JavaScript for better scalability
+  - Added default resource localization parameter ('php_ape.localize.resource')
+    WARNING: defaults to 'false'; set to 'true' for localized applications
+  - Added configurable resource identifier computation parameter ('php_ape.html.rid')
+    WARNING: defaults to 'short'; set to 'md5' for legacy compatibility
+
+1.0.20090707
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Fixed the cache signature used to cache configuration parameters in 'Environment.php'
+  - Fixed JavaScript bug which prevented GET forms to be submitted
+  - Fixed CSS stylesheets to include "@media print" directives
+  - Fixed array-based resultset filtering to handle non-ASCII strings
+  - Removed print-specific CSS stylesheets
+  - Removed the login button in the default HTML controller
+  - Added 'DarkTango' CSS stylesheet
+  - Added back label/button HTML component
+  - Added preferences redirection target
+  - Added position data in file/image resultsets (allowing previous/next browsing)
+
+1.0.20080827
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Added optional lock for form submission in HTML templates/javascript
+
+1.0.20080723
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Fixed uninitialized array in Environement data
+  - Added (encrypted) password field in authentication token data
+  - Added additional messages support in HTML page controller
+
+1.0.20080604
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Initial changes tracking
+
+1.0.20061001
+============
+* Cédric Dufour <cedric.dufour@ced-network.net>
+  - Initial release

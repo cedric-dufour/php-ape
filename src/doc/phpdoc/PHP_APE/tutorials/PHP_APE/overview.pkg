@@ -1,0 +1,114 @@
+<refentry id="{@id}">
+
+<refnamediv>
+<refname>PHP-APE Overview</refname>
+<refpurpose>A short introduction to PHP-APE architecture and features</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<author>
+Cedric Dufour
+<authorblurb>{@link http://www.ced-network.net/php-ape http://www.ced-network.net/php-ape}</authorblurb>
+</author>
+</refsynopsisdiv>
+
+<graphic fileref="php-ape.png" />
+
+{@toc}
+
+<refsect1 id="{@id architecture}">
+<title>PHP-APE Architecture</title>
+<para>Before going into the details on how to use PHP-APE to develop your own applications, you should be comfortable with the various architectural concepts on which it relies.</para>
+<para>Architecturally-speaking, PHP-APE can be represented as multiple layers of components:</para>
+<graphic fileref="ape-architecture.png" />
+
+<refsect2 id="{@id architecture_core}">
+<title>The Core layer</title>
+<para>The <firstterm>core</firstterm> layer contains the lowest-level components that are the root of all applications: the <firstterm>environment handler</firstterm>, the dynamic <firstterm>resource loader</firstterm>, the <firstterm>authentication and authorization kernel</firstterm>, various <firstterm>utility classes</firstterm>, etc.</para>
+
+<refsect3 id="{@id architecture_core_environment}">
+<title>Environment = application parameters, user preferences and localization</title>
+<para>PHP-APE provides <firstterm>environment</firstterm> handling facilities, allowing to retrieve, verify, define and/or override <firstterm>static</firstterm> (read-only properties), <firstterm>persistent</firstterm> (serialized), <firstterm>volatile</firstterm> (runtime) and <firstterm>user</firstterm> <emphasis>parameters</emphasis> or <emphasis>preferences</emphasis>. Your application can thus easily be "tweaked" to match your requirements or those of its users.</para>
+<para>Several parameters are provisioned in the core PHP-APE environment, one of those being the <literal>php_ape.locale.*</literal> user-overridable preferences, which are used internally to retrieve localized properties whenever they exist, thus allowing to seamlessly integrate <emphasis>localization</emphasis> into your applications.</para>
+<para>Retrieving PHP-APE environment values from a particular PHP-APE work space is straight forward:</para>
+{@example architecture_core_environment.php}
+</refsect3>
+
+<refsect3 id="{@id architecture_core_resources}">
+<title>Resources = definitions and properties</title>
+<para>PHP-APE is organized in various packages, each providing PHP classes and interfaces <firstterm>definitions</firstterm> (<literal>*.php</literal>) as well as (possibly localized) data <firstterm>properties</firstterm> (<literal>*.res</literal>).</para>
+<para>It uses it own resources handling mechanism, taking advantages of PHP 5 <literal>__autoload</literal> function when needed, and thus frees the developer from writing numerous <literal>include</literal> directives. This mechanism can - should - also be used to handle your application's own resources.</para>
+<para>Thus, instantiating an object from a particular class or loading localized properties is very easy. This mechanism can - should - also be used to handle your applications own resources:</para>
+{@example architecture_core_resources.php}
+</refsect3>
+
+</refsect2>
+
+<refsect2 id="{@id architecture_data}">
+<title>The Data Types and Data Spaces layer</title>
+<para>PHP-APE defines its own <firstterm>data types</firstterm> objects - matching those of the most strongly typed existing environments - and uses the notion of (extensible) <firstterm>data spaces</firstterm> to allow data to be decoded/encoded (parsed/formatted) from/to whichever environment may be imagined.</para>
+
+<refsect3 id="{@id architecture_data_type}">
+<title>Data Types = "intelligent" typing and easy data input/output</title>
+<para>Though PHP-APE data types store values internally using PHP native types, they allow for a much wider differentiation between data than PHP does (e.g. <literal>integer</literal> versus <literal>(unsigned) byte</literal>, <literal>(unsigned) int2</literal>, <literal>int4</literal> or <literal>int8</literal>).</para>
+<para>Integrated into PHP-APE data types are the <emphasis>parsing</emphasis> and <emphasis>formatting</emphasis> methods useful for handling user-provided input and preferences-based output, along with additional <emphasis>meta</emphasis> data such as <emphasis>default</emphasis>, <emphasis>sample</emphasis> and <emphasis>constraints</emphasis> values, which allow to provide better support to users in input forms and better control of valid input:</para>
+{@example architecture_data_type.php}
+</refsect3>
+
+<refsect3 id="{@id architecture_data_space}">
+<title>Data Spaces = data decoding/encoding and parsing/formatting rules</title>
+<para>PHP-APE uses data spaces objects to decode/encode and parse/format the data from/to a specific data "context", such as for example HTML, JavaScript, SQL, LaTeX, etc.</para>
+<para>Using the supplied data types and data spaces, data can thus very easily be "moved" around, without having to take care of characters coding or language-specific rules:</para>
+{@example architecture_data_space.php}
+</refsect3>
+
+</refsect2>
+
+<refsect2 id="{@id architecture_work}">
+<title>The <emphasis>Work Space</emphasis> layer</title>
+<para>PHP-APE <firstterm>work spaces</firstterm> extends the core environment - thus providing additional parameters or functionalities - according to applications or tasks requirements.</para>
+
+<refsect3 id="{@id architecture_work_space}">
+<title>Work Spaces = tasks-/applications-specific environment extensions</title>
+<para>PHP-APE comes with several "built-in" work spaces, allowing to address database interactions, handle HTML-based GUIs, etc.</para>
+{@example architecture_work_space.php}
+</refsect3>
+
+</refsect2>
+
+<refsect2 id="{@id architecture_target}">
+<title>Target = reusability and extensibility</title>
+<para>Some of the key requirements backing the development of PHP-APE are <emphasis>reusability</emphasis> and <emphasis>extensibility</emphasis>.</para>
+<para>Object-oriented <emphasis>interfaces</emphasis> have been used extensively, in order to allow you to easily integrate your <emphasis>own</emphasis> objects with existing PHP-APE resources. Parallely, default implementations are provided for the most commonly used objects interfaces, allowing applications to be quickly built from scratch.</para>
+</refsect2>
+
+<refsect2 id="{@id architecture_security}">
+<title>Security = encryption and best coding practices</title>
+<para>PHP-APE takes full advantage of the (required) <literal>mhash</literal> and <literal>mcrypt</literal> PHP <emphasis>cryptography</emphasis> extensions when it comes to transmitting or storing sensitive data.</para>
+<para>Great care has been taken into coding the PHP-APE core using standard principles and commonly recommended practices on how to make software more secure and reliable, through input validation (sanitization), thorough error handling and logging, and (hopefully) extensive inline documentation.</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="{@id component}">
+<title>PHP-APE Key Components</title>
+
+<refsect2 id="{@id component_database}">
+<title>Database Work Space = a complete SQL and data abstraction layer</title>
+<para>PHP-APE provides a complete <emphasis>SQL and data abtraction layer</emphasis> on top of PHP PEAR's <literal>MDB2</literal>, allowing to reduce database handling issues to the overloading of data objects that reflect your application's database <literal>tables</literal>, <literal>views</literal>, <literal>procedures</literal> or <literal>functions</literal>, optionally associating a data ordering or filtering object, and finally executing the built-in <literal>query</literal> or <literal>execute</literal> methods. Retrieving, filtering, storing, modifying and deleting data from databases cannot be made any easier!</para>
+<para>Refer to {@tutorial tutorial.pkg} for a complete example on how to create a sample database-driven application.</para>
+</refsect2>
+
+<refsect2 id="{@id component_authentication}">
+<title>Authentication Work Space = a plug-able authentication layer</title>
+<para>Authentication is tightly integrated within PHP-APE's kernel and uses user-customizable authentication handlers to cover any authentication mechanism that may be required, along with the standard <emphasis>configuration-based</emphasis>, <emphasis>HTTP</emphasis> and <emphasis>LDAP</emphasis> handlers. Authorization is then achieved based on the current authentication token - retrieved from the authentication work space and including usual authentication information such as user name, group names, e-mail address, etc. - and can thus be easily tweaked according to each application's needs.</para>
+</refsect2>
+
+<refsect2 id="{@id component_explorer}">
+<title>Explorer Application = a file/image browser and viewer</title>
+<para>PHP-APE Explorer is a <emphasis>simple file and image explorer</emphasis>, allowing to easily publish to the Web the content of a given path. Provided the appropriate authorization paramaters have been configured, files can easily be uploaded, renamed, downloaded and deleted. Folder of images can also be browsed using thumbnails and enlarged (detail) views, including the parsing and embedding of common EXIF and IPTC data, thus allowing to easily create a <emphasis>simple image gallery</emphasis> based solely on the underlying file system.</para>
+</refsect2>
+
+</refsect1>
+
+</refentry> 
