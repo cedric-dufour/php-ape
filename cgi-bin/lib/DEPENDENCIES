@@ -1,0 +1,6 @@
+DEPENDS ON:
+==========
+SYSTEM:
+ - apt-get install libapache2-mod-php5 php5-imap php5-ldap php5-mcrypt php5-mhash php5-mysql php5-pgsql php-pear smarty
+ - pear install --alldeps Log Mail Mail_Mime MDB2 MDB2#mysql MDB2#pgsql
+ 
