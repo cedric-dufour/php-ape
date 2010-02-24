@@ -4,6 +4,7 @@
 ============
 * Cédric Dufour <cedric.dufour@ced-network.net>
   - Added dependencies file
+  - Fixed uninitialized parameters array in global environment initialization
 
 1.1.20100203
 ============

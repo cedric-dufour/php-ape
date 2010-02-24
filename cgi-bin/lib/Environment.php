@@ -104,6 +104,11 @@ abstract class PHP_APE_Environment
   {
     // Initialize members fields
     $this->sUserKey = sha1( rand() );
+    //$this->asStaticParameters = array(); // This MUST be handled by __loadStaticParameters()
+    $this->asPersistentParameters = array();
+    $this->asSessionParameters = array();
+    $this->asVolatileParameters = array();
+    $this->asUserParameters = array();
 
     // Static parameters
     // NOTE: static parameters MUST exist
