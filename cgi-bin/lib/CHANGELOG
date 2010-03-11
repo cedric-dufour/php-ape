@@ -1,6 +1,6 @@
 // INDENTING (emacs/vi): -*- decoding:utf-8; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
-1.1.snapshot
+1.1.20100311
 ============
 * Cédric Dufour <cedric.dufour@ced-network.net>
   - Added dependencies file

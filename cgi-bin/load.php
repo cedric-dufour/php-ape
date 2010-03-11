@@ -34,7 +34,7 @@
 
 /** PHP-APE version
  */
-define( 'PHP_APE_VERSION', '1.1.20100201' );
+define( 'PHP_APE_VERSION', '1.1.20100311' );
 
 if( !defined( 'PHP_APE_ROOT' ) )
 {
