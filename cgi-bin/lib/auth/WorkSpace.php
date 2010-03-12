@@ -260,7 +260,8 @@ extends PHP_APE_WorkSpace
     {
       $regIPAddressFilter = $this->getStaticParameter( 'php_ape.auth.allow.ip_regexp' );
       if( empty( $regIPAddressFilter ) ) return true;
-      if( isset( $_SERVER['REMOTE_ADDR'] ) and preg_match( $regIPAddressFilter, $_SERVER['REMOTE_ADDR'] ) ) return true;
+      if( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) return preg_match( $regIPAddressFilter, $_SERVER['HTTP_X_FORWARDED_FOR'] );
+      if( isset( $_SERVER['REMOTE_ADDR'] ) ) return preg_match( $regIPAddressFilter, $_SERVER['REMOTE_ADDR'] );
     }
     return false;
   }
