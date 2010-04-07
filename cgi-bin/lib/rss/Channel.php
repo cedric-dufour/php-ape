@@ -829,9 +829,10 @@ extends PHP_APE_RSS_Any
    *
    * @param float $fVersion RSS version
    * @param boolean $bUseUTF8 Use UTF8 encoding
+   * @param string $sSelfURL Channel's URL
    * @return string
    */
-	function format( $fVersion = 2.0, $bUseUTF8 = false )
+	function format( $fVersion = 2.0, $bUseUTF8 = false, $sSelfURL = null )
   {
 		// Sanitize input
 		$fVersion = (float)$fVersion;
@@ -843,12 +844,19 @@ extends PHP_APE_RSS_Any
 		$sOutput=null;
 
     // Begin RSS
-		$sOutput .= '<rss version="'.$fVersion.'">'."\n";
+		if( $fVersion >= 2.0 and isset( $sSelfURL ) )
+		  $sOutput .= '<rss version="'.sprintf($fVersion<1?'%.2F':'%.1F',$fVersion).'" xmlns:atom="http://www.w3.org/2005/Atom">'."\n";
+    else
+  		$sOutput .= '<rss version="'.sprintf($fVersion<1?'%.2F':'%.1F',$fVersion).'">'."\n";
 
 		// Begin channel
 		$sOutput .= '<channel>'."\n";
 
 		// Output elements
+    // ... self reference
+		if( $fVersion >= 2.0 and isset( $sSelfURL ) )
+		  $sOutput .= '<atom:link href="'.$sSelfURL.'" rel="self" type="application/rss+xml" />'."\n";
+
 		// ... generator
 		if( $fVersion >= 2.0 )
       $sOutput .= '<generator>PHP_APE/RSS/'.PHP_APE_VERSION.'</generator>'."\n";
@@ -990,9 +998,10 @@ extends PHP_APE_RSS_Any
    *
    * @param float $fVersion RSS version
    * @param boolean $bUseUTF8 Use UTF8 encoding
+   * @param string $sSelfURL Channel's URL
    * @return string
    */
-	function export( $fVersion = 2.0, $bUseUTF8 = false )
+	function export( $fVersion = 2.0, $bUseUTF8 = false, $sSelfURL = null )
   {
 		// Sanitize input
 		$fVersion = (float)$fVersion;
@@ -1008,7 +1017,7 @@ extends PHP_APE_RSS_Any
 		$sOutput .= '<?xml-stylesheet type="text/xsl" href="'.$oXML->encodeData( $roEnvironment->getStaticParameter( 'php_ape.rss.xsl.url' ), $bUseUTF8 ).'"?>'."\n";
 
 		// RSS
-		$sOutput .= $this->format( $fVersion, $bUseUTF8 );
+		$sOutput .= $this->format( $fVersion, $bUseUTF8, $sSelfURL );
 
 		// END
 		return $sOutput;

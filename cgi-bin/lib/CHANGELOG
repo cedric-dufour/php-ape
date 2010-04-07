@@ -1,8 +1,10 @@
 // INDENTING (emacs/vi): -*- decoding:utf-8; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
-1.1.snapshot
+1.1.20100407
 ============
 * Cédric Dufour <cedric.dufour@ced-network.net>
+  - Fixed RSS version format in XML output
+  - Improved RSS compliance to RSS 2.0 standard
   - Added 'HTTP_X_FORWARDED_FOR' server variable while checking authentication IP filter
 
 1.1.20100311
