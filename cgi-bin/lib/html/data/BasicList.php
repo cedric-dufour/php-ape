@@ -82,13 +82,17 @@ extends PHP_APE_HTML_Data_View
    * @var boolean */
   protected $bUseFilter;
 
+  /** Use subset filter
+   * @var boolean */
+  protected $bUseSubsetFilter;
+
   /** Use avanced filter
    * @var boolean */
   protected $bUseAdvancedFilter;
 
-  /** Use subset filter
+  /** Use filter (self-)link
    * @var boolean */
-  protected $bUseSubsetFilter;
+  protected $bUseFilterLink;
 
   /** Use popup for form/input
    * @var boolean */
@@ -172,6 +176,7 @@ extends PHP_APE_HTML_Data_View
     $this->bUseFilter = true;
     $this->bUseSubsetFilter = true;
     $this->bUseAdvancedFilter = true;
+    $this->bUseFilterLink = true;
     $this->bUsePopup = PHP_APE_HTML_Data_View::$roEnvironment->getUserParameter( 'php_ape.html.popup.use' );
 
     // Check preferences
@@ -302,11 +307,13 @@ extends PHP_APE_HTML_Data_View
   
   /** Set preference for search/filter usage
    * @param boolean $bUseFilter Use (show) search/filter toolbar
-   * @param boolean $bUseAdvancedFilter Use (show) advanced (field-based) filter (requires the header) */
-  public function prefUseFilter( $bUseFilter, $bUseAdvancedFilter = true )
+   * @param boolean $bUseAdvancedFilter Use (show) advanced (field-based) filter (requires the header)
+   * @param boolean $bUseFilterLink Use (show) an hyperlink to bookmark the applied filter */
+  public function prefUseFilter( $bUseFilter, $bUseAdvancedFilter = true, $bUseFilterLink = true )
   {
     $this->bUseFilter = (boolean)$bUseFilter;
     $this->bUseAdvancedFilter = (boolean)$bUseAdvancedFilter;
+    $this->bUseFilterLink = (boolean)$bUseFilterLink;
     $this->_prefCheck();
   }
   
@@ -1038,7 +1045,7 @@ extends PHP_APE_HTML_Data_View
         $sGlobalCriteria = null;
         if( $oFilter->isElement( '__GLOBAL' ) )
           $sGlobalCriteria = $oFilter->useElement( '__GLOBAL' )->toString();
-        $sOutput .= PHP_APE_HTML_Data_Filter::htmlControls( $mID, true, $sGlobalCriteria, $this->bUseHeader and $this->bUseAdvancedFilter );
+        $sOutput .= PHP_APE_HTML_Data_Filter::htmlControls( $mID, true, $sGlobalCriteria, $this->bUseHeader and $this->bUseAdvancedFilter, $this->bUseFilterLink );
       }
 
       $sOutput .= PHP_APE_HTML_SmartTags::htmlAlignClose();

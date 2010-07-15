@@ -351,6 +351,7 @@ DIV.APE-icon DIV.S-go { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("crystal/16x16/a
 DIV.APE-icon DIV.S-help { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("crystal/16x16/actions/help.png"); }
 DIV.APE-icon DIV.S-hide { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("crystal/16x16/actions/fileclose.png"); }
 DIV.APE-icon DIV.S-home { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("crystal/16x16/filesystems/folder_home.png"); }
+DIV.APE-icon DIV.S-hyperlink { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("crystal/16x16/apps/package_network.png"); }
 DIV.APE-icon DIV.S-idea { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("crystal/16x16/actions/idea.png"); }
 DIV.APE-icon DIV.S-image { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("crystal/16x16/mimetypes/image.png"); }
 DIV.APE-icon DIV.S-information { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("crystal/16x16/actions/info.png"); }
@@ -429,6 +430,7 @@ DIV.APE-icon DIV.M-go { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("crystal/22x22/a
 DIV.APE-icon DIV.M-help { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("crystal/22x22/actions/help.png"); }
 DIV.APE-icon DIV.M-hide { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("crystal/22x22/actions/fileclose.png"); }
 DIV.APE-icon DIV.M-home { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("crystal/22x22/filesystems/folder_home.png"); }
+DIV.APE-icon DIV.M-hyperlink { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("crystal/22x22/apps/package_network.png"); }
 DIV.APE-icon DIV.M-idea { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("crystal/22x22/actions/idea.png"); }
 DIV.APE-icon DIV.M-image { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("crystal/22x22/mimetypes/image.png"); }
 DIV.APE-icon DIV.M-information { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("crystal/22x22/actions/info.png"); }
@@ -507,6 +509,7 @@ DIV.APE-icon DIV.L-go { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("crystal/32x32/a
 DIV.APE-icon DIV.L-help { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("crystal/32x32/actions/help.png"); }
 DIV.APE-icon DIV.L-hide { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("crystal/32x32/actions/fileclose.png"); }
 DIV.APE-icon DIV.L-home { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("crystal/32x32/filesystems/folder_home.png"); }
+DIV.APE-icon DIV.L-hyperlink { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("crystal/32x32/apps/package_network.png"); }
 DIV.APE-icon DIV.L-idea { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("crystal/32x32/actions/idea.png"); }
 DIV.APE-icon DIV.L-image { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("crystal/32x32/mimetypes/image.png"); }
 DIV.APE-icon DIV.L-information { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("crystal/32x32/actions/info.png"); }

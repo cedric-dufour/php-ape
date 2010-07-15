@@ -255,13 +255,14 @@ extends PHP_APE_HTML_Data_Any
   /** Returns the HTML filter controls
    *
    * @param mixed $mID HTML element identifier (ID)
-   * @param booleam $bUseGlobalSearch Use global search
+   * @param boolean $bUseGlobalSearch Use global search
    * @param string $sGlobalCriteria Global (search) criteria
-   * @param booleam $bUseAdvancedFilter Use advanced filter
+   * @param boolean $bUseAdvancedFilter Use advanced filter
+   * @param boolean $bUseSelfLink Use self-pointing hyperlink
    * @return string
    * @todo Add help button
    */
-  public static function htmlControls( $mID, $bUseGlobalSearch = false, $sGlobalCriteria = null, $bUseAdvancedFilter = false )
+  public static function htmlControls( $mID, $bUseGlobalSearch = false, $sGlobalCriteria = null, $bUseAdvancedFilter = false, $bUseSelfLink = false )
   {
     // Retrieve resource identifier (ID)
     $sRID = PHP_APE_HTML_Data_Any::makeRID( $mID );
@@ -314,6 +315,17 @@ extends PHP_APE_HTML_Data_Any
       $sOutput .= PHP_APE_HTML_SmartTags::htmlAlignAdd();
       if( $roEnvironment->getUserParameter( 'php_ape.data.filter.advanced' ) ) $sOutput .= PHP_APE_HTML_SmartTags::htmlLabel( $asResources['label.simple'], 'S-less', 'javascript:document.location.replace(\''.$roEnvironment->makePreferencesURL( array( 'php_ape.data.filter.advanced' => 0 ), $_SERVER['REQUEST_URI'] ).'\')', $asResources['tooltip.simple'], null, false, false );
       else $sOutput .= PHP_APE_HTML_SmartTags::htmlLabel( $asResources['label.advanced'], 'S-more', 'javascript:document.location.replace(\''.$roEnvironment->makePreferencesURL( array( 'php_ape.data.filter.advanced' => 1 ), $_SERVER['REQUEST_URI'] ).'\')', $asResources['tooltip.advanced'], null, false, false );
+    }
+
+    // ... self-link
+    if( $bUseSelfLink )
+    {
+      $oFilter = PHP_APE_HTML_Data_Filter::parseRequest( $mID );
+      if( !is_null( $oFilter ) and strlen( $oFilter->toString() ) > 0 )
+      {
+        $sOutput .= PHP_APE_HTML_SmartTags::htmlAlignAdd();
+        $sOutput .= PHP_APE_HTML_SmartTags::htmlLabel( $asResources['label.selflink'], 'S-hyperlink', PHP_APE_HTML_Data_Filter::makeURL( $mID, $_SERVER['PHP_SELF'], $oFilter ), $asResources['tooltip.selflink'], null, false, false );
+      }
     }
 
     // ... end
