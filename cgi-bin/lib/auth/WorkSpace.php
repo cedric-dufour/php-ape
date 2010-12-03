@@ -35,6 +35,7 @@
  * <LI><SAMP>php_ape.auth.htdocs.url</SAMP>: root HTML documents URL [default: <SAMP>http://localhost/php-ape/lib/auth</SAMP>]</LI>
  * <LI><SAMP>php_ape.auth.allow.session_less</SAMP>: allow session-less authentication (useful for batch processes) [default: <SAMP>false</SAMP>]</LI>
  * <LI><SAMP>php_ape.auth.allow.ip_regexp</SAMP>: Perl regular expression matching IP addresses allowed to authenticate [default: <SAMP>empty</SAMP>]</LI>
+ * <LI><SAMP>php_ape.auth.token.userid.pattern</SAMP>: Perl regular expression matching and replacing the authenticated user ID [default: <SAMP>empty</SAMP>]</LI>
  * </UL>
  *
  * @package PHP_APE_Auth
@@ -185,6 +186,13 @@ extends PHP_APE_WorkSpace
         $rValue = new PHP_APE_Auth_AuthenticationToken( 'anonymous' );
     }
 
+    // Authentication token's user ID pattern
+    if( array_key_exists( 'php_ape.auth.token.userid.pattern', $rasParameters ) )
+    {
+      $rValue =& $rasParameters[ 'php_ape.auth.token.userid.pattern' ];
+      $rValue = trim( PHP_APE_Type_Path::parseValue( $rValue ) );
+    }
+
     // Authentication heart-beat [UNIX timestamp]
     if( array_key_exists( 'php_ape.auth.heartbeat', $rasParameters ) )
     {
@@ -208,6 +216,7 @@ extends PHP_APE_WorkSpace
                               'php_ape.auth.handler' => null, 'php_ape.auth.timeout' => null,
                               'php_ape.auth.htdocs.url' => null,
                               'php_ape.auth.allow.session_less' => null, 'php_ape.auth.allow.ip_regexp' => null,
+                              'php_ape.auth.token.userid.pattern' => null,
                               )
                         );
   }

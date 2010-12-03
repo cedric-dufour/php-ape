@@ -95,6 +95,11 @@ class PHP_APE_Auth_AuthenticationToken
   {
     // Sanitize input
     $sUserID = trim( PHP_APE_Type_String::parseValue( $sUserID ) );
+    if( $sUserID != 'anonymous' ) {
+      $sUserIDPattern = PHP_APE_Auth_WorkSpace::useEnvironment()->getStaticParameter( 'php_ape.auth.token.userid.pattern' );
+      if( !empty( $sUserIDPattern ) )
+        $sUserID = preg_replace( $sUserIDPattern, '${1}', $sUserID );
+    }
     if( empty( $sUserID ) )
       throw new PHP_APE_Auth_AuthenticationException( __METHOD__, 'Empty user name (login name)' );
     $asGroupIDs = PHP_APE_Type_Array::parseValue( $asGroupIDs );
