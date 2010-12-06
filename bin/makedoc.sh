@@ -55,4 +55,4 @@ if [ -d "${DOC_SOURCE}/src/doc/phpdoc" ]; then
   do
 	  cp "${image}" "${PHPDOC_OUTPUT}/${image##${DOC_SOURCE}/src/doc/phpdoc/*/tutorials/}"
   done
-done
+fi

@@ -41,7 +41,7 @@ Cedric Dufour
 <refsect1 id="{@id install}">
 <title>Installation</title>
 <para><emphasis>WARNING: PHP-APE is currently being developed on Linux. It has NOT (yet) been tested on Windows.</emphasis></para>
-<para><emphasis>NOTE:</emphasis> For the sake of simplicity and clarity, we will assume from here that your target installation directory is <literal>/opt/php-ape-%version%</literal>.</para>
+<para><emphasis>NOTE:</emphasis> For the sake of simplicity and clarity, we will assume from here that your target installation directory is <literal>/opt/php-ape</literal>.</para>
 
 <refsect2 id="{@id install_tarball}">
 <title>From the distribution tarball</title>
@@ -59,11 +59,12 @@ $ tar -xjf php-ape-%version%.tar.bz2
 <title>Installation tree</title>
 <para>PHP-APE files are organized following the Unix unified filesystem recommendations. Once the installation completed, your installation directory will look like:</para>
 <itemizedList>
-<listitem><literal>/opt/php-ape-%version%/usr/share/doc</literal>: documentation resources</listitem>
-<listitem><literal>/opt/php-ape-%version%/usr/share/cgi-bin</literal>: non-public web resources (PHP resources definitions: classes, localization files, etc.)</listitem>
-<listitem><literal>/opt/php-ape-%version%/usr/share/htdocs</literal>: public web resources (PHP scripts, JavaScript files, CSS stylesheets, etc.)</listitem>
-<listitem><literal>/opt/php-ape-%version%/etc</literal>: configuration files</listitem>
-<listitem><literal>/opt/php-ape-%version%/var</literal>: dynamic content (e.g. temporary files, cache files, uploaded files, etc.)</listitem>
+<listitem><literal>/opt/php-ape/doc</literal>: documentation resources</listitem>
+<listitem><literal>/opt/php-ape/cgi-bin</literal>: non-public web resources (PHP resources definitions: classes, localization files, etc.)</listitem>
+<listitem><literal>/opt/php-ape/htdocs</literal>: public web resources (PHP scripts, JavaScript files, CSS stylesheets, etc.)</listitem>
+<listitem><literal>/opt/php-ape/etc</literal>: configuration files</listitem>
+<listitem><literal>/opt/php-ape/cache</literal>: volatile dynamic content (can be erased without second-thoughts)</listitem>
+<listitem><literal>/opt/php-ape/data</literal>: user data dynamic content (e.g. uploaded files, etc.)</listitem>
 </itemizedList>
 </refsect2>
 
@@ -76,17 +77,17 @@ $ tar -xjf php-ape-%version%.tar.bz2
 
 <refsect2 id="{@id configure_apache}">
 <title>Apache configuration</title>
-<para><literal>/opt/php-ape-%version%/etc/php-ape/httpd.conf-PHP-APE.install</literal>:</para>
+<para><literal>/opt/php-ape/etc/php-ape/httpd.conf-PHP-APE.install</literal>:</para>
 <screen>
 <![CDATA[
 ## PHP-APE aliases
-Alias /php-ape "/opt/php-ape-%version%/usr/share/htdocs/php-ape"
-Alias /js "/opt/php-ape-%version%/usr/share/htdocs/js"
-Alias /css "/opt/php-ape-%version%/usr/share/htdocs/css"
-Alias /doc "/opt/php-ape-%version%/usr/share/htdocs/doc/php-ape/html"
+Alias /php-ape "/opt/php-ape/htdocs"
+Alias /js "/opt/php-ape/htdocs/js"
+Alias /css "/opt/php-ape/htdocs/css"
+Alias /doc "/opt/php-ape/doc/html"
 
 ## PHP-APE directory settings
-<Directory "/opt/php-ape-%version%/usr/share/htdocs">
+<Directory "/opt/php-ape/htdocs">
   # NOTE: these could also be set in a '.htaccess' file
 
   ## PHP settings
@@ -97,10 +98,10 @@ Alias /doc "/opt/php-ape-%version%/usr/share/htdocs/doc/php-ape/html"
   ## PHP-APE environment
   <IfModule mod_env.c>
   #setenv PHP_APE_DEBUG 1
-  setenv PHP_APE_ROOT "/opt/php-ape-%version%/usr/share/cgi-bin/php-ape"
-  setenv PHP_APE_CACHE "/opt/php-ape-%version%/var/lib/php-ape/cache"
-  setenv PHP_APE_DATA "/opt/php-ape-%version%/var/lib/php-ape/data"
-  setenv PHP_APE_CONF "/opt/php-ape-%version%/etc/php-ape/php-ape.conf.php"
+  setenv PHP_APE_ROOT "/opt/php-ape/cgi-bin"
+  setenv PHP_APE_CACHE "/opt/php-ape/cache"
+  setenv PHP_APE_DATA "/opt/php-ape/data"
+  setenv PHP_APE_CONF "/opt/php-ape/etc/php-ape.conf.php"
   </IfModule>
 </Directory>
 ]]>
@@ -118,7 +119,7 @@ Alias /doc "/opt/php-ape-%version%/usr/share/htdocs/doc/php-ape/html"
 
 <refsect2 id="{@id configure_phpape}">
 <title>PHP-APE configuration</title>
-<para><literal>/opt/php-ape-%version%/etc/php-ape/php-ape.conf.php-PHP-APE.install</literal>:</para>
+<para><literal>/opt/php-ape/etc/php-ape.conf.php-PHP-APE.install</literal>:</para>
 <screen>
 <![CDATA[
 <?php
@@ -138,7 +139,7 @@ $_CONFIG['php_ape.html.css.url'] = 'http://localhost/css';
 ?>
 ]]>
 </screen>
-<para>Please refer to <literal>/opt/php-ape-%version%/etc/php-ape/php-ape.conf-PHP-APE.sample</literal> for the list of all possible PHP-APE configuration parameters.</para>
+<para>Please refer to <literal>/opt/php-ape/etc/php-ape.conf-PHP-APE.sample</literal> for the list of all possible PHP-APE configuration parameters.</para>
 </refsect2>
 
 </refsect1>
@@ -146,7 +147,7 @@ $_CONFIG['php_ape.html.css.url'] = 'http://localhost/css';
 
 <refsect1 id="{@id usage}">
 <title>Further documentation and usage</title>
-<para>The full documentation of PHP-APE is available - in (phpDocumentor-generated) HTML format and including source code - at {@link http://www.ced-network.net/php-ape/doc/php-ape/html http://www.ced-network.net/php-ape/doc/php-ape/html}.</para>
+<para>The full documentation of PHP-APE is available - in (phpDocumentor-generated) HTML format and including source code - at {@link http://www.ced-network.net/php-ape/doc/html http://www.ced-network.net/php-ape/doc/html}.</para>
 <para>Please also refer to {@tutorial overview.pkg} and the PHP-APE Tutorial application (see the <literal>php-ape.tutorial-[version].tar.bz2</literal> tarball) for further information on how to use PHP-APE in your own application.</para>
 </refsect1>
 
