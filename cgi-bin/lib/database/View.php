@@ -654,7 +654,7 @@ extends PHP_APE_Data_View
     if( PEAR::isError( $roResultSet ) )
     {
       if( PHP_APE_DEBUG )
-        throw new PHP_APE_Database_Exception( __METHOD__, $roResultSet->getMessage().'; SQL: '.$sSQL );
+        throw new PHP_APE_Database_Exception( __METHOD__, $roResultSet->getMessage().'; '.$roResultSet->getUserInfo() );
       throw new PHP_APE_Data_Exception( __METHOD__, $roResultSet->getMessage() );
     }
     $this->roResultSet =& $roResultSet;
