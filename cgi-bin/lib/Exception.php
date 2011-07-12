@@ -68,10 +68,14 @@ extends Exception
    * @param boolean $bIncludeFileInfo Include file information (filepath and line)
    * @param boolean $bIncludeStackTrace Include calling stack trace
    */
-  public function __toString( $bIncludeFileInfo = true, $bIncludeStackTrace = true )
+  public function toString( $bIncludeFileInfo = true, $bIncludeStackTrace = true )
   {
     return ( $bIncludeFileInfo ? $this->getFile().'('.$this->getLine()."): \r\n" : null ).'['.$this->sContext.'('.$this->getCode().')] '.$this->getMessage().( $bIncludeStackTrace ? " \r\n".$this->getTraceAsString() : null );
   }
+
+  /** Returns a <I>string</I> representation of this object
+   */
+  public function __toString() { return $this->toString(); }
 
 
   /*
