@@ -174,12 +174,12 @@ extends PHP_APE_HTML_Controller
         $this->executeDeleteFunction( $oFunction, $rasFunctionErrors );
 
         // Redirect
-        PHP_APE_Util_BrowserControl::goto( $this->makeRequestURL( null, get_class( $oView ) ), null, true );
+        PHP_APE_Util_BrowserControl::redirect( $this->makeRequestURL( null, get_class( $oView ) ), null, true );
       }
       catch( PHP_APE_HTML_Data_Exception $e )
       {
         // Redirect
-        PHP_APE_Util_BrowserControl::goto( $this->makeRequestURL( null, get_class( $oView ), null, null, null, $rasFunctionErrors ), null, true );
+        PHP_APE_Util_BrowserControl::redirect( $this->makeRequestURL( null, get_class( $oView ), null, null, null, $rasFunctionErrors ), null, true );
       }
       break;
 
@@ -248,12 +248,12 @@ extends PHP_APE_HTML_Controller
           PHP_APE_Util_BrowserControl::close();
         }
         else
-          PHP_APE_Util_BrowserControl::goto( $this->makeRequestURL( null, get_class( $oView ), 'detail', $mPrimaryKey ), null, true );
+          PHP_APE_Util_BrowserControl::redirect( $this->makeRequestURL( null, get_class( $oView ), 'detail', $mPrimaryKey ), null, true );
       }
       catch( PHP_APE_HTML_Data_Exception $e )
       {
         // Redirect
-        PHP_APE_Util_BrowserControl::goto( $this->makeRequestURL( null, get_class( $oView_SOURCE ), $sSource, $mPrimaryKey, $this->useRequestData(), $rasFunctionErrors, $bIsPopup ), null, true );
+        PHP_APE_Util_BrowserControl::redirect( $this->makeRequestURL( null, get_class( $oView_SOURCE ), $sSource, $mPrimaryKey, $this->useRequestData(), $rasFunctionErrors, $bIsPopup ), null, true );
       }
       break;
 
@@ -323,12 +323,12 @@ extends PHP_APE_HTML_Controller
           PHP_APE_Util_BrowserControl::close();
         }
         else
-          PHP_APE_Util_BrowserControl::goto( $this->makeRequestURL( null, get_class( $oView ), 'detail', $mPrimaryKey ), null, true );
+          PHP_APE_Util_BrowserControl::redirect( $this->makeRequestURL( null, get_class( $oView ), 'detail', $mPrimaryKey ), null, true );
       }
       catch( PHP_APE_HTML_Data_Exception $e )
       {
         // Redirect
-        PHP_APE_Util_BrowserControl::goto( $this->makeRequestURL( null, get_class( $oView_SOURCE ), $sSource, $mPrimaryKey, $this->useRequestData(), $rasFunctionErrors, $bIsPopup ), null, true );
+        PHP_APE_Util_BrowserControl::redirect( $this->makeRequestURL( null, get_class( $oView_SOURCE ), $sSource, $mPrimaryKey, $this->useRequestData(), $rasFunctionErrors, $bIsPopup ), null, true );
       }
       break;
 

@@ -125,14 +125,14 @@ try
         }
 
         // ... redirect
-        if( $sGoto ) PHP_APE_Util_BrowserControl::goto( $sGoto, $bIsPopup ? 'opener.'.$sTarget : $sTarget, !$bIsPopup, null, $bIsPopup ? 0 : 1 );
+        if( $sGoto ) PHP_APE_Util_BrowserControl::redirect( $sGoto, $bIsPopup ? 'opener.'.$sTarget : $sTarget, !$bIsPopup, null, $bIsPopup ? 0 : 1 );
         if( $bIsPopup ) PHP_APE_Util_BrowserControl::close( null, 3 );
       }
       catch( PHP_APE_HTML_Data_Exception $e )
       {
         // ... redirect
         $sURL = $oController->makeRequestURL( 'login.php', $sSource, null, $amPasstrhuVariables, $rasErrors, $bIsPopup );
-        PHP_APE_Util_BrowserControl::goto( $sURL, null, true );
+        PHP_APE_Util_BrowserControl::redirect( $sURL, null, true );
       }
       catch( PHP_APE_Auth_AuthenticationException $e )
       {
@@ -142,7 +142,7 @@ try
 
         // ... redirect
         $sURL = $oController->makeRequestURL( 'login.php', $sSource, null, $amPasstrhuVariables, null, $bIsPopup );
-        PHP_APE_Util_BrowserControl::goto( $sURL, null, true, null, 2 );
+        PHP_APE_Util_BrowserControl::redirect( $sURL, null, true, null, 2 );
       }
       break;
 
@@ -172,7 +172,7 @@ try
       echo PHP_APE_HTML_Components::htmlAuthenticationSuccess( $roEnvironment->getAuthenticationToken() );
 
       // ... redirect
-      if( $sGoto ) PHP_APE_Util_BrowserControl::goto( $sGoto, $bIsPopup ? 'opener.'.$sTarget : $sTarget, !$bIsPopup, null, $bIsPopup ? 0 : 2 );
+      if( $sGoto ) PHP_APE_Util_BrowserControl::redirect( $sGoto, $bIsPopup ? 'opener.'.$sTarget : $sTarget, !$bIsPopup, null, $bIsPopup ? 0 : 2 );
       if( $bIsPopup ) PHP_APE_Util_BrowserControl::close( null, 2 );
     }
     catch( PHP_APE_Auth_AuthenticationException $e )

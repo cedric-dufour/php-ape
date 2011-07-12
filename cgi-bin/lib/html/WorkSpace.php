@@ -424,7 +424,7 @@ extends PHP_APE_WorkSpace
     $sURL = preg_replace( '/&?PHP_APE_A=[^&]*/is', null , $_SERVER['QUERY_STRING'] );
     $sURL = ltrim( $sURL, '&' );
     $sURL = $_SERVER['SCRIPT_NAME'].( $sURL ? '?'.$sURL : null );
-    PHP_APE_Util_BrowserControl::goto( $sURL, null, true );
+    PHP_APE_Util_BrowserControl::redirect( $sURL, null, true );
 
   }
 
@@ -456,7 +456,7 @@ extends PHP_APE_WorkSpace
     $sURL = preg_replace( '/&?PHP_APE_P=[^&]*/is', null , $_SERVER['QUERY_STRING'] );
     $sURL = ltrim( $sURL, '&' );
     $sURL = $_SERVER['SCRIPT_NAME'].( $sURL ? '?'.$sURL : null );
-    PHP_APE_Util_BrowserControl::goto( $sURL, null, true );
+    PHP_APE_Util_BrowserControl::redirect( $sURL, null, true );
 
   }
 

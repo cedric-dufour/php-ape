@@ -104,7 +104,7 @@ extends PHP_APE_Util_Any
    * @param string $sCloseWindow Close window (JavaScript namespace)
    * @param integer $iDelay Wait given seconds before redirecting/reloading
    */
-  public static function goto( $sURL, $sTarget = null, $bReplace = false, $sCloseWindow = null, $iDelay = 0 )
+  public static function redirect( $sURL, $sTarget = null, $bReplace = false, $sCloseWindow = null, $iDelay = 0 )
   {
     // Sanitize input
     $sURL = (string)$sURL;

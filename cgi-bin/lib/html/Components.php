@@ -450,7 +450,7 @@ class PHP_APE_HTML_Components
       $oController = new PHP_APE_HTML_Controller( 'PHP_APE_Authentication', $roEnvironment_Auth->getStaticParameter( 'php_ape.auth.htdocs.url' ), 'new' );
       
       $sURL = $oController->makeRequestURL( 'login.php', 'new', null, array( '__GOTO' => $sGoto, '__TARGET' => $sTarget ), null, false );
-      PHP_APE_Util_BrowserControl::goto( $sURL, null, true, null, $iDelay );
+      PHP_APE_Util_BrowserControl::redirect( $sURL, null, true, null, $iDelay );
     }
     else if( PHP_APE_DEBUG ) $sOutput .= "\r\n<!-- AUTHENTICATION:already authenticated -->\r\n";
     if( PHP_APE_DEBUG ) $sOutput .= "\r\n<!-- AUTHENTICATION:end -->\r\n";
