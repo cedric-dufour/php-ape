@@ -36,7 +36,7 @@
  *
  * require_once 'Image/JPEG.php';
  *
- * $jpeg =& new JPEG('images/photos001.jpg');
+ * $jpeg = new JPEG('images/photos001.jpg');
  *
  * echo $jpeg->getExifField("ApertureValue");
  * echo $jpeg->getIPTCField("Caption");

@@ -416,7 +416,7 @@ extends PHP_APE_Util_File_ResultSet
           if( $amImageInfo[2] == 2 )
           {
             // ... load
-            $roJPEGMetaData =& new PHP_APE_Util_Image_JPEG( $sFilePath_FS );
+            $roJPEGMetaData = new PHP_APE_Util_Image_JPEG( $sFilePath_FS );
 
             // ... EXIF
             $mValue = $roJPEGMetaData->getExifField( 'DatetimeOriginal' );
