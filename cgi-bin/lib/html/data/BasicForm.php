@@ -369,6 +369,7 @@ extends PHP_APE_HTML_Data_View
     else
       $sOutput .= '<FORM NAME="PHP_APE_DR_'.$this->sRID.'" ACTION="'.$sURL.'" METHOD="post">'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="PHP_APE_DR_'.$this->sRID.'" DISABLED />'."\r\n";
+    $sOutput .= '<INPUT TYPE="hidden" NAME="__KEY" VALUE="'.$this->sKey.'" />'."\r\n";
     if( $this->bIsPopup )
       $sOutput .= '<INPUT TYPE="hidden" NAME="__POPUP" VALUE="yes" />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="__PK" VALUE="'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( $this->mPrimaryKey ).'" />'."\r\n";

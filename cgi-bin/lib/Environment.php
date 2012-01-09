@@ -933,6 +933,23 @@ abstract class PHP_APE_Environment
     $asParameters = $this->encryptData( serialize( $asParameters ), false, false );
     $_SESSION[$sSessionName] = $asParameters;
   }
+  
+  /** Returns the session key
+   *
+   * <P><B>RETURNS:</B> The session secret key (it should NEVER be exposed to the client).</P>
+   * <P><B>INHERITANCE:</B> This method is <B>FINAL</B>.</P>
+   *
+   * @return string
+   */
+  final public function getSessionKey()
+  {
+    if( !$this->hasSessionParameter( 'php_ape.session.key' ) )
+    {
+      $this->setSessionParameter( 'php_ape.session.key', sha1( rand() ) );
+      $this->saveSessionParameters();
+    }
+    return $this->getSessionParameter( 'php_ape.session.key', false );
+  }
 
 
   /*

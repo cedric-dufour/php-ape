@@ -59,8 +59,12 @@ extends PHP_APE_Data_Any
   protected $roController;
 
   /** Data/controller resource identifier (RID)
-   * @var mixed */
+   * @var string */
   protected $sRID;
+
+  /** Data/controller resource key
+   * @var string */
+  protected $sKey;
 
   /** Associated (queryable) result set
    * @var PHP_APE_Data_isQueryAbleResultSet */
@@ -107,6 +111,7 @@ extends PHP_APE_Data_Any
     parent::__construct( $roController->getID(), $sName, $sDescription );
     $this->roController =& $roController;
     $this->sRID = $this->roController->getRID();
+    $this->sKey = $this->roController->getKey();
   }
 
   public static function __static()

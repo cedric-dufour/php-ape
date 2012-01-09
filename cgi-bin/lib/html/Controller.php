@@ -42,6 +42,10 @@ extends PHP_APE_HTML_Factory
    * @var mixed */
   protected $sRID;
 
+  /** Data/controller resource key
+   * @var mixed */
+  protected $sKey;
+
   /** Controller's default destination state
    * @var string */
   protected $sDefaultDestination;
@@ -61,8 +65,9 @@ extends PHP_APE_HTML_Factory
    * @param string $sURL Controller (root) URL
    * @param string $sDefaultDestination Controller's default destination state
    * @param string $sFormHandler Controller's form/input handler file
+   * @param boolean $bUseSessionKey Set the controller's key based on the session key
    */
-  public function __construct( $mID, $sURL, $sDefaultDestination = 'list', $sFormHandler = 'index.php' )
+  public function __construct( $mID, $sURL, $sDefaultDestination = 'list', $sFormHandler = 'index.php', $bUseSessionKey = true )
   {
     // Sanizite input
     $sDefaultDestination = strtolower( PHP_APE_Type_Index::parseValue( $sDefaultDestination ) );
@@ -72,6 +77,7 @@ extends PHP_APE_HTML_Factory
 
     // Local construction
     $this->sRID = PHP_APE_HTML_Data_Any::makeRID( $this->mID );
+    $this->sKey = PHP_APE_HTML_Data_Any::makeKey( $this->mID, $bUseSessionKey );
     $this->sDefaultDestination = $sDefaultDestination;
     $this->sFormHandler = ltrim( PHP_APE_Type_Path::parseValue( $sFormHandler ), '/' );
   }
@@ -90,6 +96,17 @@ extends PHP_APE_HTML_Factory
   final public function getRID()
   {
     return $this->sRID;
+  }
+
+  /** Returns this controller's resource key
+   *
+   * <P><B>INHERITANCE:</B> This method is <B>FINAL</B>.</P>
+   *
+   * @return string
+   */
+  final public function getKey()
+  {
+    return $this->sKey;
   }
 
   /** Returns the controller form/input handling URL
@@ -116,9 +133,10 @@ extends PHP_APE_HTML_Factory
    * @param boolean $bUsedPopup Popup used to open form
    * @param string $sSource Page controller source (view)
    * @param array|string $asMessages Additional messages (associating: <I>id</I> => <I>message</I>)
+   * @param boolean $bAddResourceKey Add resource key to URL (protect against CSRF)
    * @return string
    */
-  public function makeRequestURL( $sURL, $sDestination = null, $mPrimaryKey = null, $amPassthruVariables = null, $asErrors = null, $bUsedPopup = null, $sSource = null, $asMessages = null )
+  public function makeRequestURL( $sURL, $sDestination = null, $mPrimaryKey = null, $amPassthruVariables = null, $asErrors = null, $bUsedPopup = null, $sSource = null, $asMessages = null, $bAddResourceKey = false )
   {
     // Sanitize input
     $sURL = PHP_APE_Type_Path::parseValue( $sURL );
@@ -126,6 +144,8 @@ extends PHP_APE_HTML_Factory
 
     // Constructs page data
     $asRequestData = array();
+    if( $bAddResourceKey )
+      $asRequestData['__KEY'] = $this->sKey;
     if( !empty( $sDestination ) )
       $asRequestData['__TO'] = PHP_APE_Type_Index::parseValue( $sDestination );
     if( !is_null( $mPrimaryKey ) )
@@ -139,7 +159,7 @@ extends PHP_APE_HTML_Factory
     if( !is_null( $asMessages ) )
       $asRequestData['__MESSAGE'] = serialize( PHP_APE_Type_Array::parseValue( $asMessages ) );
     if( is_array( $amPassthruVariables ) )
-      $asRequestData = array_merge( $asRequestData, array_diff_key( $amPassthruVariables, array_flip( array( '__FROM', '__TO', '__PK', '__ERROR', '__POPUP', '__MESSAGE' ) ) ) );
+      $asRequestData = array_merge( $asRequestData, array_diff_key( $amPassthruVariables, array_flip( array( '__KEY', '__FROM', '__TO', '__PK', '__ERROR', '__POPUP', '__MESSAGE' ) ) ) );
 
     // Return page URL
     $sURL = preg_replace( '/&?PHP_APE_DR_'.$this->sRID.'=[^&]*/is', null, $sURL );
@@ -183,6 +203,7 @@ extends PHP_APE_HTML_Factory
   /** Retrieves the request data corresponding to this controller (<B>as reference</B>)
    *
    * <P><B>NOTE:</B> this methods use caching to optimize request data retrieval.</P>
+   * <P><B>THROWS:</B> <SAMP>PHP_APE_HTML_Data_Exception</SAMP>.</P>
    * <P><B>INHERITANCE:</B> This method is <B>FINAL</B>.</P>
    *
    * @return array|string
@@ -198,14 +219,31 @@ extends PHP_APE_HTML_Factory
 
     // Request data
     if( isset( $_POST['PHP_APE_DR_'.$this->sRID] ) )
-      $aasRequestCache[$this->sRID] = PHP_APE_Properties::convertString2Array( $_POST['PHP_APE_DR_'.$this->sRID], false );
+      $asRequestData = PHP_APE_Properties::convertString2Array( $_POST['PHP_APE_DR_'.$this->sRID], false );
     elseif( isset( $_GET['PHP_APE_DR_'.$this->sRID] ) )
-      $aasRequestCache[$this->sRID] = PHP_APE_Properties::convertString2Array( $_GET['PHP_APE_DR_'.$this->sRID], false );
+      $asRequestData = PHP_APE_Properties::convertString2Array( $_GET['PHP_APE_DR_'.$this->sRID], false );
     else
-      $aasRequestCache[$this->sRID] = array();
+      $asRequestData = array();
+
+    // Check and cache request data
+    if( array_key_exists( '__KEY', $asRequestData ) and $asRequestData['__KEY'] != $this->sKey )
+      throw new PHP_APE_HTML_Data_Exception( __METHOD__, 'Invalid request data (key)' );
+    $aasRequestCache[$this->sRID] = $asRequestData;
 
     // End
     return $aasRequestCache[$this->sRID];
+  }
+
+  /** Check the request key
+   *
+   * <P><B>THROWS:</B> <SAMP>PHP_APE_HTML_Data_Exception</SAMP>.</P>
+   * <P><B>INHERITANCE:</B> This method is <B>FINAL</B>.</P>
+   */
+  final public function checkRequestKey()
+  {
+    $rasRequestData =& $this->useRequestData();
+    if( !array_key_exists( '__KEY', $rasRequestData ) or $rasRequestData['__KEY'] != $this->sKey )
+      throw new PHP_APE_HTML_Data_Exception( __METHOD__, 'Invalid request key' );
   }
 
   /** Returns this controller's request source (view/action)
@@ -653,6 +691,9 @@ extends PHP_APE_HTML_Factory
    */
   public function executeDeleteFunction( PHP_APE_Data_Function $roFunction, &$rasErrors = null )
   {
+    // Check request key (prevent CSRF)
+    $this->checkRequestKey();
+
     // Prepare
     $this->prepareDeleteFunction( $roFunction );
     $roArgumentSet = $roFunction->useArgumentSet();
@@ -716,6 +757,9 @@ extends PHP_APE_HTML_Factory
    */
   public function executeInsertFunction( PHP_APE_Data_Function $roFunction, &$rasErrors = null )
   {
+    // Check request key (prevent CSRF)
+    $this->checkRequestKey();
+
     // Prepare
     $this->prepareInsertFunction( $roFunction );
 
@@ -774,6 +818,9 @@ extends PHP_APE_HTML_Factory
    */
   public function executeUpdateFunction( PHP_APE_Data_Function $roFunction, &$rasErrors = null )
   {
+    // Check request key (prevent CSRF)
+    $this->checkRequestKey();
+
     // Prepare
     $this->prepareUpdateFunction( $roFunction );
     $roArgumentSet = $roFunction->useArgumentSet();

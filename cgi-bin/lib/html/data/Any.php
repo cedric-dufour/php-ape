@@ -58,4 +58,24 @@ extends PHP_APE_HTML_Any
     }
   }
 
+  /** Returns the HTML key for the given element identifier (ID)
+   *
+   * <P><B>NOTE:</B> This method returns a key which is safe to use HTML, JavaScript and Regular Expressions data spaces.</P>
+   *
+   * @param mixed $mID HTML data page identifier (ID)
+   * @param boolean $bUseSessionKey Create a key based on the session key
+   * @return string
+   */
+  public static function makeKey( $mID, $bUseSessionKey = true )
+  {
+    static $sSessionKey;
+    $mID = PHP_APE_Type_Index::parseValue( $mID );
+    if( $bUseSessionKey )
+    {
+      if( is_null( $sSessionKey ) ) $sSessionKey = PHP_APE_HTML_WorkSpace::useEnvironment()->getSessionKey();
+      $mID .= $sSessionKey;
+    }
+    return substr( sha1( $mID ), 0, 4 ).substr( md5( $mID ), 0, 4 );
+  }
+
 }

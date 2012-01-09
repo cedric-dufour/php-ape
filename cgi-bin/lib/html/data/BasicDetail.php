@@ -487,6 +487,7 @@ extends PHP_APE_HTML_Data_View
     if( PHP_APE_DEBUG ) $sOutput .= "\r\n<!-- FORM: PHP_APE_HTML_Data_BasicDetail::htmlForm - BEGIN (".$this->sRID.") -->\r\n";
     $sOutput .= '<FORM NAME="PHP_APE_DR_'.$this->sRID.'" ACTION="'.$sURL.'" METHOD="get">'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="PHP_APE_DR_'.$this->sRID.'" DISABLED />'."\r\n";
+    $sOutput .= '<INPUT TYPE="hidden" NAME="__KEY" VALUE="'.$this->sKey.'" />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="__POPUP" VALUE="yes" DISABLED />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="__PK" VALUE="'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( $this->mPrimaryKey ).'" />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="__FROM" VALUE="detail" />'."\r\n";
