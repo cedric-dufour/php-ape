@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+# Set appropriate permissions
+chown -R root:www-data /etc/php-ape /var/lib/php-ape /var/cache/php-ape /var/log/php-ape
+chmod -R g+r,g-w,o= /etc/php-ape
+chmod g+rws,o= /var/lib/php-ape /var/cache/php-ape /var/log/php-ape
+

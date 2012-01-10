@@ -1,0 +1,310 @@
+<refentry id="{@id}">
+
+<refnamediv>
+<refname>PHP Application Programming Environment (PHP-APE)</refname>
+<refpurpose>A library for PHP Rapid Application Development (RAD)</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<author>
+Cedric Dufour
+<authorblurb>{@link http://www.ced-network.net/php-ape http://www.ced-network.net/php-ape}</authorblurb>
+</author>
+</refsynopsisdiv>
+
+<graphic fileref="php-ape.png" />
+
+{@toc}
+
+<refsect1 id="{@id whatis}">
+<title>What is PHP-APE ?</title>
+<para>The goal of the <firstterm>PHP Application Programming Environment (PHP-APE)</firstterm> is to provide a <emphasis>PHP library</emphasis> allowing developers to concentrate on the objective of their applications rather than on their "lower level" routines. Through the use of PHP-APE data types, data spaces, work spaces, database abstraction layer, and many other built-in utility classes, developers are freed from the burden of writing code to handle user input, render data into HTML or any other format, or query database to retrieve their content. The gap between the data model and the user interface is thus very rapidly filled, allowing so-called <emphasis>Rapid Application Development (RAD)</emphasis>.</para>
+<para>PHP-APE is completely <emphasis>object-oriented</emphasis> and uses the latest features introduced by <emphasis>PHP 5</emphasis>, such as interfaces, exceptions, resources dynamic (auto) loading, etc.</para>
+</refsect1>
+
+
+<refsect1 id="{@id licence}">
+<title>Licensing</title>
+<para>PHP-APE is distributed under the <emphasis>GNU General Public Licence (GPL) Version 2</emphasis>. The PHP Application Programming Environment includes all resources which contain the mention <literal>PHP Application Programming Environment (PHP-APE)</literal> in their documentation and licensing preamble.</para>
+<para>Other Open Source resources may come bundled with PHP-APE release packaging; they are (and must be) used according to their original licence (look for copyright-related files in the folder hierarchy).</para>
+</refsect1>
+
+
+<refsect1 id="{@id download}">
+<title>Downloading</title>
+<para>{@link https://github.com/cedric-dufour/php-ape/downloads download tree...}</para>
+</refsect1>
+
+
+<refsect1 id="{@id build}">
+<title>Build</title>
+<para><emphasis>NOTE:</emphasis> By &quot;build&quot;, we mean create the necessary tarballs/package required for installation (according to the INSTALL section below) or distribution.</para>
+
+<refsect2 id="{@id build_tree}">
+<title>[MUST] Obtain the source tarball</title>
+<screen>
+<![CDATA[
+$ tar -xjf php-ape-source-@version@.tar.bz2
+$ cd php-ape-@version@
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_source}">
+<title>[MAY] (Re-)build the source tarball</title>
+<screen>
+<![CDATA[
+$ fakeroot ./debian/rules build-source-tarball
+$ ls -al ../php-ape-source-@version@.tar.bz2
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_install}">
+<title>[MAY] Build the installation (release) tarball</title>
+<screen>
+<![CDATA[
+$ fakeroot ./debian/rules build-install-tarball
+$ ls -al ../php-ape-@version@.tar.bz2
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_doc}">
+<title>[MAY] Build the documentation tarball</title>
+<screen>
+<![CDATA[
+$ fakeroot ./debian/rules build-doc-tarball
+$ ls -al ../php-ape-doc-@version@.tar.bz2
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_debian}">
+<title>[MAY] Build the debian packages</title>
+<screen>
+<![CDATA[
+$ debuild -us -uc -b
+$ ls -al ../php-ape*_@version@_all.deb
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_debian_source}">
+<title>[MAY] Build the debian source package</title>
+<screen>
+<![CDATA[
+$ debuild -I'.git*' -us -uc -S
+$ ls -al ../php-ape_@version@.dsc ../php-ape_@version@.tar.gz
+]]>
+</screen>
+</refsect2>
+
+</refsect1>
+
+
+<refsect1 id="{@id install}">
+<title>Installation</title>
+<para><emphasis>WARNING: PHP-APE is actively maintained on Linux. It has not been tested on Windows.</emphasis></para>
+<para><emphasis>NOTE:</emphasis> We assume a previously working Apache/PHP/PEAR setup.</para>
+
+<refsect2 id="{@id install_php}">
+<title>[MUST] Install PHP-APE</title>
+
+<refsect3 id="{@id install_php_release}">
+<title>[OR] using the release tarball</title>
+<screen>
+<![CDATA[
+$ INSTALL_DIR='<installation-directory>'
+$ cd "${INSTALL_DIR}"
+$ tar -xjf php-ape-@version@.tar.bz2
+]]>
+</screen>
+</refsect3>
+
+<refsect3 id="{@id install_php_debian}">
+<title>[OR] using the debian package</title>
+<screen>
+<![CDATA[
+$ dpkg -i php-ape*_@version@_all.deb
+]]>
+</screen>
+</refsect3>
+
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="{@id install_contd}">
+<title>(cont'd)</title> <!-- an horrible hack to circumvent a bug in PhpDocumentor docbook parsing -->
+
+<refsect2 id="{@id install_doc}">
+<title>[MAY] Install PHP-APE Documentation</title>
+
+<refsect3 id="{@id install_doc_release}">
+<title>[OR] using the documentation tarball</title>
+<screen>
+<![CDATA[
+$ DOC_DIR='<documentation-directory>'
+$ cd "${DOC_DIR}"
+$ tar -xjf php-ape-doc-@version@.tar.bz2
+]]>
+</screen>
+</refsect3>
+
+<refsect3 id="{@id install_doc_debian}">
+<title>[OR] using the debian package</title>
+<screen>
+<![CDATA[
+$ dpkg -i php-ape-doc_@version@_all.deb
+]]>
+</screen>
+</refsect3>
+
+<refsect3 id="{@id install_doc_source}">
+<title>[OR] using the source tarball (and PhpDocumentor)</title>
+<screen>
+<![CDATA[
+$ DOC_DIR='<documentation-directory>'
+$ pear install -o PhpDocumentor
+$ tar -xjf php-ape-source-@version@.tar.bz2
+$ cd php-ape-@version@
+$ ./util/makedoc PHP_APE "PHP Application Programming Environment" "${DOC_DIR}" php doc/phpdoc
+]]>
+</screen>
+</refsect3>
+
+</refsect2>
+
+</refsect1>
+
+
+<refsect1 id="{@id configure}">
+<title>Configuration</title>
+<para><emphasis>NOTE:</emphasis> For the sake of simplicity and clarity, we will assume the installation has been achieved using the debian packages.</para>
+
+<refsect2 id="{@id install_tree}">
+<title>Installation tree</title>
+<para>PHP-APE files are organized following the Unix unified filesystem recommendations. Once the installation completed, your installation directory will look like:</para>
+<itemizedList>
+<listitem><literal>/usr/share/php-ape/php/include</literal>: non-public PHP resources (classes, localization files, etc.)</listitem>
+<listitem><literal>/usr/share/php-ape/php/htdocs</literal>: public PHP resources (index.php)</listitem>
+<listitem><literal>/usr/share/php-ape/js</literal>: JavaScript files</listitem>
+<listitem><literal>/usr/share/php-ape/css</literal>: CSS stylesheets and dependencies</listitem>
+<listitem><literal>/usr/share/doc/php-ape</literal>: documentation resources</listitem>
+<listitem><literal>/var/cache/php-ape</literal>: volatile dynamic content (can be erased without second-thoughts)</listitem>
+<listitem><literal>/var/lib/php-ape</literal>: user data dynamic content (e.g. uploaded files, etc.)</listitem>
+<listitem><literal>/var/log/php-ape</literal>: PHP logs</listitem>
+<listitem><literal>/etc/php-ape</literal>: configuration files</listitem>
+</itemizedList>
+</refsect2>
+
+<refsect2 id="{@id configure_apache}">
+<title>Apache configuration</title>
+<para><literal>/etc/php-ape/apache.conf</literal>:</para>
+<screen>
+<![CDATA[
+# PHP-APE aliases
+Alias /php-ape/css "/usr/share/php-ape/css"
+Alias /php-ape/js "/usr/share/php-ape/js"
+Alias /php-ape "/usr/share/php-ape/php/htdocs"
+
+# PHP-APE directory settings
+<Directory "/usr/share/php-ape/htdocs">
+  # PHP settings
+  php_flag register_globals Off
+  php_value output_buffering 4096
+  php_value display_errors Off
+  php_value log_errors On
+  php_value error_log "/var/log/php-ape/php-ape.log"
+  php_value log_errors_max_len 0
+
+  # PHP-APE environment
+  #setenv PHP_APE_DEBUG 1
+  setenv PHP_APE_ROOT "/usr/share/php-ape/php/include"
+  setenv PHP_APE_CACHE "/var/cache/php-ape"
+  setenv PHP_APE_DATA "/var/lib/php-ape"
+  setenv PHP_APE_CONF "/etc/php-ape/php-ape.conf.php"
+</Directory>
+
+# Access permissions
+<Location /php-ape>
+  Order Deny,Allow
+  Deny from all
+  Allow from 127.0.0.1
+</Location>
+]]>
+</screen>
+<para>Apart from the standard PHP settings, the following environment variables are defined:</para>
+<itemizedList>
+<listitem><literal>PHP_APE_DEBUG</literal>: enable/disable debugging messages (you may also want to set <literal>php_value display_errors On</literal>)</listitem>
+<listitem><literal>PHP_APE_ROOT</literal>: path to non-public PHP resources</listitem>
+<listitem><literal>PHP_APE_CACHE</literal>: path to the volatile dynamic content directory (MUST be writeable by Apache)</listitem>
+<listitem><literal>PHP_APE_DATA</literal>: path to the user data dynamic directory (MUST be writeable by Apache)</listitem>
+<listitem><literal>PHP_APE_CONF</literal>: path to the PHP-APE configuration file location</listitem>
+</itemizedList>
+<para>Note that by modifying those variables appropriately, you may easily have different configurations for the different web applications relying on PHP-APE, using additional application-related <literal>&lt;Directory&gt;</literal> or <literal>.htaccess</literal> directives.</para>
+</refsect2>
+
+<refsect2 id="{@id configure_phpape}">
+<title>PHP-APE configuration</title>
+<para><literal>/etc/php-ape/php-ape.conf.php</literal>:</para>
+<screen>
+<![CDATA[
+<?php
+## PHP-APE parameters
+if( !defined( 'PHP_APE_HTDOCS_URL' ) ) define( 'PHP_APE_HTDOCS_URL', 'http://localhost.localdomain/php-ape' );
+
+# Cryptography
+$_CONFIG['php_ape.util.crypto.key.server'] = 'CHANGE ME!';
+$_CONFIG['php_ape.util.crypto.key.client'] = 'CHANGE ME!';
+
+# Authentication
+$_CONFIG['php_ape.auth.htdocs.url'] = PHP_APE_HTDOCS_URL.'/lib/auth';
+
+# HTML/HTTPD settings
+$_CONFIG['php_ape.html.htdocs.url'] = PHP_APE_HTDOCS_URL.'/lib/html';
+$_CONFIG['php_ape.html.javascript.url'] = PHP_APE_HTDOCS_URL.'/js';
+$_CONFIG['php_ape.html.css.url'] = PHP_APE_HTDOCS_URL.'/css';
+
+# RSS settings
+$_CONFIG['php_ape.rss.xsl.url'] = PHP_APE_HTDOCS_URL.'/lib/rss/default.xsl';
+]]>
+</screen>
+<para>Please refer to <literal>/usr/share/doc/php-ape/examples/php-ape.conf.php</literal> for the list of all possible PHP-APE configuration parameters.</para>
+</refsect2>
+
+</refsect1>
+
+
+<refsect1 id="{@id usage}">
+<title>Further documentation and usage</title>
+<para>The full documentation of the PHP-APE API (including source code) is part of this (phpDocumentor-generated) HTML documentation; make sure to browse through the expandable tree located on the left of this text.</para>
+<para>Please also refer to {@tutorial overview.pkg} and the PHP-APE Tutorial application (see the <literal>php-ape-tutorial</literal> tarball) for further information on how to use PHP-APE in your own application.</para>
+</refsect1>
+
+
+<refsect1 id="{@id users}">
+<title>Known users and applications</title>
+<para>The following applications are known to depend (significantly) on PHP-APE:</para>
+<itemizedList>
+<listitem>{@link http://www.idiap.ch Idiap} <literal>Online Recruitment System (IDIAP.ORS)</literal>: open positions and related candidate applications management system.</listitem>
+<listitem>{@link http://www.idiap.ch Idiap} <literal>Network Access Manager (IDIAP.NAM)</literal>: {@link http://freeradius.org FreeRadius}/{@link http://www.postgresql.org PostgreSQL} front-end to manage network accounts.</listitem>
+<listitem>{@link http://www.idiap.ch Idiap} <literal>Project Time Accounting (IDIAP.PTA)</literal>: projects working time accounting tool.</listitem>
+<listitem>{@link http://www.idiap.ch Idiap} <literal>Contacts and Relations Manager (IDIAP.iCRM)</literal>: contacts and relations management (people, companies, addresses, etc.) along with associated events follow-up</listitem>
+<listitem>{@link http://www.idiap.ch Idiap} <literal>Project Managament System (IDIAP.PMS)</literal>: projects management system, including several modules fo planning, accounting, follow-up, etc.</listitem>
+</itemizedList>
+</refsect1>
+
+
+<refsect1 id="{@id acknowledgment}">
+<title>Historical and acknowledgment</title>
+<para>I first had the idea of creating an oject-oriented development framework for PHP applications around 2004, when I was working on a website heavily dependent on database interactions and relying on many different types of data (classes). Abstracting the database and graphical user interface as much as possible then proved to be a requirement if I was to be able to maintain and enhance this website (time- and cost-) efficiently.</para>
+<para>I thus have been working on an "alpha" version of this API throughout 2005 and 2006... though I did not have much use for it anylonger, since having no web applications projects on hand during that time.</para>
+<para>I started working for the Idiap Research Institute in Martigny (Switzerland) - a swiss national research pole for human-machine interactions - in November 2006, and was given the task of developing Idiap's Online Recruitment System, a (web-based) application integrating all aspects of the management of its open positions and related candidate applications.</para>
+<para>Idiap gave me the opportunity of using my two-years personal work as the basis of its new application, and allowed me to pursue the development of what was to become PHP-APE on an Open Source basis (and allowing me to keep the ownership of its source code).</para>
+<para><emphasis>I thus would particularly like to thank the Idiap Research Insitute for their support, and for allowing PHP-APE to be brought to you, here and today.</emphasis></para>
+<para>Cedric Dufour</para>
+</refsect1>
+
+</refentry> 

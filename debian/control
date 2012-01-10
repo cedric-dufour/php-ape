@@ -1,0 +1,44 @@
+Source: php-ape
+Section: web
+Priority: optional
+Maintainer: Cedric Dufour <cedric.dufour@ced-network.net>
+Build-Depends: debhelper (>= 5) 
+Homepage: http://www.ced-network.net/php-ape
+Standards-Version: 1.3.0
+
+Package: php-ape
+Architecture: all
+Depends: libapache2-mod-php5 | php5-cgi, php5-mhash, php5-mcrypt, php-pear, php-ape-css-tango, php-ape-js-overlib, php-ape-js-toolman
+Recommends: smarty, php-log, php-mail, php-mail-mime, php-mdb2-driver-mysql, php-mdb2-driver-pgsql
+Suggests: php5-ldap
+Description: PHP Application Programming Environment (PHP-APE)
+ The goal of the PHP Application Programming Environment (PHP-APE) is to
+ provide a PHP library allowing developers to concentrate on the objective of
+ their applications rather than on their "lower level" routines. Through the
+ use of PHP-APE data types, data spaces, work spaces, database abstraction
+ layer, and many other built-in utility classes, developers are freed from the
+ burden of writing code to handle user input, render data into HTML or any
+ other format, or query database to retrieve their content. The gap between the
+ data model and the user interface is thus very rapidly filled, allowing
+ so-called Rapid Application Development (RAD).
+ .
+ PHP-APE is completely object-oriented and uses the latest features introduced
+ by PHP 5, such as interfaces, exceptions, resources dynamic (auto) loading,
+ etc.
+
+Package: php-ape-css-tango
+Architecture: all
+Description: PHP Application Programming Environment (PHP-APE) - Tango icons library (CSS dependency)
+
+Package: php-ape-js-overlib
+Architecture: all
+Description: PHP Application Programming Environment (PHP-APE) - overLIB library (JavaScript dependency)
+
+Package: php-ape-js-toolman
+Architecture: all
+Description: PHP Application Programming Environment (PHP-APE) - ToolMan library (JavaScript dependency)
+
+Package: php-ape-doc
+Architecture: all
+Recommends: php-ape
+Description: PHP Application Programming Environment (PHP-APE) - Documentation

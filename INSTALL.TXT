@@ -1,0 +1,92 @@
+PHP Application Programming Environment (PHP-APE)
+=================================================
+
+NOTE: For the sake of clarity, we will assume a Linux (Debian) environment.
+
+
+BUILD
+-----
+
+NOTE: By "build", we mean create the necessary tarballs/package required for
+      installation (according to the INSTALL section below) or distribution.
+
+1. [MUST] Obtain the source tarball:
+
+   BASH: tar -xjf php-ape-source-@version@.tar.bz2
+   BASH: cd php-ape-source-@version@
+
+2. [MAY] (Re-)build the source tarball:
+
+   BASH: fakeroot ./debian/rules build-source-tarball
+   BASH: ls -al ../php-ape-source-@version@.tar.bz2
+
+3. [MAY] Build the installation (release) tarball:
+
+   BASH: fakeroot ./debian/rules build-install-tarball
+   BASH: ls -al ../php-ape-@version@.tar.bz2
+
+4. [MAY] Build the documentation tarball:
+
+   BASH: fakeroot ./debian/rules build-doc-tarball
+   BASH: ls -al ../php-ape-doc-@version@.tar.bz2
+
+5. [MAY] Build the debian packages:
+
+   BASH: debuild -us -uc -b
+   BASH: ls -al ../php-ape*_@version@_all.deb
+
+6. [MAY] Build the debian source package:
+
+   BASH: debuild -I'.git*' -us -uc -S
+   BASH: ls -al ../php-ape_@version@.dsc ../php-ape_@version@.tar.gz
+
+
+INSTALL
+-------
+
+WARNING: PHP-APE is actively maintained on Linux. It has not been tested on Windows.
+NOTE: We assume a previously working Apache/PHP/PEAR setup.
+
+1. [MUST] Install PHP-APE:
+
+   a. using the release tarball:
+
+      BASH: INSTALL_DIR='<installation-directory>'
+      BASH: cd "${INSTALL_DIR}"
+      BASH: tar -xjf php-ape-@version@.tar.bz2
+
+   OR
+
+   b. using the debian package:
+
+      BASH: dpkg -i php-ape*_@version@_all.deb
+
+2. [MAY] Install PHP-APE documentation:
+
+   a. using the documentation tarball:
+
+      BASH: DOC_DIR='<documentation-directory>'
+      BASH: cd "${DOC_DIR}"
+      BASH: tar -xjf php-ape-doc-@version@.tar.bz2
+
+   OR
+
+   b. using the debian package:
+
+      BASH: dpkg -i php-ape-doc_@version@_all.deb
+
+   OR
+
+   c. using the source tarball (and PhpDocumentor):
+   
+      BASH: DOC_DIR='<documentation-directory>'
+      BASH: pear install -o PhpDocumentor
+      BASH: tar -xjf php-ape-source-@version@.tar.bz2
+      BASH: cd php-ape-source-@version@
+      BASH: ./util/makedoc PHP_APE "PHP Application Programming Environment" "${DOC_DIR}" php doc/phpdoc
+
+
+CONFIGURATION AND USAGE
+-----------------------
+
+Please refer to the HTML (PhpDocumentor) documentation.

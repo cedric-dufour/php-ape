@@ -1,0 +1,30 @@
+# PHP-APE aliases
+Alias /php-ape/css "/usr/share/php-ape/css"
+Alias /php-ape/js "/usr/share/php-ape/js"
+Alias /php-ape "/usr/share/php-ape/php/htdocs"
+
+# PHP-APE directory settings
+<Directory "/usr/share/php-ape/htdocs">
+  # PHP settings
+  php_flag register_globals Off
+  php_value output_buffering 4096
+  php_value display_errors Off
+  php_value log_errors On
+  php_value error_log "/var/log/php-ape/php-ape.log"
+  php_value log_errors_max_len 0
+
+  # PHP-APE environment
+  #setenv PHP_APE_DEBUG 1
+  setenv PHP_APE_ROOT "/usr/share/php-ape/php/include"
+  setenv PHP_APE_CACHE "/var/cache/php-ape"
+  setenv PHP_APE_DATA "/var/lib/php-ape"
+  setenv PHP_APE_CONF "/etc/php-ape/php-ape.conf.php"
+</Directory>
+
+# Access permissions
+<Location /php-ape>
+  Order Deny,Allow
+  Deny from all
+  Allow from 127.0.0.1
+</Location>
+

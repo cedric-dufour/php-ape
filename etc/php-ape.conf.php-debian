@@ -1,0 +1,19 @@
+<?php
+## PHP-APE parameters
+if( !defined( 'PHP_APE_HTDOCS_URL' ) ) define( 'PHP_APE_HTDOCS_URL', 'http://localhost.localdomain/php-ape' );
+
+# Cryptography
+$_CONFIG['php_ape.util.crypto.key.server'] = 'CHANGE ME!';
+$_CONFIG['php_ape.util.crypto.key.client'] = 'CHANGE ME!';
+
+# Authentication
+$_CONFIG['php_ape.auth.htdocs.url'] = PHP_APE_HTDOCS_URL.'/lib/auth';
+
+# HTML/HTTPD settings
+$_CONFIG['php_ape.html.htdocs.url'] = PHP_APE_HTDOCS_URL.'/lib/html';
+$_CONFIG['php_ape.html.javascript.url'] = PHP_APE_HTDOCS_URL.'/js';
+$_CONFIG['php_ape.html.css.url'] = PHP_APE_HTDOCS_URL.'/css';
+
+# RSS settings
+$_CONFIG['php_ape.rss.xsl.url'] = PHP_APE_HTDOCS_URL.'/lib/rss/default.xsl';
+

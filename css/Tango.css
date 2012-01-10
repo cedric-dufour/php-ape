@@ -1,0 +1,581 @@
+/*
+ * PHP Application Programming Environment (PHP-APE)
+ * Copyright (C) 2005-2006 Cédric Dufour
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+/*
+ * BODY
+ ********************************************************************************/
+
+BODY { WIDTH:100%; HEIGHT:100%; MARGIN:0px; PADDING:0px; FONT:italic normal 12px sans-serif; BACKGROUND:#FFFFFF; COLOR:#993300; }
+BODY.APE { WIDTH:100%; HEIGHT:100%; MARGIN:0px; PADDING:0px; FONT:italic normal 12px sans-serif; BACKGROUND:#FFFFFF; COLOR:#993300; }
+BODY.APE-top { WIDTH:100%; HEIGHT:100%; MARGIN:0px; PADDING:0px; FONT:italic normal 12px sans-serif; BACKGROUND:#F8F8FF; COLOR:#993300; }
+BODY.APE-left { WIDTH:100%; HEIGHT:100%; MARGIN:0px; PADDING:0px; FONT:italic normal 12px sans-serif; BACKGROUND:#F8F8FF; COLOR:#993300; }
+BODY.APE-bottom { WIDTH:100%; HEIGHT:100%; MARGIN:0px; PADDING:0px; FONT:italic normal 12px sans-serif; BACKGROUND:#FFFFFF; COLOR:#993300; }
+
+
+/*
+ * APE
+ ********************************************************************************/
+
+/* Tags */
+DIV.APE { PADDING: 10px; }
+DIV.APE DIV { MARGIN:0px; PADDING:0px; BORDER-WIDTH: 2px; BORDER-COLOR:#404060; }
+DIV.APE BLOCKQUOTE { MARGIN:5px 15px; }
+DIV.APE H1 { MARGIN:0px; PADDING:0px; FONT:bold 16px sans-serif; BACKGROUND:transparent; COLOR:#202030; }
+DIV.APE H2 { MARGIN:0px; PADDING:0px; FONT:bold 14px sans-serif; BACKGROUND:transparent; COLOR:#202030; }
+DIV.APE H3 { MARGIN:0px; PADDING:0px; FONT:bold 12px sans-serif; BACKGROUND:transparent; COLOR:#202030; }
+DIV.APE H4 { MARGIN:0px; PADDING:0px; FONT:bold 12px sans-serif; BACKGROUND:transparent; COLOR:#202030; }
+DIV.APE P { MARGIN:1px 0px 3px; PADDING:0px; FONT:normal 12px sans-serif; BACKGROUND:transparent; COLOR:#000000; }
+DIV.APE UL { MARGIN:5px 0px 5px 15px; PADDING:0px 5px; FONT:normal 12px sans-serif; BACKGROUND:transparent; COLOR:#000000; LIST-STYLE:outside; }
+DIV.APE PRE { MARGIN:0px; PADDING:0px; FONT:normal 11px proportional; BACKGROUND:transparent; COLOR:#000000; }
+DIV.APE A { BACKGROUND:transparent; COLOR:#8888B0; TEXT-DECORATION:underline; }
+DIV.APE A:hover { BACKGROUND:#8888B0; COLOR:#F0F0FF; TEXT-DECORATION:underline; }
+DIV.APE TABLE { MARGIN:0px; BORDER:none; FONT:normal 12px sans-serif; }
+DIV.APE TR { MARGIN:0px; PADDING:0px; }
+DIV.APE TH { MARGIN:0px; PADDING:0px; BORDER:none; TEXT-ALIGN:left; }
+DIV.APE TD { MARGIN:0px; PADDING:0px; BORDER:none; }
+DIV.APE IMG { MARGIN:0px; PADDING:0px; BORDER:none; }
+DIV.APE FORM { MARGIN:0px; PADDING:0px; Z-INDEX:0; }
+DIV.APE TEXTAREA { MARGIN:0px; PADDING:0px 2px; BORDER:solid 1px #8888B0; BACKGROUND:#F8F8FF; COLOR:#202030; FONT:normal 11px sans-serif; }
+DIV.APE INPUT { MARGIN:0px; PADDING:0px 2px; BORDER:solid 1px #8888B0; BACKGROUND:#F8F8FF; COLOR:#202030; FONT:normal 11px sans-serif; CURSOR:text; }
+DIV.APE INPUT.tiny { WIDTH:35px; }
+DIV.APE INPUT.small { WIDTH:75px; }
+DIV.APE INPUT.standard { WIDTH:150px; }
+DIV.APE INPUT.long { WIDTH:300px; }
+DIV.APE INPUT.checkbox { BORDER:none; BACKGROUND:transparent; COLOR:#202030; CURSOR:pointer; }
+DIV.APE INPUT.radio { BORDER:none; BACKGROUND:transparent; COLOR:#202030; CURSOR:pointer; }
+DIV.APE SELECT { MARGIN:0px; PADDING:0px; BORDER:solid 1px #8888B0; BACKGROUND:#F8F8FF; COLOR:#202030; FONT:normal 11px sans-serif; }
+DIV.APE HR { BORDER:none; BORDER-TOP:solid 1px #404060; }
+
+/* Generic classes */
+DIV.APE .label { BACKGROUND:transparent !important; COLOR:#404060 !important; FONT-WEIGHT:bold !important; WHITE-SPACE:nowrap; }
+DIV.APE TD.label { WIDTH:150px !important; PADDING-BOTTOM:2px !important; VERTICAL-ALIGN:top !important;}
+DIV.APE .value { BACKGROUND:transparent !important; COLOR:#000000 !important; }
+DIV.APE TD.value { PADDING-BOTTOM:2px !important; VERTICAL-ALIGN:top !important;}
+DIV.APE .input { BACKGROUND:transparent !important; COLOR:#000000 !important; FONT-STYLE:italic !important; }
+DIV.APE TD.input { PADDING-BOTTOM:2px !important; VERTICAL-ALIGN:top !important; }
+DIV.APE .brand { BACKGROUND:transparent !important; COLOR:#404060 !important; FONT-WEIGHT:bold !important; FONT-STYLE:italic !important; WHITE-SPACE:nowrap; }
+DIV.APE .important { BACKGROUND:transparent; COLOR:#202030; FONT-WEIGHT:bold !important; }
+DIV.APE .emphasis { BACKGROUND:transparent; COLOR:#202030; FONT-STYLE:italic !important; }
+
+/* Popup */
+DIV.APE DIV.popup { POSITION:absolute; VISIBILITY:hidden; WIDTH:400px; PADDING:5px 10px; BORDER: solid 1px #000000; TEXT-ALIGN:left; BACKGROUND:#FFF7CC; COLOR:#000000; }
+DIV.APE DIV.popup H1 { FONT:bold 14px sans-serif; TEXT-ALIGN:center; }
+DIV.APE DIV.popup P { FONT:normal 11px sans-serif; COLOR:#000000; }
+
+/* Error */
+DIV.APE DIV.error { MARGIN:5px; PADDING:5px 10px; BORDER:solid 2px #A00000; BACKGROUND:#FFE8E8; }
+DIV.APE DIV.error H1 { BACKGROUND:transparent; COLOR:#800000; TEXT-ALIGN:center; }
+DIV.APE DIV.error P { BACKGROUND:transparent; COLOR:#800000; }
+DIV.APE DIV.error LI { BACKGROUND:transparent; COLOR:#800000; }
+
+/* Warning */
+DIV.APE DIV.warning { MARGIN:5px; PADDING:5px 10px; BORDER:solid 2px #A08000; BACKGROUND:#FFFFD8; }
+DIV.APE DIV.warning H1 { BACKGROUND:transparent; COLOR:#806000; TEXT-ALIGN:center; }
+DIV.APE DIV.warning P { BACKGROUND:transparent; COLOR:#806000; }
+DIV.APE DIV.warning LI { BACKGROUND:transparent; COLOR:#806000; }
+
+/* Info */
+DIV.APE DIV.info { MARGIN:5px; PADDING:5px 10px; BORDER:solid 2px #008000; BACKGROUND:#E8FFE8; }
+DIV.APE DIV.info H1 { BACKGROUND:transparent; COLOR:#006000; TEXT-ALIGN:center; }
+DIV.APE DIV.info P { BACKGROUND:transparent; COLOR:#006000; }
+DIV.APE DIV.info LI { BACKGROUND:transparent; COLOR:#006000; }
+
+/* Do not print */
+DIV.APE DIV.do-not-print { }
+
+
+/*
+ * SMART TAGS
+ ********************************************************************************/
+
+/* Spacer */
+/* ... elements */
+DIV.APE-spacer { PADDING-TOP:10px !important; }
+
+/* Separator */
+/* ... elements */
+DIV.APE-separator { WIDTH:100%; MARGIN-TOP:10px !important; PADDING-TOP:10px !important; BORDER-TOP:solid 1px #404060 !important; }
+
+/* Align */
+/* ... elements */
+TABLE.APE-align { MARGIN:0px !important; BACKGROUND:transparent !important; BORDER:none !important; }
+TABLE.APE-align TD { MARGIN:0px !important; PADDING:0px !important; BACKGROUND:transparent !important; BORDER:none !important; }
+TABLE.APE-align TD.s { WIDTH:10px !important; COLOR:#202030; FONT-SIZE:14px; TEXT-ALIGN:center !important; VERTICAL-ALIGN:middle !important; }
+
+/* Columns */
+/* ... elements */
+TABLE.APE-column { WIDTH:100% !important; }
+TABLE.APE-column TD.c { VERTICAL-ALIGN:top !important; }
+TABLE.APE-column TD.s { WIDTH:20px !important; BACKGROUND:transparent !important; }
+
+/* Frame */
+/* ... elements */
+TABLE.APE-frame { WIDTH:100% !important; MARGIN:1px 0px 0px 1px !important; BORDER:none !important; FONT-SIZE:1px !important; }
+TABLE.APE-frame TD { MARGIN:0px !important; PADDING:0px !important; BORDER:none !important; }
+TABLE.APE-frame TD.tl { WIDTH:24px !important; HEIGHT:24px !important; BACKGROUND:url("Tango/frame-tl.png") !important; }
+TABLE.APE-frame TD.tc { HEIGHT:24px !important; BACKGROUND:url("Tango/frame-tc.png") !important; VERTICAL-ALIGN:middle !important; }
+TABLE.APE-frame TD.tr { WIDTH:1px !important; HEIGHT:24px !important; BACKGROUND:transparent !important; }
+TABLE.APE-frame TD.ml { WIDTH:24px !important; BACKGROUND:url("Tango/frame-ml.png") !important; }
+TABLE.APE-frame TD.mc { PADDING-LEFT:4px !important; PADDING-RIGHT:4px !important; BACKGROUND:transparent !important; }
+TABLE.APE-frame TD.mr { WIDTH:1px !important; BACKGROUND:transparent !important; }
+TABLE.APE-frame TD.bl { WIDTH:24px !important; HEIGHT:1px !important; BACKGROUND:transparent !important; }
+TABLE.APE-frame TD.bc { HEIGHT:1px !important; BACKGROUND:transparent !important; }
+TABLE.APE-frame TD.br { WIDTH:1px !important; HEIGHT:1px !important; BACKGROUND:transparent !important; }
+/* ... content (header) */
+TABLE.APE-frame TD.tc DIV.APE-control { FLOAT:right; MARGIN-RIGHT:2px; }
+TABLE.APE-frame TD.tc P { MARGIN:0px; PADDING:0px 3px; FONT:bold 14px sans-serif; WHITE-SPACE:nowrap; }
+TABLE.APE-frame TD.tc SPAN { PADDING:0px 2px; BACKGROUND:#FFFFFF; COLOR:#202030;  }
+/* ... content (body) */
+TABLE.APE-frame TD.mc DIV.APE-button { FLOAT:right; MARGIN-LEFT:2px; }
+TABLE.APE-frame TD.mc P { MARGIN:0px; PADDING:2px; BACKGROUND:transparent; COLOR:#000000; FONT:normal 12px sans-serif; }
+TABLE.APE-frame TD.mc .label { WHITE-SPACE:normal; }
+TABLE.APE-frame TD.mc .value { COLOR:#000000; }
+
+/* Zone */
+/* ... elements */
+DIV.APE-zone-begin { CLEAR:both; }
+DIV.APE-zone-end { CLEAR:both; }
+
+/* Control */
+/* ... elements */
+TABLE.APE-control { MARGIN:0px !important; BORDER:none !important; FONT-SIZE:1px !important; }
+TABLE.APE-control TD.i { WIDTH:20px !important; HEIGHT:20px !important; MARGIN:0px !important; PADDING:0px 2px 0px 0px !important; BACKGROUND:url("Tango/control.png") !important; BORDER:none !important; }
+TABLE.APE-control TD.i DIV.APE-icon { MARGIN:0px; PADDING:2px; }
+TABLE.APE-control TD.l { WIDTH:20px !important; HEIGHT:20px !important; MARGIN:0px !important; PADDING:0px 2px 0px 0px !important; BACKGROUND:url("Tango/control.png") !important; BORDER:none !important; TEXT-ALIGN:center; VERTICAL-ALIGN:middle; FONT-SIZE:14px; }
+TABLE.APE-control TD.l A { TEXT-DECORATION:none; }
+TABLE.APE-control TD.l A:hover { TEXT-DECORATION:none; }
+DIV.APE-icon DIV.S-frameset { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("Tango/frameset.left.gif"); }
+DIV.APE-icon DIV.S-frameset-top { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("Tango/frameset.top.gif"); }
+DIV.APE-icon DIV.S-frameset-left { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("Tango/frameset.left.gif"); }
+DIV.APE-icon DIV.S-frameset-bottom { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("Tango/frameset.bottom.gif"); }
+
+/* Label */
+/* ... elements */
+TABLE.APE-label { MARGIN:0px !important; PADDING:0px !important; BORDER:none !important; FONT-SIZE:1px !important; }
+TABLE.APE-label TD.i { WIDTH:16px !important; HEIGHT:16px !important; MARGIN:0px !important; PADDING:0px 2px 0px 0px !important; BACKGROUND:transparent !important; BORDER:none !important; VERTICAL-ALIGN:middle !important; }
+TABLE.APE-label TD.l { MARGIN:0px !important; PADDING:0px !important; BACKGROUND:transparent !important; BORDER:none !important; VERTICAL-ALIGN:middle !important; }
+/* ... content */
+TABLE.APE-label TD.l P { MARGIN:0px; PADDING:0px; BACKGROUND:transparent; COLOR:#404060; FONT:bold 12px sans-serif; WHITE-SPACE:nowrap; }
+TABLE.APE-label TD.l A { BACKGROUND:transparent; COLOR:#8888B0; TEXT-DECORATION:none; }
+TABLE.APE-label TD.l A:hover { BACKGROUND:#8888B0; COLOR:#F0F0FF; TEXT-DECORATION:none;  }
+
+/* Button */
+/* ... elements */
+TABLE.APE-button { MARGIN:0px 0px 2px !important; PADDING:0px !important; BORDER:none !important; FONT-SIZE:1px !important; }
+TABLE.APE-button TD.l { WIDTH:1px !important; HEIGHT:20px !important; MARGIN:0px !important; PADDING:0px !important; BACKGROUND:url("Tango/button-l.png") !important; BORDER:none !important; }
+TABLE.APE-button TD.c { MARGIN:0px !important; PADDING:0px 3px !important; BACKGROUND:url("Tango/button-c.png") !important; BORDER:none !important; VERTICAL-ALIGN:middle; }
+TABLE.APE-button TD.r { WIDTH:1px !important; HEIGHT:20px !important; MARGIN:0px !important; PADDING:0px !important; BACKGROUND:url("Tango/button-r.png") !important; BORDER:none !important; }
+/* ... content */
+TABLE.APE-button TD.c P { MARGIN:0px !important; PADDING:0px !important; BACKGROUND:transparent !important; COLOR:#C8C8C0 !important; FONT:bold 12px sans-serif; }
+TABLE.APE-button TD.c A { BACKGROUND:transparent !important; COLOR:#C8C8E8 !important; TEXT-DECORATION:none !important; }
+TABLE.APE-button TD.c A:hover { BACKGROUND:transparent !important; COLOR:#F0F0FF !important; TEXT-DECORATION:none !important; }
+
+
+/*
+ * HTML DATA
+ ********************************************************************************/
+
+/* Data (floating) )*/
+DIV.APE-data { }
+DIV.APE-data DIV.label { FLOAT:left; BACKGROUND:transparent; COLOR:#404060; FONT-WEIGHT:bold; }
+DIV.APE-data DIV.value { FLOAT:left; }
+DIV.APE-data DIV.input { FLOAT:left; }
+DIV.APE-data DIV.end { CLEAR:left; }
+
+/* Data (list) */
+/* ... elements */
+DIV.APE-list { WIDTH:100%; }
+DIV.APE-list DIV.c { }
+DIV.APE-list DIV.d { }
+DIV.APE-list DIV.p { WIDTH:200px !important; PADDING-TOP:25px !important; }
+/* ... content */
+TABLE.APE-list { MARGIN:5px 0px !important; WIDTH:100% !important; }
+TABLE.APE-list A { FONT-WEIGHT:bold; TEXT-DECORATION:none; }
+TABLE.APE-list A:hover { TEXT-DECORATION:none; }
+TABLE.APE-list TR.h TH { BACKGROUND:#404060 !important; COLOR:#F0F0FF !important; VERTICAL-ALIGN:middle; }
+TABLE.APE-list TR.h TH TABLE.APE-label TD.l P { COLOR:#F0F0FF !important; }
+TABLE.APE-list TR.h TH TABLE.APE-label TD.l A { COLOR:#C8C8E8 !important; }
+TABLE.APE-list TR.h TH.c { WIDTH:1%; PADDING:3px 3px 3px 2px !important; }
+TABLE.APE-list TR.h TH.l { WIDTH:auto; HEIGHT:21px !important; PADDING-LEFT:1px !important; PADDING-RIGHT:5px !important; }
+TABLE.APE-list TR.h TH.l TD.l { BORDER-BOTTOM:none !important; BACKGROUND:transparent !important; COLOR:#F0F0FF !important; FONT-WEIGHT:bold; WHITE-SPACE:nowrap;}
+TABLE.APE-list TR.h TH.l TD.o { WIDTH:1px; PADDING:0px 0px 0px 1px !important; BORDER-BOTTOM:none !important; VERTICAL-ALIGN:middle; }
+TABLE.APE-list TR.h TH.l TD.o DIV.a { WIDTH:8px; HEIGHT:8px; BACKGROUND:url("Tango/order-a.png"); }
+TABLE.APE-list TR.h TH.l TD.o DIV.d { WIDTH:8px; HEIGHT:8px; BACKGROUND:url("Tango/order-d.png"); }
+TABLE.APE-list TR.f TD { BACKGROUND:#8888B0; BORDER-BOTTOM:solid 1px #404060; VERTICAL-ALIGN:middle; }
+TABLE.APE-list TR.f TD INPUT { MARGIN-TOP:1px; BORDER:solid 1px #404060; }
+TABLE.APE-list TR.f TD SELECT { BORDER:solid 1px #404060; }
+TABLE.APE-list TR.f TD.c { PADDING:2px 1px; }
+TABLE.APE-list TR.f TD.v { PADDING:2px !important; COLOR:#202030 !important; FONT-STYLE:italic !important; }
+TABLE.APE-list TR.d TD { PADDING:1px 5px; BACKGROUND:#FFFFFF; COLOR:#000000; BORDER-BOTTOM:solid 1px #C8C8C0; VERTICAL-ALIGN:top; }
+TABLE.APE-list TR.d TD .pk { FONT-WEIGHT:bold; FONT-STYLE:italic; }
+TABLE.APE-list TR.d TD .fk { FONT-STYLE:italic; }
+TABLE.APE-list TR.d TD .id { FONT-WEIGHT:bold; }
+TABLE.APE-list TR.d TD.c { PADDING:3px; }
+TABLE.APE-list TR.d TD.c2 { PADDING:3px; BACKGROUND:#F0F0FF !important; }
+TABLE.APE-list TR.d TD.v { PADDING:4px 2px 2px; }
+TABLE.APE-list TR.d TD.v2 { PADDING:4px 2px 2px; BACKGROUND:#F0F0FF !important; }
+TABLE.APE-list TR.d TD.m { PADDING:12px 0px !important; TEXT-ALIGN:center; FONT-WEIGHT:bold; }
+TABLE.APE-list TR.c TD { BACKGROUND:#404060 !important; COLOR:#F0F0FF !important; VERTICAL-ALIGN:middle; }
+TABLE.APE-list TR.c TD TABLE.APE-align TD.s { WIDTH:10px !important; }
+TABLE.APE-list TR.c TD TABLE.APE-label TD.l P { COLOR:#F0F0FF !important; }
+TABLE.APE-list TR.c TD TABLE.APE-label TD.l A { COLOR:#C8C8E8 !important; }
+TABLE.APE-list TR.c TD.c { PADDING:2px!important; }
+/* ... Smarty */
+TABLE.APE-list TD.smarty { PADDING:5px !important; }
+
+/* Data (detail) */
+/* ... elements */
+DIV.APE-detail { WIDTH:100%; }
+DIV.APE-detail DIV.c { }
+DIV.APE-detail DIV.d { }
+DIV.APE-detail DIV.p { WIDTH:200px !important; PADDING-TOP:4px !important; }
+/* ... content */
+TABLE.APE-detail { MARGIN:5px 0px !important; WIDTH:100% !important; }
+TABLE.APE-detail A { FONT-WEIGHT:bold; TEXT-DECORATION:none; }
+TABLE.APE-detail A:hover { TEXT-DECORATION:none; }
+TABLE.APE-detail INPUT { WIDTH:100%; }
+TABLE.APE-detail TEXTAREA { WIDTH:100%; HEIGHT:100px; }
+TABLE.APE-detail .pk { FONT-WEIGHT:bold; FONT-STYLE:italic; }
+TABLE.APE-detail .fk { FONT-STYLE:italic; }
+TABLE.APE-detail .id { FONT-WEIGHT:bold; }
+TABLE.APE-detail .invalid { BACKGROUND: #FFF0F0; BORDER:solid 1px #A00000;  }
+TABLE.APE-detail .required { BACKGROUND: #FFF8F0; BORDER:solid 1px #A08000; }
+TABLE.APE-detail .locked { BACKGROUND: #F0F0F0; COLOR:#606060; BORDER:solid 1px #A0A0A0; }
+TABLE.APE-detail TR.d TD { PADDING:1px 5px; BACKGROUND:#FFFFFF !important; COLOR:#000000; BORDER-BOTTOM:solid 1px #C8C8C0 !important; VERTICAL-ALIGN:top; }
+TABLE.APE-detail TR.d TD.l { WIDTH:150px; PADDING:2px; COLOR:#404060 !important; FONT-WEIGHT:bold; }
+TABLE.APE-detail TR.d TD.l2 { WIDTH:150px; PADDING:2px; BACKGROUND:#F0F0FF !important; COLOR:#404060 !important; FONT-WEIGHT:bold; }
+TABLE.APE-detail TR.d TD.v { PADDING:2px 1px; }
+TABLE.APE-detail TR.d TD.v2 { PADDING:2px 1px; BACKGROUND:#F0F0FF !important; }
+TABLE.APE-detail TR.d TD.i { PADDING:2px 1px; }
+TABLE.APE-detail TR.d TD.i2 { PADDING:2px 1px; BACKGROUND:#F0F0FF !important; }
+TABLE.APE-detail TR.d TD.m { PADDING:12px 0px !important; TEXT-ALIGN:center; FONT-WEIGHT:bold; }
+TABLE.APE-detail TR.d TD TABLE.APE-align TD.c { BACKGROUND:transparent !important; BORDER:none !important; }
+TABLE.APE-detail TR.d DIV.ih { POSITION:absolute; MARGIN:2px 0px 0px 4px; PADDING:3px 5px; BACKGROUND: #E8FFE8; COLOR: #006000; BORDER:solid 1px #008000; FONT-SIZE:10px; }
+TABLE.APE-detail TR.d DIV.ie { POSITION:absolute; MARGIN:2px 0px 0px 4px; PADDING:3px 5px; BACKGROUND: #FFE8E8; COLOR: #800000; BORDER:solid 1px #A00000; FONT-SIZE:10px; }
+TABLE.APE-detail TR.d DIV.ir { POSITION:absolute; MARGIN:2px 0px 0px 4px; PADDING:3px 5px; BACKGROUND: #FFFFD8; COLOR: #806000; BORDER:solid 1px #A08000; FONT-SIZE:10px; }
+TABLE.APE-detail TR.c TD { BACKGROUND:#404060 !important; COLOR:#F0F0FF !important; VERTICAL-ALIGN:middle; }
+TABLE.APE-detail TR.c TD TABLE.APE-align TD.s { WIDTH:10px !important; }
+TABLE.APE-detail TR.c TD TABLE.APE-label TD.l P { COLOR:#F0F0FF !important; }
+TABLE.APE-detail TR.c TD TABLE.APE-label TD.l A { COLOR:#C8C8E8 !important; }
+TABLE.APE-detail TR.c TD.c { PADDING:2px !important; }
+/* ... Smarty */
+TABLE.APE-detail TD.smarty { PADDING:5px !important; }
+TABLE.APE-detail TD.smarty .title { PADDING:5px 0px; WHITE-SPACE:nowrap; }
+TABLE.APE-detail TD.smarty .label { WIDTH:150px !important; PADDING:2px; COLOR:#404060 !important; FONT-WEIGHT:bold; }
+TABLE.APE-detail TD.smarty .value { PADDING:2px 1px; }
+TABLE.APE-detail TD.smarty .input { PADDING:2px 1px; }
+
+
+/*
+ * SPECIALS
+ ********************************************************************************/
+
+/* ... ToolMan dragsort */
+DIV.APE-dragsort { PADDING:5px 0px !important; } 
+DIV.APE-dragsort UL { MARGIN:0px; PADDING:0px; LIST-STYLE:none none; }
+DIV.APE-dragsort UL LI { MARGIN-BOTTOM:2px; PADDING:1px 3px 3px; BACKGROUND:#F0F0FF; BORDER:solid 1px #C8C8C0; CURSOR:move; }
+DIV.APE-dragsort UL.disabled { MARGIN:0px; PADDING:0px; LIST-STYLE:none none; }
+DIV.APE-dragsort UL.disabled LI { MARGIN-BOTTOM:2px; PADDING:1px 3px 3px; BACKGROUND:#F0F0FF; }
+
+/* ... Date chooser */
+TABLE.APE-datechooser { WIDTH:166px; FONT:normal 11px sans-serif !important; }
+TABLE.APE-datechooser TD { PADDING:0px; TEXT-ALIGN:center; CURSOR:default; }
+TABLE.APE-datechooser INPUT { TEXT-ALIGN:center; FONT-WEIGHT:bold; }
+TABLE.APE-datechooser INPUT.y { WIDTH:134px; }
+TABLE.APE-datechooser INPUT.m { WIDTH:94px; BACKGROUND:transparent; BORDER:none; }
+TABLE.APE-datechooser SELECT.m { WIDTH:40px; TEXT-ALIGN:center; FONT-WEIGHT:bold; }
+TABLE.APE-datechooser TD.cal { PADDING:5px 0px; }
+TABLE.APE-datechooser TABLE.cal { MARGIN:auto; }
+TABLE.APE-datechooser TABLE.cal TH { WIDTH:22px; PADDING:0px; TEXT-ALIGN:center; BACKGROUND:transparent; COLOR:#202030; FONT:bold 10px sans-serif !important; CURSOR:default; }
+TABLE.APE-datechooser TABLE.cal TD { }
+TABLE.APE-datechooser INPUT.d { WIDTH:22px; CURSOR:pointer; FONT-WEIGHT:normal; }
+TABLE.APE-datechooser INPUT.d:disabled { BACKGROUND: #F0F0F0; COLOR:#909090; BORDER:solid 1px #A0A0A0; CURSOR:default; }
+TABLE.APE-datechooser INPUT.td { WIDTH:22px; BACKGROUND: #FFF0F0; COLOR:#A00000; BORDER:solid 1px #A00000; CURSOR:pointer; FONT-WEIGHT:bold; }
+TABLE.APE-datechooser INPUT.df { WIDTH:22px; BACKGROUND: #FFF8F0; COLOR:#A08000; BORDER:solid 1px #A08000; CURSOR:pointer; FONT-WEIGHT:bold; }
+
+/* ... Image */
+DIV.APE-thumbnail { MARGIN:5px !important; PADDING:5px !important; BACKGROUND:#FFFFFF; BORDER:solid 1px #C8C8C0 !important; }
+
+
+/*
+ * ICONS
+ ********************************************************************************/
+
+/* Icons */
+/* ... elements */
+DIV.APE-icon { MARGIN:0px; PADDING:0px; }
+
+/* ... small */
+DIV.APE-icon DIV.S-blank { WIDTH:16px; HEIGHT:16px; BACKGROUND:transparent; }
+DIV.APE-icon DIV.S-about { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/help-browser.png"); }
+DIV.APE-icon DIV.S-administration { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/emblems/emblem-system.png"); }
+DIV.APE-icon DIV.S-audio { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/mimetypes/audio-x-generic.png"); }
+DIV.APE-icon DIV.S-back { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/go-previous.png"); }
+DIV.APE-icon DIV.S-bottom { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/go-bottom.png"); }
+DIV.APE-icon DIV.S-browse { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/preferences-system-windows.png"); }
+DIV.APE-icon DIV.S-cancel { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/edit-undo.png"); }
+DIV.APE-icon DIV.S-clear { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/edit-clear.png"); }
+DIV.APE-icon DIV.S-close { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/process-stop.png"); }
+DIV.APE-icon DIV.S-commit { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/go-next.png"); }
+DIV.APE-icon DIV.S-contact { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/internet-group-chat.png"); }
+DIV.APE-icon DIV.S-control { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/categories/applications-system.png"); }
+DIV.APE-icon DIV.S-copy { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/edit-copy.png"); }
+DIV.APE-icon DIV.S-country { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/internet-web-browser.png"); }
+DIV.APE-icon DIV.S-cut { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/edit-cut.png"); }
+DIV.APE-icon DIV.S-data { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/internet-news-reader.png"); }
+DIV.APE-icon DIV.S-date { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/mimetypes/x-office-calendar.png"); }
+DIV.APE-icon DIV.S-delete { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/edit-delete.png"); }
+DIV.APE-icon DIV.S-detail { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/edit-find.png"); }
+DIV.APE-icon DIV.S-display { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/mimetypes/image-x-generic.png"); }
+DIV.APE-icon DIV.S-down { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/go-down.png"); }
+DIV.APE-icon DIV.S-edit { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/edit-find-replace.png"); }
+DIV.APE-icon DIV.S-error { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/status/dialog-warning.png"); }
+DIV.APE-icon DIV.S-filter { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/system-search.png"); }
+DIV.APE-icon DIV.S-file { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/mimetypes/text-x-generic.png"); }
+DIV.APE-icon DIV.S-first { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/media-skip-backward.png"); }
+DIV.APE-icon DIV.S-folder { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/places/folder.png"); }
+DIV.APE-icon DIV.S-go { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/go-next.png"); }
+DIV.APE-icon DIV.S-help { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/help-browser.png"); }
+DIV.APE-icon DIV.S-hide { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/process-stop.png"); }
+DIV.APE-icon DIV.S-home { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/go-home.png"); }
+DIV.APE-icon DIV.S-hyperlink { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/categories/applications-internet.png"); }
+DIV.APE-icon DIV.S-idea { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/categories/applications-other.png"); }
+DIV.APE-icon DIV.S-image { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/mimetypes/image-x-generic.png"); }
+DIV.APE-icon DIV.S-information { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/status/dialog-information.png"); }
+DIV.APE-icon DIV.S-insert { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/document-new.png"); }
+DIV.APE-icon DIV.S-jump { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/go-jump.png"); }
+DIV.APE-icon DIV.S-last { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/media-skip-forward.png"); }
+DIV.APE-icon DIV.S-less { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/list-remove.png"); }
+DIV.APE-icon DIV.S-list { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/preferences-system-windows.png"); }
+DIV.APE-icon DIV.S-login { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/preferences-system-network-proxy.png"); }
+DIV.APE-icon DIV.S-logout { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/system-log-out.png"); }
+DIV.APE-icon DIV.S-locale { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/preferences-desktop-locale.png"); }
+DIV.APE-icon DIV.S-lock { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/emblems/emblem-readonly.png"); }
+DIV.APE-icon DIV.S-magic { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/categories/applications-internet.png"); }
+DIV.APE-icon DIV.S-maximize { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/list-add.png"); }
+DIV.APE-icon DIV.S-minimize { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/list-remove.png"); }
+DIV.APE-icon DIV.S-more { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/list-add.png"); }
+DIV.APE-icon DIV.S-new { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/document-new.png"); }
+DIV.APE-icon DIV.S-next { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/media-seek-forward.png"); }
+DIV.APE-icon DIV.S-ok { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/emotes/face-grin.png"); }
+DIV.APE-icon DIV.S-preferences { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/categories/preferences-system.png"); }
+DIV.APE-icon DIV.S-previous { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/media-seek-backward.png"); }
+DIV.APE-icon DIV.S-print { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/document-print.png"); }
+DIV.APE-icon DIV.S-process { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/places/start-here.png"); }
+DIV.APE-icon DIV.S-properties { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/categories/applications-system.png"); }
+DIV.APE-icon DIV.S-refresh { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/view-refresh.png"); }
+DIV.APE-icon DIV.S-required { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/emblems/emblem-important.png"); }
+DIV.APE-icon DIV.S-search { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/system-search.png"); }
+DIV.APE-icon DIV.S-show { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/emblems/emblem-symbolic-link.png"); }
+DIV.APE-icon DIV.S-start { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/media-playback-start.png"); }
+DIV.APE-icon DIV.S-status { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/utilities-system-monitor.png"); }
+DIV.APE-icon DIV.S-step { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/media-playback-start.png"); }
+DIV.APE-icon DIV.S-stop { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/media-playback-stop.png"); }
+DIV.APE-icon DIV.S-subscribe { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/mail-reply-sender.png"); }
+DIV.APE-icon DIV.S-synchronize { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/system-software-update.png"); }
+DIV.APE-icon DIV.S-time { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/appointment-new.png"); }
+DIV.APE-icon DIV.S-top { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/go-top.png"); }
+DIV.APE-icon DIV.S-up { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/go-up.png"); }
+DIV.APE-icon DIV.S-update { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/edit-find-replace.png"); }
+DIV.APE-icon DIV.S-unhide { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/view-fullscreen.png"); }
+DIV.APE-icon DIV.S-unsubscribe { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/actions/mail-forward.png"); }
+DIV.APE-icon DIV.S-user { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/system-users.png"); }
+DIV.APE-icon DIV.S-users { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/apps/system-users.png"); }
+DIV.APE-icon DIV.S-video { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/mimetypes/video-x-generic.png"); }
+DIV.APE-icon DIV.S-warning { WIDTH:16px; HEIGHT:16px; BACKGROUND:url("icons/tango/16x16/emblems/emblem-important.png"); }
+
+/* ... medium */
+DIV.APE-icon DIV.M-blank { WIDTH:22px; HEIGHT:22px; BACKGROUND:transparent; }
+DIV.APE-icon DIV.M-about { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/help-browser.png"); }
+DIV.APE-icon DIV.M-administration { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/emblems/emblem-system.png"); }
+DIV.APE-icon DIV.M-audio { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/mimetypes/audio-x-generic.png"); }
+DIV.APE-icon DIV.M-back { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/go-previous.png"); }
+DIV.APE-icon DIV.M-bottom { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/go-bottom.png"); }
+DIV.APE-icon DIV.M-browse { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/preferences-system-windows.png"); }
+DIV.APE-icon DIV.M-cancel { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/edit-undo.png"); }
+DIV.APE-icon DIV.M-clear { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/edit-clear.png"); }
+DIV.APE-icon DIV.M-close { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/process-stop.png"); }
+DIV.APE-icon DIV.M-commit { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/go-next.png"); }
+DIV.APE-icon DIV.M-contact { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/internet-group-chat.png"); }
+DIV.APE-icon DIV.M-control { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/categories/applications-system.png"); }
+DIV.APE-icon DIV.M-copy { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/edit-copy.png"); }
+DIV.APE-icon DIV.M-country { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/internet-web-browser.png"); }
+DIV.APE-icon DIV.M-cut { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/edit-cut.png"); }
+DIV.APE-icon DIV.M-data { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/internet-news-reader.png"); }
+DIV.APE-icon DIV.M-date { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/mimetypes/x-office-calendar.png"); }
+DIV.APE-icon DIV.M-delete { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/edit-delete.png"); }
+DIV.APE-icon DIV.M-detail { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/edit-find.png"); }
+DIV.APE-icon DIV.M-display { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/mimetypes/image-x-generic.png"); }
+DIV.APE-icon DIV.M-down { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/go-down.png"); }
+DIV.APE-icon DIV.M-edit { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/edit-find-replace.png"); }
+DIV.APE-icon DIV.M-error { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/status/dialog-warning.png"); }
+DIV.APE-icon DIV.M-filter { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/system-search.png"); }
+DIV.APE-icon DIV.M-file { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/mimetypes/text-x-generic.png"); }
+DIV.APE-icon DIV.M-first { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/media-skip-backward.png"); }
+DIV.APE-icon DIV.M-folder { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/places/folder.png"); }
+DIV.APE-icon DIV.M-go { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/go-next.png"); }
+DIV.APE-icon DIV.M-help { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/help-browser.png"); }
+DIV.APE-icon DIV.M-hide { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/process-stop.png"); }
+DIV.APE-icon DIV.M-home { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/go-home.png"); }
+DIV.APE-icon DIV.M-hyperlink { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/categories/applications-internet.png"); }
+DIV.APE-icon DIV.M-idea { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/categories/applications-other.png"); }
+DIV.APE-icon DIV.M-image { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/mimetypes/image-x-generic.png"); }
+DIV.APE-icon DIV.M-information { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/status/dialog-information.png"); }
+DIV.APE-icon DIV.M-insert { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/document-new.png"); }
+DIV.APE-icon DIV.M-jump { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/go-jump.png"); }
+DIV.APE-icon DIV.M-last { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/media-skip-forward.png"); }
+DIV.APE-icon DIV.M-less { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/list-remove.png"); }
+DIV.APE-icon DIV.M-list { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/preferences-system-windows.png"); }
+DIV.APE-icon DIV.M-login { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/preferences-system-network-proxy.png"); }
+DIV.APE-icon DIV.M-logout { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/system-log-out.png"); }
+DIV.APE-icon DIV.M-locale { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/preferences-desktop-locale.png"); }
+DIV.APE-icon DIV.M-lock { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/emblems/emblem-readonly.png"); }
+DIV.APE-icon DIV.M-magic { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/categories/applications-internet.png"); }
+DIV.APE-icon DIV.M-maximize { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/list-add.png"); }
+DIV.APE-icon DIV.M-minimize { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/list-remove.png"); }
+DIV.APE-icon DIV.M-more { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/list-add.png"); }
+DIV.APE-icon DIV.M-new { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/document-new.png"); }
+DIV.APE-icon DIV.M-next { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/media-seek-forward.png"); }
+DIV.APE-icon DIV.M-ok { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/emotes/face-grin.png"); }
+DIV.APE-icon DIV.M-preferences { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/categories/preferences-system.png"); }
+DIV.APE-icon DIV.M-previous { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/media-seek-backward.png"); }
+DIV.APE-icon DIV.M-print { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/document-print.png"); }
+DIV.APE-icon DIV.M-process { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/places/start-here.png"); }
+DIV.APE-icon DIV.M-properties { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/categories/applications-system.png"); }
+DIV.APE-icon DIV.M-refresh { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/view-refresh.png"); }
+DIV.APE-icon DIV.M-required { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/emblems/emblem-important.png"); }
+DIV.APE-icon DIV.M-search { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/system-search.png"); }
+DIV.APE-icon DIV.M-show { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/emblems/emblem-symbolic-link.png"); }
+DIV.APE-icon DIV.M-start { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/media-playback-start.png"); }
+DIV.APE-icon DIV.M-status { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/utilities-system-monitor.png"); }
+DIV.APE-icon DIV.M-step { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/media-playback-start.png"); }
+DIV.APE-icon DIV.M-stop { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/media-playback-stop.png"); }
+DIV.APE-icon DIV.M-subscribe { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/mail-reply-sender.png"); }
+DIV.APE-icon DIV.M-synchronize { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/system-software-update.png"); }
+DIV.APE-icon DIV.M-time { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/appointment-new.png"); }
+DIV.APE-icon DIV.M-top { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/go-top.png"); }
+DIV.APE-icon DIV.M-up { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/go-up.png"); }
+DIV.APE-icon DIV.M-update { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/edit-find-replace.png"); }
+DIV.APE-icon DIV.M-unhide { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/view-fullscreen.png"); }
+DIV.APE-icon DIV.M-unsubscribe { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/actions/mail-forward.png"); }
+DIV.APE-icon DIV.M-user { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/system-users.png"); }
+DIV.APE-icon DIV.M-users { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/apps/system-users.png"); }
+DIV.APE-icon DIV.M-video { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/mimetypes/video-x-generic.png"); }
+DIV.APE-icon DIV.M-warning { WIDTH:22px; HEIGHT:22px; BACKGROUND:url("icons/tango/22x22/emblems/emblem-important.png"); }
+
+/* ... large */
+DIV.APE-icon DIV.L-blank { WIDTH:32px; HEIGHT:32px; BACKGROUND:transparent; }
+DIV.APE-icon DIV.L-about { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/help-browser.png"); }
+DIV.APE-icon DIV.L-administration { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/emblems/emblem-system.png"); }
+DIV.APE-icon DIV.L-audio { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/mimetypes/audio-x-generic.png"); }
+DIV.APE-icon DIV.L-back { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/go-previous.png"); }
+DIV.APE-icon DIV.L-bottom { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/go-bottom.png"); }
+DIV.APE-icon DIV.L-browse { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/preferences-system-windows.png"); }
+DIV.APE-icon DIV.L-cancel { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/edit-undo.png"); }
+DIV.APE-icon DIV.L-clear { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/edit-clear.png"); }
+DIV.APE-icon DIV.L-close { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/process-stop.png"); }
+DIV.APE-icon DIV.L-commit { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/go-next.png"); }
+DIV.APE-icon DIV.L-contact { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/internet-group-chat.png"); }
+DIV.APE-icon DIV.L-control { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/categories/applications-system.png"); }
+DIV.APE-icon DIV.L-copy { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/edit-copy.png"); }
+DIV.APE-icon DIV.L-country { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/internet-web-browser.png"); }
+DIV.APE-icon DIV.L-cut { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/edit-cut.png"); }
+DIV.APE-icon DIV.L-data { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/internet-news-reader.png"); }
+DIV.APE-icon DIV.L-date { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/mimetypes/x-office-calendar.png"); }
+DIV.APE-icon DIV.L-delete { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/edit-delete.png"); }
+DIV.APE-icon DIV.L-detail { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/edit-find.png"); }
+DIV.APE-icon DIV.L-display { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/mimetypes/image-x-generic.png"); }
+DIV.APE-icon DIV.L-down { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/go-down.png"); }
+DIV.APE-icon DIV.L-edit { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/edit-find-replace.png"); }
+DIV.APE-icon DIV.L-error { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/status/dialog-warning.png"); }
+DIV.APE-icon DIV.L-filter { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/system-search.png"); }
+DIV.APE-icon DIV.L-file { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/mimetypes/text-x-generic.png"); }
+DIV.APE-icon DIV.L-first { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/media-skip-backward.png"); }
+DIV.APE-icon DIV.L-folder { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/places/folder.png"); }
+DIV.APE-icon DIV.L-go { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/go-next.png"); }
+DIV.APE-icon DIV.L-help { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/help-browser.png"); }
+DIV.APE-icon DIV.L-hide { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/process-stop.png"); }
+DIV.APE-icon DIV.L-home { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/go-home.png"); }
+DIV.APE-icon DIV.L-hyperlink { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/categories/applications-internet.png"); }
+DIV.APE-icon DIV.L-idea { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/categories/applications-other.png"); }
+DIV.APE-icon DIV.L-image { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/mimetypes/image-x-generic.png"); }
+DIV.APE-icon DIV.L-information { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/status/dialog-information.png"); }
+DIV.APE-icon DIV.L-insert { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/document-new.png"); }
+DIV.APE-icon DIV.L-jump { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/go-jump.png"); }
+DIV.APE-icon DIV.L-last { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/media-skip-forward.png"); }
+DIV.APE-icon DIV.L-less { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/list-remove.png"); }
+DIV.APE-icon DIV.L-list { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/preferences-system-windows.png"); }
+DIV.APE-icon DIV.L-login { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/preferences-system-network-proxy.png"); }
+DIV.APE-icon DIV.L-logout { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/system-log-out.png"); }
+DIV.APE-icon DIV.L-locale { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/preferences-desktop-locale.png"); }
+DIV.APE-icon DIV.L-lock { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/emblems/emblem-readonly.png"); }
+DIV.APE-icon DIV.L-magic { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/categories/applications-internet.png"); }
+DIV.APE-icon DIV.L-maximize { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/list-add.png"); }
+DIV.APE-icon DIV.L-minimize { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/list-remove.png"); }
+DIV.APE-icon DIV.L-more { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/list-add.png"); }
+DIV.APE-icon DIV.L-new { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/document-new.png"); }
+DIV.APE-icon DIV.L-next { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/media-seek-forward.png"); }
+DIV.APE-icon DIV.L-ok { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/emotes/face-grin.png"); }
+DIV.APE-icon DIV.L-preferences { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/categories/preferences-system.png"); }
+DIV.APE-icon DIV.L-previous { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/media-seek-backward.png"); }
+DIV.APE-icon DIV.L-print { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/document-print.png"); }
+DIV.APE-icon DIV.L-process { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/places/start-here.png"); }
+DIV.APE-icon DIV.L-properties { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/categories/applications-system.png"); }
+DIV.APE-icon DIV.L-refresh { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/view-refresh.png"); }
+DIV.APE-icon DIV.L-required { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/emblems/emblem-important.png"); }
+DIV.APE-icon DIV.L-search { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/system-search.png"); }
+DIV.APE-icon DIV.L-show { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/emblems/emblem-symbolic-link.png"); }
+DIV.APE-icon DIV.L-start { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/media-playback-start.png"); }
+DIV.APE-icon DIV.L-status { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/utilities-system-monitor.png"); }
+DIV.APE-icon DIV.L-step { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/media-playback-start.png"); }
+DIV.APE-icon DIV.L-stop { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/media-playback-stop.png"); }
+DIV.APE-icon DIV.L-subscribe { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/mail-reply-sender.png"); }
+DIV.APE-icon DIV.L-synchronize { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/system-software-update.png"); }
+DIV.APE-icon DIV.L-time { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/appointment-new.png"); }
+DIV.APE-icon DIV.L-top { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/go-top.png"); }
+DIV.APE-icon DIV.L-up { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/go-up.png"); }
+DIV.APE-icon DIV.L-update { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/edit-find-replace.png"); }
+DIV.APE-icon DIV.L-unhide { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/view-fullscreen.png"); }
+DIV.APE-icon DIV.L-unsubscribe { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/actions/mail-forward.png"); }
+DIV.APE-icon DIV.L-user { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/system-users.png"); }
+DIV.APE-icon DIV.L-users { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/apps/system-users.png"); }
+DIV.APE-icon DIV.L-video { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/mimetypes/video-x-generic.png"); }
+DIV.APE-icon DIV.L-warning { WIDTH:32px; HEIGHT:32px; BACKGROUND:url("icons/tango/32x32/emblems/emblem-important.png"); }
+
+
+/*
+ * PRINT REFINEMENTS
+ ********************************************************************************/
+
+@media print {
+  DIV.APE DIV.popup { DISPLAY:none; VISIBILITY:hidden; }
+  DIV.APE DIV.do-not-print { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-control { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-list TR.h TH.c { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-list TR.h TH.l TD.o DIV.a { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-list TR.h TH.l TD.o DIV.d { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-list TR.f TD.c { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-list TR.d TD.c { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-list TR.d TD.c2 { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-list TR.c { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-detail TR.d DIV.ih { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-detail TR.d DIV.ie { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-detail TR.d DIV.ir { DISPLAY:none; VISIBILITY:hidden; }
+  TABLE.APE-detail TR.c { DISPLAY:none; VISIBILITY:hidden; }
+}
