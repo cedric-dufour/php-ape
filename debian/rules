@@ -7,7 +7,6 @@ DEB_VERSION := $(shell dpkg-parsechangelog | egrep '^Version:' | cut -f 2 -d ' '
 DEB_NOEPOCH_VERSION := $(shell echo $(DEB_VERSION) | cut -d: -f2-)
 DEB_UPSTREAM_VERSION := $(shell echo $(DEB_NOEPOCH_VERSION) | sed 's/-[^-]*$$//')
 
-PHP_SOURCE = php
 DEB_PACKAGE_SOURCE = php-ape-source
 DEB_PACKAGE = php-ape
 DEB_PACKAGE_CSS_TANGO = php-ape-css-tango
@@ -75,7 +74,6 @@ install: build
 	./util/makedoc PHP_APE "PHP Application Programming Environment" debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/html php doc/phpdoc
 	find debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/html -type f -exec fgrep -q '@version@' {} \; -exec sed -i "s/@version@/$(DEB_UPSTREAM_VERSION)/g" {} \;
 	cp -r sql debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/.
-	./util/fixperm -d debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape
 	mkdir -p debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/examples
 	cp etc/php-ape.conf.php-sample debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/examples/php-ape.conf.php
 	./util/fixperm -d debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape
