@@ -21,10 +21,3 @@ Alias /php-ape "/usr/share/php-ape/php/htdocs"
   setenv PHP_APE_CONF "/etc/php-ape/php-ape.conf.php"
 </Directory>
 
-# Access permissions
-<Location /php-ape>
-  Order Deny,Allow
-  Deny from all
-  Allow from 127.0.0.1
-</Location>
-

@@ -226,13 +226,6 @@ Alias /php-ape "/usr/share/php-ape/php/htdocs"
   setenv PHP_APE_DATA "/var/lib/php-ape"
   setenv PHP_APE_CONF "/etc/php-ape/php-ape.conf.php"
 </Directory>
-
-# Access permissions
-<Location /php-ape>
-  Order Deny,Allow
-  Deny from all
-  Allow from 127.0.0.1
-</Location>
 ]]>
 </screen>
 <para>Apart from the standard PHP settings, the following environment variables are defined:</para>
