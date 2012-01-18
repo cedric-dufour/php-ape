@@ -53,6 +53,8 @@ install: build
 	cp etc/php-ape.conf.php-debian debian/$(DEB_PACKAGE)/etc/php-ape/php-ape.conf.php
 	cp etc/apache.conf-debian debian/$(DEB_PACKAGE)/etc/php-ape/apache.conf
 	./util/fixperm -s debian/$(DEB_PACKAGE)/etc/php-ape
+	mkdir -p debian/$(DEB_PACKAGE)/etc/logrotate.d
+	cp etc/logrotate.conf-debian debian/$(DEB_PACKAGE)/etc/logrotate.d/php-ape
 	
 	# ... DEB_PACKAGE_CSS_TANGO
 	mkdir -p debian/$(DEB_PACKAGE_CSS_TANGO)/usr/share/php-ape/css/icons
