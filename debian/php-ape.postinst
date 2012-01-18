@@ -10,7 +10,7 @@ case "$1" in
     chmod g+rws,o= /var/lib/php-ape /var/cache/php-ape /var/log/php-ape
 
     # Enable apache configuration
-    ln -s /etc/php-ape/apache.conf /etc/apache2/conf.d/php-ape.conf
+    [ ! -e /etc/apache2/conf.d/php-ape.conf ] && ln -s /etc/php-ape/apache.conf /etc/apache2/conf.d/php-ape.conf
     echo 'WARNING: Please reload apache configuration to enable php-ape!'
     ;;
 
