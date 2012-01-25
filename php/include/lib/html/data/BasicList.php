@@ -734,7 +734,7 @@ extends PHP_APE_HTML_Data_View
     // Data
     if( ( $this->roResultSet instanceof PHP_APE_Data_isExtendedResultSet ) and $this->roResultSet->countEntries() < 1 )
     { // NO (empty) data
-      $sOutput .= '<TR CLASS="d"><TD CLASS="m" COLSPAN="100" TITLE="'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( PHP_APE_HTML_Data_View::$asResources['tooltip.nodata'] ).'" STYLE="CURSOR:help;">'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( PHP_APE_HTML_Data_View::$asResources['label.nodata'] ).'</TD></TR>'."\r\n";
+      $sOutput .= '<TR CLASS="d"><TD CLASS="m" COLSPAN="100"><P CLASS="nodata" TITLE="'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( PHP_APE_HTML_Data_View::$asResources['tooltip.nodata'] ).'" STYLE="CURSOR:help;">'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( PHP_APE_HTML_Data_View::$asResources['label.nodata'] ).'</P></TD></TR>'."\r\n";
     } 
     else
     {
@@ -995,6 +995,7 @@ extends PHP_APE_HTML_Data_View
       $sOutput .= '</TD>';
       $sOutput .= '</TR>'."\r\n";
     }
+
     return $sOutput;
   }
 

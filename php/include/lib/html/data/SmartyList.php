@@ -118,7 +118,7 @@ extends PHP_APE_HTML_Data_FeaturedList
     // Data
     if( ( $this->roResultSet instanceof PHP_APE_Data_isExtendedResultSet ) and $this->roResultSet->countEntries() < 1 )
     { // NO (empty) data
-      $sOutput .= '<P CLASS="nodata" TITLE="'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( PHP_APE_HTML_Data_View::$asResources['tooltip.nodata'] ).'" STYLE="CURSOR:help;">'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( PHP_APE_HTML_Data_View::$asResources['label.nodata'] ).'</P>'."\r\n";
+      $sOutput .= '<TR CLASS="d"><TD CLASS="m" COLSPAN="100"><P CLASS="nodata" TITLE="'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( PHP_APE_HTML_Data_View::$asResources['tooltip.nodata'] ).'" STYLE="CURSOR:help;">'.PHP_APE_HTML_Data_View::$oDataSpace_HTML->encodeData( PHP_APE_HTML_Data_View::$asResources['label.nodata'] ).'</P></TD></TR>'."\r\n";
     } 
     else
     {

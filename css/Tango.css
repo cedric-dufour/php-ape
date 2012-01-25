@@ -222,7 +222,7 @@ TABLE.APE-list TR.f TD INPUT { MARGIN-TOP:1px; BORDER:solid 1px #404060; }
 TABLE.APE-list TR.f TD SELECT { BORDER:solid 1px #404060; }
 TABLE.APE-list TR.f TD.c { PADDING:2px 1px; }
 TABLE.APE-list TR.f TD.v { PADDING:2px !important; COLOR:#202030 !important; FONT-STYLE:italic !important; }
-TABLE.APE-list TR.d TD { PADDING:1px 5px; BACKGROUND:#FFFFFF; COLOR:#000000; BORDER-BOTTOM:solid 1px #C8C8C0; VERTICAL-ALIGN:top; }
+TABLE.APE-list TR.d TD { PADDING:1px 5px; BACKGROUND:transparent !important; COLOR:#000000; BORDER-BOTTOM:solid 1px #C8C8C0; VERTICAL-ALIGN:top; }
 TABLE.APE-list TR.d TD .pk { FONT-WEIGHT:bold; FONT-STYLE:italic; }
 TABLE.APE-list TR.d TD .fk { FONT-STYLE:italic; }
 TABLE.APE-list TR.d TD .id { FONT-WEIGHT:bold; }
@@ -257,7 +257,7 @@ TABLE.APE-detail .id { FONT-WEIGHT:bold; }
 TABLE.APE-detail .invalid { BACKGROUND: #FFF0F0; BORDER:solid 1px #A00000;  }
 TABLE.APE-detail .required { BACKGROUND: #FFF8F0; BORDER:solid 1px #A08000; }
 TABLE.APE-detail .locked { BACKGROUND: #F0F0F0; COLOR:#606060; BORDER:solid 1px #A0A0A0; }
-TABLE.APE-detail TR.d TD { PADDING:1px 5px; BACKGROUND:#FFFFFF !important; COLOR:#000000; BORDER-BOTTOM:solid 1px #C8C8C0 !important; VERTICAL-ALIGN:top; }
+TABLE.APE-detail TR.d TD { PADDING:1px 5px; BACKGROUND:transparent !important; COLOR:#000000; BORDER-BOTTOM:solid 1px #C8C8C0 !important; VERTICAL-ALIGN:top; }
 TABLE.APE-detail TR.d TD.l { WIDTH:150px; PADDING:2px; COLOR:#404060 !important; FONT-WEIGHT:bold; }
 TABLE.APE-detail TR.d TD.l2 { WIDTH:150px; PADDING:2px; BACKGROUND:#F0F0FF !important; COLOR:#404060 !important; FONT-WEIGHT:bold; }
 TABLE.APE-detail TR.d TD.v { PADDING:2px 1px; }
