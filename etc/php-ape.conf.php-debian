@@ -1,6 +1,6 @@
 <?php
 ## PHP-APE parameters
-if( !defined( 'PHP_APE_HTDOCS_URL' ) ) define( 'PHP_APE_HTDOCS_URL', 'http://localhost.localdomain/php-ape' );
+if( !defined( 'PHP_APE_HTDOCS_URL' ) ) define( 'PHP_APE_HTDOCS_URL', '/php-ape' );
 
 # Cryptography
 $_CONFIG['php_ape.util.crypto.key.server'] = 'CHANGE ME!';
