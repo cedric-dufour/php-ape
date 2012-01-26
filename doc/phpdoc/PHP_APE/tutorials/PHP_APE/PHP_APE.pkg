@@ -54,7 +54,7 @@ $ cd php-ape-@version@
 <title>[MAY] (Re-)build the source tarball</title>
 <screen>
 <![CDATA[
-$ fakeroot ./debian/rules build-source-tarball
+$ ./debian/rules build-source-tarball
 $ ls -al ../php-ape-source-@version@.tar.bz2
 ]]>
 </screen>
@@ -64,7 +64,7 @@ $ ls -al ../php-ape-source-@version@.tar.bz2
 <title>[MAY] Build the installation (release) tarball</title>
 <screen>
 <![CDATA[
-$ fakeroot ./debian/rules build-install-tarball
+$ ./debian/rules build-install-tarball
 $ ls -al ../php-ape-@version@.tar.bz2
 ]]>
 </screen>
@@ -74,7 +74,7 @@ $ ls -al ../php-ape-@version@.tar.bz2
 <title>[MAY] Build the documentation tarball</title>
 <screen>
 <![CDATA[
-$ fakeroot ./debian/rules build-doc-tarball
+$ ./debian/rules build-doc-tarball
 $ ls -al ../php-ape-doc-@version@.tar.bz2
 ]]>
 </screen>
@@ -96,6 +96,15 @@ $ ls -al ../php-ape*_@version@_all.deb
 <![CDATA[
 $ debuild -I'.git*' -us -uc -S
 $ ls -al ../php-ape_@version@.dsc ../php-ape_@version@.tar.gz
+]]>
+</screen>
+</refsect2>
+
+<refsect2 id="{@id build_all}">
+<title>[SHOULD] Do it all with a single command</title>
+<screen>
+<![CDATA[
+$ ./debian/rules release
 ]]>
 </screen>
 </refsect2>
