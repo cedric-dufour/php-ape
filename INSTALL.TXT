@@ -17,17 +17,17 @@ NOTE: By "build", we mean create the necessary tarballs/package required for
 
 2. [MAY] (Re-)build the source tarball:
 
-   BASH: fakeroot ./debian/rules build-source-tarball
+   BASH: ./debian/rules build-source-tarball
    BASH: ls -al ../php-ape-source-@version@.tar.bz2
 
 3. [MAY] Build the installation (release) tarball:
 
-   BASH: fakeroot ./debian/rules build-install-tarball
+   BASH: ./debian/rules build-install-tarball
    BASH: ls -al ../php-ape-@version@.tar.bz2
 
 4. [MAY] Build the documentation tarball:
 
-   BASH: fakeroot ./debian/rules build-doc-tarball
+   BASH: ./debian/rules build-doc-tarball
    BASH: ls -al ../php-ape-doc-@version@.tar.bz2
 
 5. [MAY] Build the debian packages:
@@ -39,6 +39,12 @@ NOTE: By "build", we mean create the necessary tarballs/package required for
 
    BASH: debuild -I'.git*' -us -uc -S
    BASH: ls -al ../php-ape_@version@.dsc ../php-ape_@version@.tar.gz
+
+OR
+
+2-6. [SHOULD] Do it all with a single command
+
+   BASH: ./debian/rules release
 
 
 INSTALL
@@ -90,3 +96,4 @@ CONFIGURATION AND USAGE
 -----------------------
 
 Please refer to the HTML (PhpDocumentor) documentation.
+
