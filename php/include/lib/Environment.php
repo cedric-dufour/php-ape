@@ -588,12 +588,12 @@ abstract class PHP_APE_Environment
     return PHP_APE_DATA.'/'.get_class( $this ).'.data';
   }
 
-  /** Returns the persistent data from their persistent storage location (<B>as reference</B>)
+  /** Returns the persistent data from their persistent storage location
    *
    * <P><B>THROWS:</B> <SAMP>PHP_APE_Exception</SAMP>.</P>
    * <P><B>INHERITANCE:</B> This method is <B>FINAL</B>.</P>
    */
-  final private function &__loadPersistentData()
+  final private function __loadPersistentData()
   {
     // Load parameters data
     $sFilePath = $this->_getPersistentParametersFilepath();
@@ -617,7 +617,7 @@ abstract class PHP_APE_Environment
   final private function __loadPersistentParameters()
   {
     // Load parameters data
-    $this->asPersistentParameters =& $this->__loadPersistentData();
+    $this->asPersistentParameters = $this->__loadPersistentData();
 
     // Check parameters data
     $this->__verifyPersistentParameters();
@@ -736,7 +736,7 @@ abstract class PHP_APE_Environment
     }
     catch( PHP_APE_Exception $e )
     {
-      $asParameters =& $this->asPersistentParameters;
+      $asParameters = $this->asPersistentParameters;
     }
 
     // Save parameters data
@@ -765,13 +765,13 @@ abstract class PHP_APE_Environment
     return get_class( $this );
   }
 
-  /** Returns the session data from their session variable (<B>as reference</B>)
+  /** Returns the session data from their session variable
    *
    * <P><B>NOTE:</B> You MUST have started the PHP session (<SAMP>{@link session_start()}</SAMP>) beforehand.</P>
    * <P><B>THROWS:</B> <SAMP>PHP_APE_Exception</SAMP>.</P>
    * <P><B>INHERITANCE:</B> This method is <B>FINAL</B>.</P>
    */
-  final private function &__loadSessionData()
+  final private function __loadSessionData()
   {
     // Check session
     if( !isset( $_SESSION ) )
@@ -803,7 +803,7 @@ abstract class PHP_APE_Environment
   final private function __loadSessionParameters()
   {
     // Load parameters data
-    $this->asSessionParameters =& $this->__loadSessionData();
+    $this->asSessionParameters = $this->__loadSessionData();
 
     // Check parameters data
     $this->__verifySessionParameters();
@@ -925,7 +925,7 @@ abstract class PHP_APE_Environment
     }
     catch( PHP_APE_Exception $e )
     {
-      $asParameters =& $this->asSessionParameters;
+      $asParameters = $this->asSessionParameters;
     }
 
     // Save parameters data
@@ -1071,12 +1071,12 @@ abstract class PHP_APE_Environment
     return $this->getStaticParameter( 'php_ape.path.environment' ).'/'.get_class( $this ).'.USER#'.$this->sUserKey.'.data';
   }
 
-  /** Returns the user data from their user storage location (<B>as reference</B>)
+  /** Returns the user data from their user storage location
    *
    * <P><B>THROWS:</B> <SAMP>PHP_APE_Exception</SAMP>.</P>
    * <P><B>INHERITANCE:</B> This method is <B>FINAL</B>.</P>
    */
-  final private function &__loadUserData()
+  final private function __loadUserData()
   {
     // Load parameters data
     $sFilePath = $this->_getUserParametersFilepath();
@@ -1100,7 +1100,7 @@ abstract class PHP_APE_Environment
   final private function __loadUserParameters()
   {
     // Load parameters data
-    $this->asUserParameters =& $this->__loadUserData();
+    $this->asUserParameters = $this->__loadUserData();
 
     // Check parameters data
     $this->__verifyUserParameters();
@@ -1228,7 +1228,7 @@ abstract class PHP_APE_Environment
     }
     catch( PHP_APE_Exception $e )
     {
-      $asParameters =& $this->asUserParameters;
+      $asParameters = $this->asUserParameters;
     }
 
     // Save parameters data
