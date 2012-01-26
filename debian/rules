@@ -36,49 +36,49 @@ install: build
 	# Create the Debian packages
 
 	# ... DEB_PACKAGE
-	mkdir -p debian/$(DEB_PACKAGE)/usr/share/php-ape
-	cp -r php css js debian/$(DEB_PACKAGE)/usr/share/php-ape/.
-	mkdir -p debian/$(DEB_PACKAGE)/usr/share/doc/php-ape
-	cp *.TXT debian/$(DEB_PACKAGE)/usr/share/doc/php-ape/.
-	sed -i "s/@version@/$(DEB_UPSTREAM_VERSION)/g" debian/$(DEB_PACKAGE)/usr/share/doc/php-ape/*.TXT debian/$(DEB_PACKAGE)/usr/share/php-ape/php/include/load.php
-	./util/fixperm -s debian/$(DEB_PACKAGE)/usr/share/php-ape
-	mkdir -p debian/$(DEB_PACKAGE)/var/lib/php-ape
-	./util/fixperm -v debian/$(DEB_PACKAGE)/var/lib/php-ape
-	mkdir -p debian/$(DEB_PACKAGE)/var/cache/php-ape
-	./util/fixperm -v debian/$(DEB_PACKAGE)/var/cache/php-ape
-	mkdir -p debian/$(DEB_PACKAGE)/var/log/php-ape
-	./util/fixperm -v debian/$(DEB_PACKAGE)/var/log/php-ape
-	mkdir -p debian/$(DEB_PACKAGE)/etc/php-ape
-	cp etc/php-ape.env.sh-debian debian/$(DEB_PACKAGE)/etc/php-ape/php-ape.env.sh
-	cp etc/php-ape.conf.php-debian debian/$(DEB_PACKAGE)/etc/php-ape/php-ape.conf.php
-	cp etc/apache.conf-debian debian/$(DEB_PACKAGE)/etc/php-ape/apache.conf
-	./util/fixperm -s debian/$(DEB_PACKAGE)/etc/php-ape
+	mkdir -p debian/$(DEB_PACKAGE)/usr/share/$(DEB_PACKAGE)
+	cp -r php css js debian/$(DEB_PACKAGE)/usr/share/$(DEB_PACKAGE)/.
+	./util/fixperm -s debian/$(DEB_PACKAGE)/usr/share/$(DEB_PACKAGE)
+	mkdir -p debian/$(DEB_PACKAGE)/usr/share/doc/$(DEB_PACKAGE)
+	cp *.TXT debian/$(DEB_PACKAGE)/usr/share/doc/$(DEB_PACKAGE)/.
+	sed -i "s/@version@/$(DEB_UPSTREAM_VERSION)/g" debian/$(DEB_PACKAGE)/usr/share/doc/$(DEB_PACKAGE)/*.TXT debian/$(DEB_PACKAGE)/usr/share/$(DEB_PACKAGE)/php/include/load.php
+	mkdir -p debian/$(DEB_PACKAGE)/var/lib/$(DEB_PACKAGE)
+	./util/fixperm -v debian/$(DEB_PACKAGE)/var/lib/$(DEB_PACKAGE)
+	mkdir -p debian/$(DEB_PACKAGE)/var/cache/$(DEB_PACKAGE)
+	./util/fixperm -v debian/$(DEB_PACKAGE)/var/cache/$(DEB_PACKAGE)
+	mkdir -p debian/$(DEB_PACKAGE)/var/log/$(DEB_PACKAGE)
+	./util/fixperm -v debian/$(DEB_PACKAGE)/var/log/$(DEB_PACKAGE)
+	mkdir -p debian/$(DEB_PACKAGE)/etc/$(DEB_PACKAGE)
+	cp etc/php-ape.env.sh-debian debian/$(DEB_PACKAGE)/etc/$(DEB_PACKAGE)/php-ape.env.sh
+	cp etc/php-ape.conf.php-debian debian/$(DEB_PACKAGE)/etc/$(DEB_PACKAGE)/php-ape.conf.php
+	cp etc/apache.conf-debian debian/$(DEB_PACKAGE)/etc/$(DEB_PACKAGE)/apache.conf
+	./util/fixperm -s debian/$(DEB_PACKAGE)/etc/$(DEB_PACKAGE)
 	mkdir -p debian/$(DEB_PACKAGE)/etc/logrotate.d
-	cp etc/logrotate.conf-debian debian/$(DEB_PACKAGE)/etc/logrotate.d/php-ape
+	cp etc/logrotate.conf-debian debian/$(DEB_PACKAGE)/etc/logrotate.d/$(DEB_PACKAGE)
 	
 	# ... DEB_PACKAGE_CSS_TANGO
-	mkdir -p debian/$(DEB_PACKAGE_CSS_TANGO)/usr/share/php-ape/css/icons
-	cp -r 3rd-party/css/tango debian/$(DEB_PACKAGE_CSS_TANGO)/usr/share/php-ape/css/icons/.
-	./util/fixperm -s debian/$(DEB_PACKAGE_CSS_TANGO)/usr/share/php-ape/css
+	mkdir -p debian/$(DEB_PACKAGE_CSS_TANGO)/usr/share/$(DEB_PACKAGE)/css/icons
+	cp -r 3rd-party/css/tango debian/$(DEB_PACKAGE_CSS_TANGO)/usr/share/$(DEB_PACKAGE)/css/icons/.
+	./util/fixperm -s debian/$(DEB_PACKAGE_CSS_TANGO)/usr/share/$(DEB_PACKAGE)/css
 	
 	# ... DEB_PACKAGE_JS_OVERLIB
-	mkdir -p debian/$(DEB_PACKAGE_JS_OVERLIB)/usr/share/php-ape/js
-	cp -r 3rd-party/js/overlib debian/$(DEB_PACKAGE_JS_OVERLIB)/usr/share/php-ape/js/.
-	./util/fixperm -s debian/$(DEB_PACKAGE_JS_OVERLIB)/usr/share/php-ape/js
+	mkdir -p debian/$(DEB_PACKAGE_JS_OVERLIB)/usr/share/$(DEB_PACKAGE)/js
+	cp -r 3rd-party/js/overlib debian/$(DEB_PACKAGE_JS_OVERLIB)/usr/share/$(DEB_PACKAGE)/js/.
+	./util/fixperm -s debian/$(DEB_PACKAGE_JS_OVERLIB)/usr/share/$(DEB_PACKAGE)/js
 	
 	# ... DEB_PACKAGE_JS_TOOLMAN
-	mkdir -p debian/$(DEB_PACKAGE_JS_TOOLMAN)/usr/share/php-ape/js
-	cp -r 3rd-party/js/toolman debian/$(DEB_PACKAGE_JS_TOOLMAN)/usr/share/php-ape/js/.
-	./util/fixperm -s debian/$(DEB_PACKAGE_JS_TOOLMAN)/usr/share/php-ape/js
+	mkdir -p debian/$(DEB_PACKAGE_JS_TOOLMAN)/usr/share/$(DEB_PACKAGE)/js
+	cp -r 3rd-party/js/toolman debian/$(DEB_PACKAGE_JS_TOOLMAN)/usr/share/$(DEB_PACKAGE)/js/.
+	./util/fixperm -s debian/$(DEB_PACKAGE_JS_TOOLMAN)/usr/share/$(DEB_PACKAGE)/js
 
 	# ... DEB_PACKAGE_DOC
-	mkdir -p debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/html
-	./util/makedoc PHP_APE "PHP Application Programming Environment" debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/html php doc/phpdoc
-	find debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/html -type f -exec fgrep -q '@version@' {} \; -exec sed -i "s/@version@/$(DEB_UPSTREAM_VERSION)/g" {} \;
-	cp -r sql debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/.
-	mkdir -p debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/examples
-	cp etc/php-ape.conf.php-sample debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/examples/php-ape.conf.php
-	./util/fixperm -d debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape
+	mkdir -p debian/$(DEB_PACKAGE_DOC)/usr/share/doc/$(DEB_PACKAGE)/html
+	./util/makedoc PHP_APE "PHP Application Programming Environment" debian/$(DEB_PACKAGE_DOC)/usr/share/doc/$(DEB_PACKAGE)/html php doc/phpdoc
+	find debian/$(DEB_PACKAGE_DOC)/usr/share/doc/$(DEB_PACKAGE)/html -type f -exec fgrep -q '@version@' {} \; -exec sed -i "s/@version@/$(DEB_UPSTREAM_VERSION)/g" {} \;
+	./util/fixperm -d debian/$(DEB_PACKAGE_DOC)/usr/share/doc/$(DEB_PACKAGE)/html
+	cp -r sql debian/$(DEB_PACKAGE_DOC)/usr/share/doc/$(DEB_PACKAGE)/.
+	mkdir -p debian/$(DEB_PACKAGE_DOC)/usr/share/doc/$(DEB_PACKAGE)/examples
+	cp etc/php-ape.conf.php-sample debian/$(DEB_PACKAGE_DOC)/usr/share/doc/$(DEB_PACKAGE)/examples/php-ape.conf.php
 
 # Build architecture-dependent files here.
 binary-arch: build install
@@ -113,12 +113,12 @@ build-install-tarball:
 	# WARNING: make install before-hand!
 	# Create the installation tarball
 	mkdir -p /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)
-	cp -rp debian/$(DEB_PACKAGE)/usr/share/php-ape/* /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/.
-	cp -p debian/$(DEB_PACKAGE)/usr/share/doc/php-ape/*.TXT /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/.
-	cp -rp debian/$(DEB_PACKAGE)/var/lib/php-ape /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/data
-	cp -rp debian/$(DEB_PACKAGE)/var/cache/php-ape /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/cache
-	cp -rp debian/$(DEB_PACKAGE)/var/log/php-ape /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/log
-	cp -rp debian/$(DEB_PACKAGE)/etc/php-ape /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/etc
+	cp -rp debian/$(DEB_PACKAGE)/usr/share/$(DEB_PACKAGE)/* /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/.
+	cp -p debian/$(DEB_PACKAGE)/usr/share/doc/$(DEB_PACKAGE)/*.TXT* /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/.
+	cp -rp debian/$(DEB_PACKAGE)/var/lib/$(DEB_PACKAGE) /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/data
+	cp -rp debian/$(DEB_PACKAGE)/var/cache/$(DEB_PACKAGE) /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/cache
+	cp -rp debian/$(DEB_PACKAGE)/var/log/$(DEB_PACKAGE) /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/log
+	cp -rp debian/$(DEB_PACKAGE)/etc/$(DEB_PACKAGE) /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)/etc
 	tar -C /tmp -cjf ../$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION).tar.bz2 $(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)
 	rm -rf /tmp/$(DEB_PACKAGE)-$(DEB_UPSTREAM_VERSION)
 
@@ -126,7 +126,7 @@ build-doc-tarball:
 	# WARNING: make install before-hand!
 	# Create the documentation tarball
 	mkdir -p /tmp/$(DEB_PACKAGE_DOC)-$(DEB_UPSTREAM_VERSION)
-	cp -rp debian/$(DEB_PACKAGE_DOC)/usr/share/doc/php-ape/* /tmp/$(DEB_PACKAGE_DOC)-$(DEB_UPSTREAM_VERSION)/.
+	cp -rp debian/$(DEB_PACKAGE_DOC)/usr/share/doc/$(DEB_PACKAGE)/* /tmp/$(DEB_PACKAGE_DOC)-$(DEB_UPSTREAM_VERSION)/.
 	tar -C /tmp -cjf ../$(DEB_PACKAGE_DOC)-$(DEB_UPSTREAM_VERSION).tar.bz2 $(DEB_PACKAGE_DOC)-$(DEB_UPSTREAM_VERSION)
 	rm -rf /tmp/$(DEB_PACKAGE_DOC)-$(DEB_UPSTREAM_VERSION)
 
