@@ -41,7 +41,13 @@ Cedric Dufour
 <para><emphasis>NOTE:</emphasis> By &quot;build&quot;, we mean create the necessary tarballs/package required for installation (according to the INSTALL section below) or distribution.</para>
 
 <refsect2 id="{@id build_tree}">
-<title>[MUST] Obtain the source tarball</title>
+<title>[MUST] Obtain the source code</title>
+<screen>
+<![CDATA[
+$ git clone https://github.com/cedric-dufour/php-ape
+]]>
+</screen>
+<para>[OR]</para>
 <screen>
 <![CDATA[
 $ tar -xjf php-ape-source-@version@.tar.bz2
@@ -115,7 +121,7 @@ $ ./debian/rules release
 <refsect1 id="{@id install}">
 <title>Installation</title>
 <para><emphasis>WARNING: PHP-APE is actively maintained on Linux. It has not been tested on Windows.</emphasis></para>
-<para><emphasis>NOTE:</emphasis> We assume a previously working Apache/PHP/PEAR setup.</para>
+<para><emphasis>NOTE:</emphasis> We assume a Linux (Debian) environment and a working Apache/PHP/PEAR setup.</para>
 
 <refsect2 id="{@id install_php}">
 <title>[MUST] Install PHP-APE</title>
@@ -135,7 +141,7 @@ $ tar -xjf php-ape-@version@.tar.bz2
 <title>[OR] using the debian package</title>
 <screen>
 <![CDATA[
-$ dpkg -i php-ape*_@version@_all.deb
+$ dpkg -i php-ape_@version@_all.deb php-ape-css-*_@version@_all.deb php-ape-js-*_@version@_all.deb
 ]]>
 </screen>
 </refsect3>
@@ -166,19 +172,6 @@ $ tar -xjf php-ape-doc-@version@.tar.bz2
 <screen>
 <![CDATA[
 $ dpkg -i php-ape-doc_@version@_all.deb
-]]>
-</screen>
-</refsect3>
-
-<refsect3 id="{@id install_doc_source}">
-<title>[OR] using the source tarball (and PhpDocumentor)</title>
-<screen>
-<![CDATA[
-$ DOC_DIR='<documentation-directory>'
-$ pear install -o PhpDocumentor
-$ tar -xjf php-ape-source-@version@.tar.bz2
-$ cd php-ape-@version@
-$ ./util/makedoc PHP_APE "PHP Application Programming Environment" "${DOC_DIR}" php doc/phpdoc
 ]]>
 </screen>
 </refsect3>

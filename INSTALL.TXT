@@ -10,7 +10,11 @@ BUILD
 NOTE: By "build", we mean create the necessary tarballs/package required for
       installation (according to the INSTALL section below) or distribution.
 
-1. [MUST] Obtain the source tarball:
+1. [MUST] Obtain the source code:
+
+   BASH: git clone https://github.com/cedric-dufour/php-ape
+
+   OR
 
    BASH: tar -xjf php-ape-source-@version@.tar.bz2
    BASH: cd php-ape-source-@version@
@@ -51,7 +55,7 @@ INSTALL
 -------
 
 WARNING: PHP-APE is actively maintained on Linux. It has not been tested on Windows.
-NOTE: We assume a previously working Apache/PHP/PEAR setup.
+NOTE: We assume a Linux (Debian) environment and a working Apache/PHP/PEAR setup.
 
 1. [MUST] Install PHP-APE:
 
@@ -65,7 +69,7 @@ NOTE: We assume a previously working Apache/PHP/PEAR setup.
 
    b. using the debian package:
 
-      BASH: dpkg -i php-ape*_@version@_all.deb
+      BASH: dpkg -i dpkg -i php-ape_@version@_all.deb php-ape-css-*_@version@_all.deb php-ape-js-*_@version@_all.deb
 
 2. [MAY] Install PHP-APE documentation:
 
@@ -81,19 +85,10 @@ NOTE: We assume a previously working Apache/PHP/PEAR setup.
 
       BASH: dpkg -i php-ape-doc_@version@_all.deb
 
-   OR
-
-   c. using the source tarball (and PhpDocumentor):
-   
-      BASH: DOC_DIR='<documentation-directory>'
-      BASH: pear install -o PhpDocumentor
-      BASH: tar -xjf php-ape-source-@version@.tar.bz2
-      BASH: cd php-ape-source-@version@
-      BASH: ./util/makedoc PHP_APE "PHP Application Programming Environment" "${DOC_DIR}" php doc/phpdoc
-
 
 CONFIGURATION AND USAGE
 -----------------------
 
-Please refer to the HTML (PhpDocumentor) documentation.
+Please refer to the HTML documentation (in the documentation tarball or debian
+package).
 
