@@ -52,7 +52,7 @@ extends PHP_APE_DataSpace_Any
 
   public function encodeData( $sInput )
   {
-    return addCSlashes( str_replace( '"', "'", $sInput ), "\x0..\x1F\\'" );
+    return addCSlashes( $sInput, "\x0..\x1F\\\"'/" );
   }
 
 
