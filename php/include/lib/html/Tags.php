@@ -46,7 +46,7 @@ class PHP_APE_HTML_Tags
     $sOutput = null;
     $sOutput .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">'."\r\n";
     $sOutput .= '<!-- This page has been generated using PHP Application Programing Environment (PHP-APE) -->'."\r\n";
-    $sOutput .= '<!-- by Cedric Dufour - http://www.ced-network.net/php-ape -->'."\r\n";
+    $sOutput .= '<!-- by Cedric Dufour - http://cedric.dufour.name/software/php-ape -->'."\r\n";
     $sOutput .= ( PHP_APE_DEBUG ? "\r\n<!-- HTML:begin -->\r\n" : null ).'<HTML>'."\r\n";
     return $sOutput;
   }
