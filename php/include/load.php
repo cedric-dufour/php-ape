@@ -101,6 +101,19 @@ if( !defined( 'PHP_APE_DEBUG' ) )
   else define( 'PHP_APE_DEBUG', false );
 }
 
+if( !defined( 'PHP_APE_NOAUTOLOAD' ) )
+{
+  /** @ignore */
+  if( array_key_exists( 'PHP_APE_NOAUTOLOAD', $_SERVER ) ) define( 'PHP_APE_NOAUTOLOAD', $_SERVER[ 'PHP_APE_NOAUTOLOAD' ] );
+  /** @ignore */
+  elseif( array_key_exists( 'PHP_APE_NOAUTOLOAD', $_ENV ) ) define( 'PHP_APE_NOAUTOLOAD', $_ENV[ 'PHP_APE_NOAUTOLOAD' ] );
+  /** PHP-APE autoload bail-out (Perl-compatible) regular expression
+   *
+   * <P>Retrieved from system or server environment variable <SAMP>PHP_APE_NOAUTOLOAD</SAMP>, if existing [default: <SAMP>null</SAMP>].</P>
+   */
+  else define( 'PHP_APE_NOAUTOLOAD', null );
+}
+
 /*
  * CORE RESOURCES
  ********************************************************************************/
@@ -135,14 +148,18 @@ PHP_APE_Resources::init();
  *
  * <P><B>NOTE:</B> This function relies on <SAMP>{@link PHP_APE_Resources}</SAMP> class and methods to find the required resource among
  * the configured resources paths.</P>
+ * <P><B>NOTE:</B> If the <SAMP>PHP_APE_NOAUTOLOAD</SAMP> environment (Perl-compatible regular expression) variable is defined and
+ * matches the given resource name, this function will bail-out (and allow potential other autoload functions to do their work).</P>
  *
  * @param string $sResourceName Resource name
- * @see PHP_MANUAL#__autoload()
+ * @see PHP_MANUAL#spl_autoload_register()
  */
-function __autoload( $sResourceName )
+function PHP_APE_autoload( $sResourceName )
 {
+  if( !is_null( PHP_APE_NOAUTOLOAD ) and preg_match( PHP_APE_NOAUTOLOAD, $sResourceName ) ) return;
   PHP_APE_Resources::loadDefinition( $sResourceName );
 }
+spl_autoload_register( 'PHP_APE_autoload' );
 
 /*
  * ADDITIONAL RESOURCES

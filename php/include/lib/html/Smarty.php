@@ -30,6 +30,9 @@ require_once( PHP_APE_HTML_WorkSpace::useEnvironment()->getVolatileParameter( 'p
 
 /** HTML Smarty (template) object
  *
+ * <P><B>WARNING:</B> If using Smarty version 3 (or above), make sure to assign <SAMP>/^Smarty_/</SAMP> to the
+ * <SAMP>PHP_APE_NOAUTOLOAD</SAMP> environment variable.</P>
+ *
  * @package PHP_APE_HTML
  * @subpackage Classes
  */
@@ -61,6 +64,8 @@ extends Smarty
    */
   public function __construct( $sTemplateFile, $sTemplateExtension, $sTemplateDir = null, $bLocalized = true, $sLanguage = null, $sCountry = null )
   {
+    static $fSmartyVersion;
+
     // Check input
     $sTemplateFile = PHP_APE_Type_Path::parseValue( $sTemplateFile );
     $sTemplateExtension = ltrim( PHP_APE_Type_Path::parseValue( $sTemplateExtension ), '.' );
@@ -72,11 +77,36 @@ extends Smarty
     $roEnvironment =& PHP_APE_HTML_WorkSpace::useEnvironment();
 
     // Initialize Smarty
-    $this->template_dir = $sTemplateDir;
-    $this->config_dir = $roEnvironment->getVolatileParameter( 'php_ape.html.smarty.config.path' );
-    $this->compile_dir = $roEnvironment->getVolatileParameter( 'php_ape.html.smarty.compile.path' );
-    $this->compile_id = 'PHP_APE_HTML_Smarty#'.sha1( $sTemplateDir ).md5( $sTemplateDir );
-    $this->cache_dir = $roEnvironment->getVolatileParameter( 'php_ape.html.smarty.cache.path' );
+    if( is_null( $fSmartyVersion ) )
+    {
+      if( !@is_null( constant( 'Smarty::SMARTY_VERSION' ) ) )
+        $fSmartyVersion = (float)preg_replace( '/[^.0-9]/', '', Smarty::SMARTY_VERSION );
+      elseif( !@is_null( $this->_version ) )
+        $fSmartyVersion = (float)preg_replace( '/[^.0-9]/', '', $this->_version );
+      else
+        throw new PHP_APE_HTML_Exception( __METHOD__, 'Unable to retrieve Smarty version' );
+    }
+    if( $fSmartyVersion >= 3 )
+    {
+      parent::__construct();
+      $this->setTemplateDir( $sTemplateDir );
+      $this->setConfigDir( $roEnvironment->getVolatileParameter( 'php_ape.html.smarty.config.path' ) );
+      $this->setCacheDir( $roEnvironment->getVolatileParameter( 'php_ape.html.smarty.cache.path' ) );
+      $this->setCompileDir( $roEnvironment->getVolatileParameter( 'php_ape.html.smarty.compile.path' ) );
+      $this->compile_id = 'PHP_APE_HTML_Smarty#'.sha1( $sTemplateDir ).md5( $sTemplateDir );
+      $sTemplateExistsFunction='templateExists';
+    }
+    elseif( $fSmartyVersion >= 2 )
+    {
+      $this->template_dir = $sTemplateDir;
+      $this->config_dir = $roEnvironment->getVolatileParameter( 'php_ape.html.smarty.config.path' );
+      $this->cache_dir = $roEnvironment->getVolatileParameter( 'php_ape.html.smarty.cache.path' );
+      $this->compile_dir = $roEnvironment->getVolatileParameter( 'php_ape.html.smarty.compile.path' );
+      $this->compile_id = 'PHP_APE_HTML_Smarty#'.sha1( $sTemplateDir ).md5( $sTemplateDir );
+      $sTemplateExistsFunction='template_exists';
+    }
+    else
+      throw new PHP_APE_HTML_Exception( __METHOD__, 'Unsupported Smarty version; Version: '.$fSmartyVersion );
 
     // Initialize template file
     if( $bLocalized )
@@ -87,20 +117,20 @@ extends Smarty
       if( is_null( $this->sTemplate ) and $roEnvironment->getVolatileParameter( 'php_ape.localize.country' ) )
       {
         $sTemplate = $sTemplateFile.'.'.strtolower( $sLanguage ).'_'.strtoupper( $sCountry ).$sTemplateExtension;
-        if( $this->template_exists( $sTemplate ) ) $this->sTemplate = $sTemplate;
+        if( $this->$sTemplateExistsFunction( $sTemplate ) ) $this->sTemplate = $sTemplate;
       }
       // ... check partially localized template
       if( is_null( $this->sTemplate ) )
       {
         $sTemplate = $sTemplateFile.'.'.strtolower( $sLanguage ).$sTemplateExtension;
-        if( $this->template_exists( $sTemplate ) ) $this->sTemplate = $sTemplate;
+        if( $this->$sTemplateExistsFunction( $sTemplate ) ) $this->sTemplate = $sTemplate;
       }
     }
     // ... check unlocalized template
     if( is_null( $this->sTemplate ) )
     {
       $sTemplate = $sTemplateFile.$sTemplateExtension;
-      if( $this->template_exists( $sTemplate ) ) $this->sTemplate = $sTemplate;
+      if( $this->$sTemplateExistsFunction( $sTemplate ) ) $this->sTemplate = $sTemplate;
     }
     // ... eventually report failure to load any template
     if( is_null( $this->sTemplate ) )
