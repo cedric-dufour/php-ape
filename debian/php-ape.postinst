@@ -8,8 +8,10 @@ case "$1" in
     chown -R root:www-data /etc/php-ape
     find /etc/php-ape -type d -exec chmod 750 {} \;
     find /etc/php-ape -type f -exec chmod 640 {} \;
-    chown root:www-data /var/lib/php-ape /var/cache/php-ape /var/log/php-ape
-    chmod 2770 /var/lib/php-ape /var/cache/php-ape /var/log/php-ape
+    chown root:www-data /var/lib/php-ape /var/cache/php-ape
+    chmod 2770 /var/lib/php-ape /var/cache/php-ape
+    chown www-data:adm /var/log/php-ape
+    chmod 350 /var/log/php-ape
 
     # Enable apache configuration
     [ ! -e /etc/apache2/conf.d/php-ape.conf ] && ln -s /etc/php-ape/apache.conf /etc/apache2/conf.d/php-ape.conf
