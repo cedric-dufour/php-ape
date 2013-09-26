@@ -260,7 +260,7 @@ extends PHP_APE_Type_Numeric
 
     case self::Format_SeparatorDMS:
     default:
-      return $sSign.$sDegree.'°'.$sMinute.'\''.( $bIncludeSecond ? ( $sSecond.( $bIncludeMicro ? ('.'.$sSubsecond) : null ).'"' ) : null );
+      return $sSign.$sDegree.html_entity_decode('&deg;').$sMinute.'\''.( $bIncludeSecond ? ( $sSecond.( $bIncludeMicro ? ('.'.$sSubsecond) : null ).'"' ) : null );
 
     }
 

@@ -40,7 +40,7 @@ PHP_APE_Type_Path.Sample = '/path/to/file.ext'
 PHP_APE_Type_Dir.Sample = '/path/to/file.ext' 
 PHP_APE_Type_File.Sample = '/path/to/file.ext' 
 PHP_APE_Type_FileFromUpload.Sample = '(My Computer)/path/to/file.ext' 
-PHP_APE_Type_Index = 'ID#123' 
+PHP_APE_Type_Index.Sample = 'ID#123' 
 
 # Other values
 PHP_APE_Type_Any.Value = 'value' 

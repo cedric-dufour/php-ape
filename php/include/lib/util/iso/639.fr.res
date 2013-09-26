@@ -1,5 +1,5 @@
 # (French version)
 # ISO-639 2-letters language codes
-undefined = "Défaut/Indéfini"
+undefined = "D&eacute;faut/Ind&eacute;fini"
 EN = 'Anglais';
-FR = 'Français';
+FR = 'Fran&ccedil;ais';

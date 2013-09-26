@@ -246,6 +246,7 @@ class PHP_APE_Resources
    * </UL>
    * <P>This way of doing things allows to manage localization in a flexible and fail-safe way (though
    * some unlocalized data may pop-up, in case of discrepancies between localized and unlocalized properties).</P>
+   * <P>Non-ASCII characters shall be encoded using HTML entities (<SAMP>&amp;...;</SAMP>).</P>
    *
    * @param string $sResourceName Resource name
    * @param string $sLanguage Language (ignored if <SAMP>null</SAMP>)
@@ -293,7 +294,7 @@ class PHP_APE_Resources
     }
 
     // End
-    return $asProperties;
+    return array_map( 'html_entity_decode', $asProperties );
   }
 
 }
