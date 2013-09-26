@@ -1,3 +1,9 @@
+php-ape (1.2.20130926) unstable; urgency=low
+
+  * New release (see https://github.com/cedric-dufour/php-ape/commits/ for change log)
+
+ -- Cedric Dufour <cedric.dufour(git)@ced-network.net>  Wed, 26 Sep 2013 12:32:22 +0200
+
 php-ape (1.2.20130925) unstable; urgency=low
 
   * New release (see https://github.com/cedric-dufour/php-ape/commits/ for change log)
