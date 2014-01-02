@@ -5,7 +5,7 @@ case "$1" in
 
   remove)
     # Disable apache configuration
-    rm /etc/apache2/conf.d/php-ape.conf
+    rm -f /etc/apache2/conf.d/php-ape.conf
     /etc/init.d/apache2 reload
     ;;
 
