@@ -212,7 +212,7 @@ extends PHP_APE_HTML_Data_Any
       $sOutput .= "--></SCRIPT>\r\n";
     }
     if( PHP_APE_DEBUG ) $sOutput .= "\r\n<!-- FORM: PHP_APE_HTML_Data_Filter::htmlForm(Prefix) - BEGIN ('.$sRID.') -->\r\n";
-    $sOutput .= '<FORM NAME="PHP_APE_DF_'.$sRID.'" ACTION="'.($sQuery?'?'.$sQuery:null).'" METHOD="get">'."\r\n";
+    $sOutput .= '<FORM NAME="PHP_APE_DF_'.$sRID.'" ACTION="'.$_SERVER['PHP_SELF'].($sQuery?'?'.$sQuery:null).'" METHOD="get">'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="PHP_APE_DF_'.$sRID.'" DISABLED />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="PHP_APE_DS_'.$sRID.'" DISABLED />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="__GLOBAL" VALUE="'.$oDataSpace->encodeData( $sGlobalCriteria ).'" />'."\r\n";

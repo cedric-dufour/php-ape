@@ -147,7 +147,7 @@ extends PHP_APE_HTML_Data_BasicList
     // Output
     $sOutput = null;
     $sOutput .= '<DIV CLASS="APE-dragsort">'."\r\n";
-    $sOutput .= '<FORM NAME="PHP_APE_PD_'.$this->sRID.'" ACTION="'.( $sQuery ? '?'.$sQuery : null ).'" METHOD="get">'."\r\n";
+    $sOutput .= '<FORM NAME="PHP_APE_PD_'.$this->sRID.'" ACTION="'.$_SERVER['PHP_SELF'].( $sQuery ? '?'.$sQuery : null ).'" METHOD="get">'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="PHP_APE_P" DISABLED />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="'.$sPreferenceID_Enabled.'" />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="'.$sPreferenceID_Ordered.'" />'."\r\n";
@@ -271,7 +271,7 @@ extends PHP_APE_HTML_Data_BasicList
     // Output
     $sOutput = null;
     $sOutput .= '<DIV CLASS="APE-dragsort">'."\r\n";
-    $sOutput .= '<FORM NAME="PHP_APE_PO_'.$this->sRID.'" ACTION="'.( $sQuery ? '?'.$sQuery : null ).'" METHOD="get">'."\r\n";
+    $sOutput .= '<FORM NAME="PHP_APE_PO_'.$this->sRID.'" ACTION="'.$_SERVER['PHP_SELF'].( $sQuery ? '?'.$sQuery : null ).'" METHOD="get">'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="PHP_APE_P" DISABLED />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="PHP_APE_DO_'.$this->sRID.'" DISABLED />'."\r\n";
     $sOutput .= '<INPUT TYPE="hidden" NAME="PHP_APE_DS_'.$this->sRID.'" DISABLED />'."\r\n";
