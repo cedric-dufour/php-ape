@@ -85,7 +85,7 @@ extends PHP_APE_Database_SQL_ANSI92
     }
 
     if( $oData instanceof PHP_APE_Type_String )
-      return '\''.$sExpression.'\'';
+      return 'E\''.$sExpression.'\'';
 
     throw new PHP_APE_Database_SQL_Exception( __METHOD__, 'Invalid/unsupported data/type; Data/Type: '.get_class( $oData ) );
   }
