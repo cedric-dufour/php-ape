@@ -1,3 +1,9 @@
+php-ape (1.2.20150225) unstable; urgency=low
+
+  * New release (see https://github.com/cedric-dufour/php-ape/commits/ for change log)
+
+ -- Cedric Dufour <cedric.dufour@ced-network.net>  Wed, 25 Feb 2015 09:28:54 +0100
+
 php-ape (1.2.20140109) unstable; urgency=low
 
   * New release (see https://github.com/cedric-dufour/php-ape/commits/ for change log)

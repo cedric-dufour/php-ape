@@ -14,7 +14,11 @@ case "$1" in
     chmod 350 /var/log/php-ape
 
     # Enable apache configuration
-    [ ! -e /etc/apache2/conf.d/php-ape.conf ] && ln -s /etc/php-ape/apache.conf /etc/apache2/conf.d/php-ape.conf
+    if [ -e /etc/apache2/conf.d ]; then
+      [ ! -e /etc/apache2/conf.d/php-ape.conf ] && ln -s /etc/php-ape/apache.conf /etc/apache2/conf.d/php-ape.conf
+    elif [ -e /etc/apache2/conf-available ]; then
+      [ ! -e /etc/apache2/conf-available/php-ape.conf ] && ln -s /etc/php-ape/apache.conf /etc/apache2/conf-available/php-ape.conf
+    fi
     echo 'WARNING: Please reload apache configuration to enable php-ape!'
     ;;
 

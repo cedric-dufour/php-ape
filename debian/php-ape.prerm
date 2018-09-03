@@ -5,8 +5,8 @@ case "$1" in
 
   remove)
     # Disable apache configuration
-    rm -f /etc/apache2/conf.d/php-ape.conf
-    /etc/init.d/apache2 reload
+    rm -f /etc/apache2/conf.d/php-ape.conf /etc/apache2/conf-available/php-ape.conf \
+    && echo 'WARNING: Please reload apache configuration to disable php-ape!'
     ;;
 
 esac

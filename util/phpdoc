@@ -1,4 +1,4 @@
 #!/usr/bin/php
-<?
+<?php
 include('PhpDocumentor/phpDocumentor/phpdoc.inc');
 
