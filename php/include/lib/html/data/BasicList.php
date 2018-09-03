@@ -969,7 +969,7 @@ extends PHP_APE_HTML_Data_View
       $sOutput .= '<TD CLASS="c" COLSPAN="100">';
       $sOutput .= PHP_APE_HTML_SmartTags::htmlAlignOpen();
       if( $this->bUseSelection ) {
-        $sOutput .= '<INPUT TYPE="checkbox" CLASS="checkbox" ONCLICK="javascript:PHP_APE_DR_'.$this->sRID.'_allPK(this.checked);" />';
+        $sOutput .= '<INPUT TYPE="checkbox" CLASS="checkbox" ONCLICK="javascript:PHP_APE_DR_BasicList_allPK(\''.$this->sRID.'\',this.checked);" />';
       }
 
       $iSeparator = 0;
