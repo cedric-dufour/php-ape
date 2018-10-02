@@ -48,6 +48,31 @@ extends PHP_APE_DataSpace_Any
 
 
   /*
+   * FIELDS: static
+   ********************************************************************************/
+
+  /** PHP internal charsel
+   * @var string */
+  private static $sPHPCharset;
+
+
+  /*
+   * CONSTRUCTORS
+   ********************************************************************************/
+
+  /** Constructs the dataspace
+   */
+  public function __construct() {
+    if( is_null( self::$sPHPCharset ) ) {
+      self::$sPHPCharset = ini_get( 'default_charset' );
+      if( empty( self::$sPHPCharset ) ) {
+        self::$sPHPCharset = version_compare( PHP_VERSION, '5.4' ) >= 0 ? 'UTF-8' : 'ISO-8859-1';
+      }
+    }
+  }
+
+
+  /*
    * METHODS: stream (static)
    ********************************************************************************/
 
@@ -85,7 +110,7 @@ extends PHP_APE_DataSpace_Any
    *
    * @param string $sInput Data to encode
    * @param boolean $bCDATA Parse input as XML's CDATA
-   * @param boolean $bUTF8 Decode using UTF-8 transcoding
+   * @param boolean $bUTF8 Force UTF-8 transcoding
    * @return string
    */
   public function decodeData( $sInput, $bCDATA = false, $bUTF8 = false )
@@ -94,7 +119,7 @@ extends PHP_APE_DataSpace_Any
 
     if( $bCDATA and preg_match('/<!\[CDATA\[(.*)\]\]>/is', $sInput, $aCDATA ) ) $sInput = $aCDATA[1];
     else $sInput = strtr( $sInput, $asXMLEntities );
-    if( $bUTF8 ) $sInput = utf8_decode( $sInput );
+    if( $bUTF8 ) $sInput = iconv( 'UTF-8', self::$sPHPCharset, $sInput );
     return $sInput;
   }
 
@@ -104,14 +129,14 @@ extends PHP_APE_DataSpace_Any
    *
    * @param string $sInput Data to encode
    * @param boolean $bCDATA Format output as XML's CDATA
-   * @param boolean $bUTF8 Encode using UTF-8 transcoding
+   * @param boolean $bUTF8 Force UTF-8 transcoding
    * @return string
    */
   public function encodeData( $sInput, $bCDATA = false, $bUTF8 = false )
   {
     static $asXMLEntities=array( '&' => '&amp;', '<' => '&lt;', '>' => '&gt;', '"' => '&quot;', '\'' => '&apos;' );
 
-    if( $bUTF8 ) $sInput = utf8_encode( $sInput );
+    if( $bUTF8 ) $sInput = iconv( self::$sPHPCharset, 'UTF-8', $sInput );
     if( $bCDATA ) $sInput = '<![CDATA['.$sInput.']]>';
     else strtr( $sInput, $asXMLEntities );
     return $sInput;

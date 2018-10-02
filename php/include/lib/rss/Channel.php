@@ -1013,8 +1013,10 @@ extends PHP_APE_RSS_Any
 		$sOutput = null;
 
 		// XML/XSL
-		$sOutput .= '<?xml version="1.0" encoding="'.( $bUseUTF8 ? 'utf-8' : 'iso-8859-1' ).'" ?>'."\n";
-		$sOutput .= '<?xml-stylesheet type="text/xsl" href="'.$oXML->encodeData( $roEnvironment->getStaticParameter( 'php_ape.rss.xsl.url' ), $bUseUTF8 ).'"?>'."\n";
+		$sCharset = $bUseUTF8 ? 'utf-8' : ini_get( 'default_charset' );
+		if( empty( $sCharset ) ) $sCharset = version_compare( PHP_VERSION, '5.4' ) >= 0 ? 'utf-8' : 'iso-8859-1';
+		$sOutput .= '<?xml version="1.0" encoding="'.$sCharset.'" ?>'."\n";
+		$sOutput .= '<?xml-stylesheet type="text/xsl" href="'.$oXML->encodeData( str_replace( '%charset%', $sCharset, $roEnvironment->getStaticParameter( 'php_ape.rss.xsl.url' ) ), false, $bUseUTF8 ).'"?>'."\n";
 
 		// RSS
 		$sOutput .= $this->format( $fVersion, $bUseUTF8, $sSelfURL );

@@ -30,7 +30,7 @@
  * <P><B>USAGE:</B></P>
  * <P>The following static parameters (properties) are provisioned by this workspace:</P>
  * <UL>
- * <LI><SAMP>php_ape.rss.xsl.url</SAMP>: default associated XSL stylesheet URL [default: <SAMP>http://localhost/php-ape/lib/rss/default.xsl</SAMP>]</LI>
+ * <LI><SAMP>php_ape.rss.xsl.url</SAMP>: default associated XSL stylesheet URL [default: <SAMP>http://localhost/php-ape/lib/rss/default.%charset%.xsl</SAMP>]</LI>
  * </UL>
  *
  * @package PHP_APE_RSS
@@ -99,7 +99,7 @@ extends PHP_APE_WorkSpace
       $rValue =& $rasParameters[ 'php_ape.rss.xsl.url' ];
       $rValue = trim( PHP_APE_Type_Path::parseValue( $rValue ) );
       if( empty( $rValue ) )
-        $rValue = 'http://localhost/php-ape/lib/rss/default.xsl';
+        $rValue = 'http://localhost/php-ape/lib/rss/default.%charset%.xsl';
       else
         $rValue = rtrim( $rValue, '/' );
     }

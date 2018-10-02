@@ -36,7 +36,7 @@
  * <LI><SAMP>php_ape.admin.phone</SAMP>: administrator phone number [default: <SAMP>null</SAMP>]</LI>
  * <LI><SAMP>php_ape.application.id</SAMP>: application identifier (ID) [default: '<SAMP>PHP_APE</SAMP>']</LI>
  * <LI><SAMP>php_ape.application.name</SAMP>: application name [default: '<SAMP>PHP Application Programming Environment (PHP-APE)</SAMP>']</LI>
- * <LI><SAMP>php_ape.data.charset</SAMP>: (PHP) internal data character set (encoding) [default: PHP >= 5.4 '<SAMP>UTF-8</SAMP>'; PHP < 5.4 '<SAMP>ISO-8859-1</SAMP>']</LI>
+ * <LI><SAMP>php_ape.data.charset</SAMP>: (PHP) internal data character set (encoding) [default: PHP >= 5.6 '<SAMP>ini_get("default_charset")</SAMP>', PHP >= 5.4 '<SAMP>UTF-8</SAMP>'; PHP < 5.4 '<SAMP>ISO-8859-1</SAMP>']</LI>
  * <LI><SAMP>php_ape.data.filter.advanced</SAMP>: advanced data filter usage [default: <SAMP>false</SAMP>]</LI>
  * <LI><SAMP>php_ape.data.filter.or</SAMP>: data filter OR logical mixing [default: <SAMP>false</SAMP>]</LI>
  * <LI><SAMP>php_ape.data.format.boolean</SAMP>: boolean format [default: <SAMP>true / false</SAMP>]</LI>
@@ -194,8 +194,11 @@ extends PHP_APE_Environment
     {
       $rValue =& $rasParameters[ 'php_ape.data.charset' ];
       $rValue = trim( PHP_APE_Type_String::parseValue( $rValue ) );
-      if( empty( $rValue ) )
-        $rValue = version_compare( PHP_VERSION, '5.4' ) >= 0 ? 'UTF-8' : 'ISO-8859-1';
+      if( empty( $rValue ) ) {
+        $rValue = ini_get( 'default_charset' );
+        if( empty( $rValue ) )
+          $rValue = version_compare( PHP_VERSION, '5.4' ) >= 0 ? 'UTF-8' : 'ISO-8859-1';
+      }
     }
 
     // Advanced data filter usage
